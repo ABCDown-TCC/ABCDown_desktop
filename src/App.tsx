@@ -52,7 +52,7 @@ import Test from './components/pages/Test'
 import Test2 from './components/pages/Test2'
 import CreateACount from './components/pages/CreateACount'
 import CreateACountReactHook from './components/pages/CreateACountReactHook'
-
+import MessageConfirmExit from './components/layout/Navibar/MessageConfirmExit'
 function App() {
   const divStyle: React.CSSProperties = {
     margin: '0',

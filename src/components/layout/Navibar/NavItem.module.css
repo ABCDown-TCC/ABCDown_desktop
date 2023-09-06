@@ -6,8 +6,8 @@
   width: max-content;
   height: max-content;
   gap: 1vw;
-
-  margin: 30px 0 30px 0;
+  /* margin: 30px 0 30px 0; */
+  margin: 2vh 0 2vh 0;
 }
 
 .navItem{

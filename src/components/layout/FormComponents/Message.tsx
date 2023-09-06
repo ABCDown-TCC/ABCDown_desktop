@@ -3,6 +3,7 @@ import Btn from './Btn';
 import styles from './Message.module.css';
 import ImageClose from './imageMessage/close.svg'
 
+
 interface MessageProps {
     text?: string;
     description?: string;

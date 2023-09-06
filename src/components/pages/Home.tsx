@@ -15,11 +15,8 @@ import { Link } from 'react-router-dom';
 function Home() {
     const heigthCommunity: string = '25vh';
     const widthCommunity:string = '85%';
-
     const widthClassActivity: string = '41%';
     const heigthClassActivity: string = '35vh';
-
-   
      const widthAboutShare:string = '41%';
      const heigthAboutShare:string ='20vh';
     return (
