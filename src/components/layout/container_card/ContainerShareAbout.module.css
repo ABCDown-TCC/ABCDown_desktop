@@ -1,0 +1,35 @@
+.containerCard{
+
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    background-color: #fff;
+    border-radius: 20px;
+    
+    
+}
+.custom_text {
+  /* background-color: aqua;  */
+padding: 15% 0 0 15%;
+width: max-content;
+font-size: 1.5vw;
+}
+
+.custom_description{
+    /* background-color: cadetblue;  */
+     font-size: 0.8vw;
+    padding: 0 0 0 15%;
+}
+
+.imageAboutAbcdown {
+    width: 30%;
+    height: 50%;
+    /* background-color: aqua;  */
+}
+.imageShare {
+    width: 30%;
+    height: 80%;
+     
+}
+
+

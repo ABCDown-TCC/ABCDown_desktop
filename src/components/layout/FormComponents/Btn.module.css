@@ -1,0 +1,19 @@
+.containerBtn{
+    /* background-color: tomato; */
+    /* width: 100%; */
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    border: none;
+    color: white;
+    padding: 0.8em;
+    font-weight:bold;
+    border-radius: 40px;
+    font-size:0.9vw ;
+    /* width: 100%; */
+    cursor: pointer;
+}

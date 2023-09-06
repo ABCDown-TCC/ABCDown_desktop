@@ -1,0 +1,22 @@
+.containerTexts {
+     /* background-color: tomato;   */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    width: max-content;
+     gap: 1.5vh; 
+  }
+  
+  .title {
+    font-weight: bold;
+    font-size: 3.3vw;
+  }
+  
+  .description {
+    /* background-color: teal; */
+    height: max-content;
+    font-size: 1vw;
+    
+  }
+  

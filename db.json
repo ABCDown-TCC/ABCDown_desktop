@@ -1,0 +1,33 @@
+{
+  "professor": [
+    {
+      "professor": {
+        "nome": "Teste para postman 3 desgrama",
+        "cpf": "666666",
+        "data_nascimento": "2023-09-07",
+        "foto": "https://firebasestorage.googleapis.com/v0/b/abcdown-c9f29.appspot.com/o/images%2FresetPassword.png?alt=media&token=537f2da5-dd15-486c-abf5-c3764f7aed2b",
+        "email": "guilherme633@gmail.com",
+        "senha": "123",
+        "id_genero": "2",
+        "numero": "999",
+        "cep": "02276130",
+        "numeroTelefone": "33333333"
+      },
+      "id": 1
+    }
+  ],
+  "tbl_genero": [
+    {
+      "id_genero": 1,
+      "nome_genero": "Feminino"
+    },
+    {
+      "id_genero": 2,
+      "nome_genero": "Masculino"
+    },
+    {
+      "id_genero": 3,
+      "nome_genero": "Outros"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+.container_nav {
+     /* background-color: red;  */
+    padding: 1vw;
+    height: max-content;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}

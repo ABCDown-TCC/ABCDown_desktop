@@ -1,0 +1,29 @@
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    border-color: #C9C9C9; 
+    border-width: 1px; 
+    border-style: solid;
+    outline: none; 
+    line-height: 24px;
+    cursor: pointer;
+    gap: 1vw;
+    padding: 1.5vw;
+}
+
+.image{
+  height: 3vh;
+  width: 5%;
+}
+
+.textTitle {
+    font-weight: bold;
+    font-size: 0.8vw;
+}
+

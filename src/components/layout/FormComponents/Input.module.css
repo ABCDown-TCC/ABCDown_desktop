@@ -1,0 +1,31 @@
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    /* background-color: teal; */
+    display: flex;
+    justify-content: center;
+    gap: 1.5vh;
+
+    
+}
+
+.textTitle {
+  font-size: 0.8vw;
+}
+
+.inputField {
+    border-radius: 40px;
+    border-color: #C9C9C9; 
+    border-width: 1px; 
+    border-style: solid;
+    outline: none; 
+    line-height: 24px;
+    padding: 0 20px;
+    font-size: 1.2rem;
+    
+}
+.messageError{
+  color: #E74747;
+font-size: 0.7vw;
+}
