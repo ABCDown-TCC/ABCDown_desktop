@@ -1,0 +1,20 @@
+.search_input{
+    background-color: white;
+    width: max-content;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    width: 70%;
+    height: 5vh;
+    border-radius: 5px;
+    gap: 3%;
+    padding: 0 0 0 1vw;
+}
+.searchText{
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    /* background-color: aqua; */
+    height: 100%;
+    font-size: 1.2rem;
+}

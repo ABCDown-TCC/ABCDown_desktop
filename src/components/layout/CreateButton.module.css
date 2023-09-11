@@ -1,0 +1,14 @@
+.Bnt{
+    background-color: #43B1B1;
+
+    position: fixed;
+    bottom: 3%;
+    right:3%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+  
+}

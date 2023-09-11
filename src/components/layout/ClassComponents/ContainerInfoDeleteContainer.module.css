@@ -1,0 +1,38 @@
+
+
+.info {
+    background-color: #3393C3;
+    border-radius: 10px; /* Borda arredondada */
+    color: white; /* Cor do texto */
+   padding: 10px 35px; 
+     /* Espaçamento interno  */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Cursor de mão ao passar o mouse */
+    font-weight: bold; /* Texto em negrito */
+    transition: background-color 0.3s, border-color 0.3s; /* Transição suave */
+  }
+  
+  .info:hover {
+    background-color: white; /* Cor de fundo ao passar o mouse */
+    border: 1px solid #3393C3; /* Borda ao passar o mouse */
+    color: #3393C3; /* Cor do texto ao passar o mouse */
+  }
+  
+  
+  .delete {
+    background-color: #F95926;
+    border-radius: 50%; /* Transforma o botão em um círculo */
+    width: 30px; /* Largura do círculo */
+    height: 30px; /* Altura do círculo */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Cursor de mão ao passar o mouse */
+    font-weight: bold;  
+    transition: background-color 0.3s, border-color 0.3s; /* Transição suave */
+}
+
+.delete:hover {
+  background-color: white; /* Cor de fundo ao passar o mouse */
+  border: 1.4px solid #F95926; /* Cor da borda ao passar o mouse */
+  color: #F95926; /* Cor do texto ao passar o mouse, se necessário */
+}
+  

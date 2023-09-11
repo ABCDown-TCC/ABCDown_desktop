@@ -1,0 +1,24 @@
+/* Cards.module.css */
+
+.containerCard {
+    background-color: white;
+    border-radius: 20px; /* Adiciona bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona uma leve sombra */
+    display: flex;
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    position: relative; /* Define a posição relativa para o posicionamento do ContainerInfoDeleteContainer */
+  }
+  
+  .cardContent {
+    flex: 1; /* Permite que o conteúdo do Card ocupe o espaço restante */
+    padding: 20px; /* Adicione o espaçamento interno para o conteúdo do Card */
+ 
+}
+  
+  .containerInfo {
+    position: absolute; /* Define a posição absoluta para o ContainerInfoDeleteContainer */
+    bottom: 10px; /* Distância a partir do fundo do Card */
+    right: 10px; /* Distância a partir da direita do Card */
+  
+  }
+  
