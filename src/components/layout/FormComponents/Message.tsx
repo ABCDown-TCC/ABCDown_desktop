@@ -12,23 +12,35 @@ interface MessageProps {
     widthBtn?: string;
     colorBtn?: string;
     textBtn?: string;
+    onClick?:() => void
 }
 
 function Message(props: MessageProps) {
     const renderCloseButton = (
-        <div className={styles.containerClose}>
+        <button className={styles.containerClose} onClick={props.onClick}>
             <img src={ImageClose} alt="close" />
-        </div>
+        </button>
     );
     return (
         <div className={styles.contaienrMessage}>
             {props.widthBtn && props.colorBtn && props.textBtn && props.image && props.description && props.text ? (
                 <>
-                    {renderCloseButton}
+                    <div style={{
+                        width: '100%', // Defina o valor de largura desejado aqui
+                        //backgroundColor:'red',
+                        display:'flex',
+                        justifyContent:'flex-end',
+                       
+                        
+                    }}>
+
+                        {renderCloseButton}
+
+                    </div>
                     <div className={styles.containerTextMessage}>
                         <h1>{props.text}</h1>
-                        <img src={props.image} alt="Message" />
-                        <span className= {styles.description}>{props.description}</span>
+                        <img src={props.image} alt="Message"  className={styles.image}/>
+                        <span className={styles.description}>{props.description}</span>
                         <div className={styles.containerButton}>
                             <Btn text={props.textBtn} color={props.colorBtn} width={props.widthBtn} height={props.heigthBtn} />
                         </div>
@@ -37,16 +49,27 @@ function Message(props: MessageProps) {
 
                 </>
             ) : (
-                    <>
-                        {renderCloseButton}
-                        <div className={styles.containerTextMessage}>
-                            <h1>{props.text}</h1>
-                            <img src={props.image} alt="Message" />
-                            <span className= {styles.description}>{props.description}</span>
-                        </div>
+                <>
+                         <div style={{
+                        width: '100%', // Defina o valor de largura desejado aqui
+                        //backgroundColor:'red',
+                        display:'flex',
+                        justifyContent:'flex-end',
+                       
+                        
+                    }}>
 
-                    </>
-                )}
+                        {renderCloseButton}
+
+                    </div>
+                    <div className={styles.containerTextMessage}>
+                        <h1>{props.text}</h1>
+                        <img src={props.image} alt="Message"  className={styles.image}/>
+                        <span className={styles.description}>{props.description}</span>
+                    </div>
+
+                </>
+            )}
         </div>
     );
 }

@@ -10,6 +10,11 @@ import UserDecisionHandler from "../layout/FormComponents/UserDecisionHandler";
 import AuthenticationOptions from "../layout/FormComponents/AuthenticationOptions";
 import Message from "../layout/FormComponents/Message";
 import ImageEmail from "../layout/FormComponents/imageMessage/imageMessageEmail.svg";
+import ImagePassword from '../layout/FormComponents/imageMessage/imageMessagePassword.svg'
+import { useNavigate } from 'react-router-dom'; // version 5.2.0
+
+
+
 
 function ResetPassword() {
   const heightInput: string = "5vh";
@@ -18,6 +23,7 @@ function ResetPassword() {
 
   const [currentStep, setCurrentStep] = useState("emailInput");
   const [showMessage, setShowMessage] = useState(false);
+  const navigate = useNavigate()
 
   const handleLoginButtonClick = () => {
     // Exibe a mensagem
@@ -26,7 +32,7 @@ function ResetPassword() {
     setTimeout(() => {
       setShowMessage(false);
       setCurrentStep("nextStep"); // Substitua 'nextStep' pelo valor que represente a próxima etapa
-    }, 5000); // Tempo em milissegundos
+    }, 2000); // Tempo em milissegundos
   };
   // const handleLoginButtonClick = () => {
   //   // Exibe a mensagem
@@ -34,9 +40,19 @@ function ResetPassword() {
   //   // Não define um tempo limite para fechar a mensagem automaticamente
   //   // A mensagem permanecerá visível até que o usuário a feche manualmente
   // };
-  
 
-  
+
+  const handleLoginButtonClickToLogin = () => {
+    // Exibe a mensagem
+    setShowMessage(true);
+    // Aguarda um tempo (por exemplo, 2 segundos) e depois avança para a próxima etapa
+    setTimeout(() => {
+      setShowMessage(false);
+      setCurrentStep("nextStep"); // Substitua 'nextStep' pelo valor que represente a próxima etapa
+      navigate('/login')
+
+    }, 2000); // Tempo em milissegundos
+  };
 
   const renderRightContent = () => {
     let backgroundImage: string = BackgroundImageResetPassword;
@@ -130,6 +146,7 @@ function ResetPassword() {
         </>
       );
     } else if (currentStep === "nextStep") {
+
       return (
         <>
           <HeaderLogin />
@@ -185,13 +202,23 @@ function ResetPassword() {
                   color="#F0754E"
                   width="12vw"
                   height={heightButton}
+
                 />
                 <Btn
                   text="Enviar"
                   color="#43B1B1"
                   width="22vw"
                   height={heightButton}
+                  onClick={handleLoginButtonClickToLogin}
                 />
+
+                {showMessage && (
+              <Message 
+              text="Senha redefinida com sucesso" 
+              image={ImagePassword} 
+              description="Sua senha foi redefinida com sucesso. Agora você já pode acessar sua conta:" heigthBtn="5vh" widthBtn="10vw" colorBtn="#43B1B1"  textBtn="Continuar Log In"/>
+
+                )}
               </div>
             </div>
           </div>
