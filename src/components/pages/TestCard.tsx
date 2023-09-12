@@ -3,7 +3,7 @@ import image1 from "../layout/ClassComponents/ImagesClass/imageClassContainer1.s
 import image2 from "../layout/ClassComponents/ImagesClass/imageClassContainer2.svg";
 import React, { useState, useEffect } from "react";
 import ContainerInfoDeleteContainer from "../layout/ClassComponents/ContainerInfoDeleteContainer";
-
+import MessageDelete from '../layout/ClassComponents/MessageDelete'
 function TestCard() {
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -242,6 +242,8 @@ function TestCard() {
           </div>
         </div>
       </Card>
+
+      <MessageDelete/>
     </div>
   );
 }

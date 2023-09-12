@@ -1,0 +1,24 @@
+.contaienrMessage {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+.custom_button_delete {
+    background-color: #F95926;
+    color: white;
+    border-radius: 20px; /* Ajuste o valor conforme necessário */
+    border: none; /* Remova a borda se desejar */
+    padding:1.5vh 2vw; /* Ajuste o preenchimento conforme necessário */
+    cursor: pointer; /* Adicione um cursor para indicar interatividade */
+  }
+  
+  .custom_button_cancel {
+    background-color: #E4E4E4;
+    color: black;
+    border-radius: 20px; /* Ajuste o valor conforme necessário */
+    border: none; /* Remova a borda se desejar */
+    padding:1.5vh 2vw; /* Ajuste o preenchimento conforme necessário */
+    cursor: pointer; /* Adicione um cursor para indicar interatividade */ 
+  }
