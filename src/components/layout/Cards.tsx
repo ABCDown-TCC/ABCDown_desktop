@@ -14,9 +14,7 @@ function Cards(props: CardsProps) {
       <div className={styles.cardContent}>
         {props.children}
       </div>
-      <div className={styles.containerInfo}>
-        <ContainerInfoDeleteContainer />
-      </div>
+ 
     </div>
   );
 }
