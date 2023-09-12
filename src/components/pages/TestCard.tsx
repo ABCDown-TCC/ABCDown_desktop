@@ -22,7 +22,7 @@ function TestCard() {
         width: "100%",
         height: "100%",
         display: "flex",
-        gap: "30px",
+        gap: "1vw",
       }}
     >
       <Card width="35%" height="35vh">
@@ -69,7 +69,10 @@ function TestCard() {
               //  display:
             }}
           >
-            <img src={image2} alt="" />
+            <img src={image2} alt="" style={{
+              width: '10vw',
+              height: '20vh'
+            }} />
           </div>
         </div>
         <div
@@ -91,9 +94,7 @@ function TestCard() {
               marginLeft: "3vw",
             }}
           >
-            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>
-              Alunos
-            </span>
+            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
             <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
           </div>
           <div style={{ flex: "1", backgroundColor: "white" }}></div>
@@ -136,18 +137,18 @@ function TestCard() {
               width: "50%",
             }}
           >
-            <h2>Título do Card</h2>
-            <p>Descrição dessa turma papsfcjdaovjodij</p>
+            <h2 style={{ fontSize: "1.7vw", }}>
+              Título do Card
+            </h2>
+            <p style={{ fontSize: "0.8vw", }} >
+              Descrição dessa turma papsfcjdaovjodij
+            </p>
           </div>
-          <div
-            style={{
-              //   backgroundColor: "green",
-              width: "50%",
-              height: "100%",
-              //  display:
-            }}
-          >
-            <img src={image1} alt="" />
+          <div style={{ width: "50%", height: "100%", }}>
+            <img src={image1} alt="" style={{
+              width: '10vw',
+              height: '20vh'
+            }} />
           </div>
         </div>
         <div
@@ -169,8 +170,8 @@ function TestCard() {
               marginLeft: "3vw",
             }}
           >
-            <span>Alunos</span>
-            <span>5</span>
+            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
+            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
           </div>
           <div style={{ flex: "1", backgroundColor: "white" }}></div>
           <div
@@ -205,8 +206,8 @@ function TestCard() {
         >
           <div
             style={{
-              width: "130px", // Largura desejada
-              height: "130px", // Altura desejada
+              width: "9vw", // Largura desejada
+              height: "15vh", // Altura desejada
               backgroundColor: "gray", // Cor de fundo cinza
               borderRadius: "50%", // Borda arredondada para torná-la redonda
               display: "flex",
@@ -216,7 +217,7 @@ function TestCard() {
           >
             <img src="" alt="" />
           </div>
-          <span>Nome do aluno</span>
+          <span style={{fontSize:'1.2vw'}}>Nome do aluno</span>
         </div>
         <div
           style={{
