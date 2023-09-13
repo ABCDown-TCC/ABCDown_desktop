@@ -1,9 +1,14 @@
 import styles from './UserDetails.module.css'
-function UserDetails() {
+
+interface CardsProps {
+
+    children?: React.ReactNode;
+  }
+function UserDetails(props: CardsProps) {
     return (
         <>
             <div className={styles.ContainerUserDetails}>
-                
+            {props.children}
             </div>
 
         </>

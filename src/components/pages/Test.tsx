@@ -3,6 +3,10 @@ import ImageEmail from '../layout/FormComponents/imageMessage/imageMessageEmail.
 import ImagePassword from '../layout/FormComponents/imageMessage/imageMessagePassword.svg'
 import Message from '../layout/FormComponents/Message'
 
+function onClickCloseWindowsMessage() {
+    console.log("Close Message")
+}
+
 function Test() {
 return(
           <div
@@ -15,7 +19,7 @@ return(
             }}
         >
     
-    <Message text="Confira seu e-mail" image={ImageEmail} description="Se você não receber o e-mail em até 10 minutos, refaça a solicitação."/>
+    <Message text="Confira seu e-mail" image={ImageEmail} description="Se você não receber o e-mail em até 10 minutos, refaça a solicitação." onClickCloseWindowsMessage={onClickCloseWindowsMessage}/>
     </div>
 )
 }

@@ -15,7 +15,19 @@ function TestCard() {
   function onClickIfo() {
     console.log("Info");
   }
+// funcoes da Mensagem de confirmar para apagar.obs: 'ultimo card'
+  function onClickCloseMessageDelete() {
+    console.log("close mensagem de apagar")
+  }
 
+  function onClickCancelMessageDelete() {
+    console.log("cancelar mensagem de apagar")
+  }
+
+
+  function onClickDEleteMessageDelete() {
+    console.log("deletar o Container, da Mensagem Apagar")
+  }
   return (
     <div
       style={{
@@ -243,7 +255,7 @@ function TestCard() {
         </div>
       </Card>
 
-      <MessageDelete/>
+      <MessageDelete onClickClose={onClickCloseMessageDelete} onClickCancel={onClickCancelMessageDelete} onClickDelete={onClickDEleteMessageDelete}/>
     </div>
   );
 }

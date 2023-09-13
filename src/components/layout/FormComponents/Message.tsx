@@ -12,12 +12,12 @@ interface MessageProps {
     widthBtn?: string;
     colorBtn?: string;
     textBtn?: string;
-    onClick?:() => void
+    onClickCloseWindowsMessage?: () => void
 }
 
 function Message(props: MessageProps) {
     const renderCloseButton = (
-        <button className={styles.containerClose} onClick={props.onClick}>
+        <button className={styles.containerClose} onClick={props.onClickCloseWindowsMessage}>
             <img src={ImageClose} alt="close" />
         </button>
     );
@@ -28,18 +28,21 @@ function Message(props: MessageProps) {
                     <div style={{
                         width: '100%', // Defina o valor de largura desejado aqui
                         //backgroundColor:'red',
-                        display:'flex',
-                        justifyContent:'flex-end',
-                       
-                        
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        backgroundColor:'red'
+
+
                     }}>
 
-                        {renderCloseButton}
+                        <button className={styles.containerClose} onClick={props.onClickCloseWindowsMessage}>
+                            <img src={ImageClose} alt="close" />
+                        </button>
 
                     </div>
                     <div className={styles.containerTextMessage}>
                         <h1>{props.text}</h1>
-                        <img src={props.image} alt="Message"  className={styles.image}/>
+                        <img src={props.image} alt="Message" className={styles.image} />
                         <span className={styles.description}>{props.description}</span>
                         <div className={styles.containerButton}>
                             <Btn text={props.textBtn} color={props.colorBtn} width={props.widthBtn} height={props.heigthBtn} />
@@ -50,21 +53,23 @@ function Message(props: MessageProps) {
                 </>
             ) : (
                 <>
-                         <div style={{
+                    <div style={{
                         width: '100%', // Defina o valor de largura desejado aqui
                         //backgroundColor:'red',
-                        display:'flex',
-                        justifyContent:'flex-end',
-                       
-                        
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+
+
                     }}>
 
-                        {renderCloseButton}
+                        <button className={styles.containerClose} onClick={props.onClickCloseWindowsMessage}>
+                            <img src={ImageClose} alt="close" />
+                        </button>
 
                     </div>
                     <div className={styles.containerTextMessage}>
                         <h1>{props.text}</h1>
-                        <img src={props.image} alt="Message"  className={styles.image}/>
+                        <img src={props.image} alt="Message" className={styles.image} />
                         <span className={styles.description}>{props.description}</span>
                     </div>
 
