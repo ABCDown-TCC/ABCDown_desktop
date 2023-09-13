@@ -5,7 +5,10 @@ interface PropsTextWelcomeUser {
 
 function TextWelcomeUser(props : PropsTextWelcomeUser){
 return(
-    <span> Olá, {props.nameUser}</span>
+    <span style={{
+        color:'white',
+        fontSize:'2vw'
+    }}>Olá, {props.nameUser}</span>
 )
 }
 export default TextWelcomeUser

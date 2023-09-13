@@ -2,6 +2,9 @@
     background-color: #F0754E;
     width: 100%;
     border-top:1px solid white;
-    height: 15%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    padding: 4vh 0;
 
 }

@@ -54,6 +54,8 @@ import CreateACount from './components/pages/CreateACount'
 import CreateACountReactHook from './components/pages/CreateACountReactHook'
 import MessageConfirmExit from './components/layout/Navibar/MessageConfirmExit'
 import TestCard from './components/pages/TestCard'
+
+import TesteInputConfiguration from './components/pages/TesteInputConfiguration'
 function App() {
   const divStyle: React.CSSProperties = {
     margin: '0',
@@ -93,7 +95,7 @@ function App() {
           <Route path="/test2" element={<Test2/>} />
           <Route path="/createacsountreacthook" element={<CreateACountReactHook/>} />
           <Route path="/testCard" element={<TestCard/>} />
-
+          <Route path="/testeInputConfiguration" element={<TesteInputConfiguration/>}/>
           
         </Routes>
       </Router>
