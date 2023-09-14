@@ -3,6 +3,7 @@ import CreateButton from "../layout/CreateButton";
 import addClass from "../layout/imagesCreateButton/addClass.svg";
 import SearchInput from '../layout/ClassComponents/SearchInput'
 import CustomSelect from '../layout/ClassComponents/CustomSelect'
+import ContainerLogo from '../layout/ContainerLogo'
 function Turmas() {
     return (
 
@@ -15,7 +16,7 @@ function Turmas() {
   
   <Header title="Turmas" />
   <SearchInput text="Buscar turma"/>
-  
+  <ContainerLogo/>
   <CustomSelect/>
   <CreateButton image={addClass} />
   

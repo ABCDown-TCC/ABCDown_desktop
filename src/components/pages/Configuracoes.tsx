@@ -12,7 +12,9 @@ interface RepeatedDivProps {
   children: ReactNode;
 }
 
+
 function RepeatedDiv({ children }: RepeatedDivProps) {
+  const height='50%';
   return (
     <div
       style={{
@@ -83,7 +85,7 @@ function Configuracoes() {
       <UserDetailsAndSavedItems />
       <div style={{ flex: 1, width: "100%", backgroundColor: "white" }}>
         <RepeatedDiv>
-          <InputConfiguration label="Nome" required disabled={false} />
+          <InputConfiguration label="Nome" required disabled={false}  />
           <InputConfiguration label="Sexo" required disabled={false} />
         </RepeatedDiv>
 

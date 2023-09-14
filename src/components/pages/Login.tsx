@@ -39,11 +39,11 @@ function Login() {
 
       if (response.ok) {
         console.log("Login bem-sucedido");
-        const responseData = await response.json(); // Converte a resposta para JSON, se aplicável
-        console.log(responseData); // Exibe os dados da resposta JSON
-        //localStorage.setItem('accessToken', responseData.access_token);
-        sessionStorage.setItem("accessToken", responseData.access_token);
-
+        const responseData = await response.json();
+        console.log("responseData:", responseData); 
+        const accessToken = responseData.acess_token; 
+        sessionStorage.setItem("accessToken", accessToken);
+        console.log("Token armazenado na sessionStorage:", accessToken);
       } else {
         console.log("Login não bem-sucedido");
       }
@@ -52,22 +52,23 @@ function Login() {
     }
   };
   async function fetchUserData() {
-    const id = 10;
+ 
     const accessToken = sessionStorage.getItem("accessToken");
-  
+    console.log(accessToken);
+
     if (!accessToken) {
       console.error("Token de acesso não encontrado");
       return;
     }
     try {
-      const response = await fetch(`http://localhost:8181/professor/${id}`, {
+      const response = await fetch(`http://localhost:8181/professor/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${accessToken}`
+          Authorization: `Bearer ${accessToken}`,
         },
       });
-  
+
       if (response.ok) {
         const responseData = await response.json();
         console.log(responseData);
@@ -78,6 +79,7 @@ function Login() {
       console.error("Erro ao fazer a solicitação:", error);
     }
   }
+  fetchUserData()
 
   // Função para fazer uma solicitação GET protegida pelo token
   // Função para fazer uma solicitação GET protegida pelo token
