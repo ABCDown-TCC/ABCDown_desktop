@@ -5,6 +5,10 @@ import Message from '../layout/FormComponents/Message'
 
 
 function Test2() {
+
+    const onClickCloseMessage =() => {
+        console.log("test")
+    }
 return(
     <div
     style={{
@@ -16,7 +20,9 @@ return(
     }}
 >
     
-<Message text="Senha redefinida com sucesso" image={ImagePassword} description="Sua senha foi redefinida com sucesso. Agora você já pode acessar sua conta:" heigthBtn="5vh" widthBtn="10vw" colorBtn="#43B1B1"  textBtn="Continuar Log In"/>
+<Message text="Senha redefinida com sucesso" image={ImagePassword} description="Sua senha foi redefinida com sucesso. Agora você já pode acessar sua conta:" heigthBtn="5vh" widthBtn="10vw" colorBtn="#43B1B1"  textBtn="Continuar Log In" onClick={onClickCloseMessage} />
+
+    
     </div>
 )
 }

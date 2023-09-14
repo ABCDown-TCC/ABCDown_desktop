@@ -8,35 +8,47 @@ import React, { ReactNode } from "react";
 
 import InputConfiguration from "../layout/ComponentsConfiguraton/InputConfiguration";
 
-
 interface RepeatedDivProps {
   children: ReactNode;
 }
 
 function RepeatedDiv({ children }: RepeatedDivProps) {
   return (
-<div style={{ display: "flex", flexDirection: "row", backgroundColor: "RED",width:'100%', gap:'2%',alignItems:'center',justifyContent:'center'}}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        backgroundColor: "RED",
+        width: "100%",
+        gap: "2%",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       {children}
     </div>
   );
 }
 
-
-
-
 function Configuracoes() {
   return (
-    <div style={{ display:'flex', width: "100%", height: "100%" ,flexDirection: "column" }}>
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        height: "100%",
+        flexDirection: "column",
+      }}
+    >
       <Header title="Configuraçoes" color="#F0754E" />
       <UserDetails>
         <div
           style={{
             display: "flex",
             flexDirection: "row",
-            backgroundColor:'blue',
-            gap:'30px',
-            marginLeft:'3%',
-           
+            backgroundColor: "blue",
+            gap: "30px",
+            marginLeft: "3%",
           }}
         >
           <div
@@ -45,7 +57,7 @@ function Configuracoes() {
               height: "150px",
               borderRadius: "50%",
               overflow: "hidden",
-              backgroundColor:'white'
+              backgroundColor: "white",
             }}
           >
             <img
@@ -69,17 +81,37 @@ function Configuracoes() {
         </div>
       </UserDetails>
       <UserDetailsAndSavedItems />
-      <div style={{ flex: 1, width: "100%", backgroundColor: "white"}}>
+      <div style={{ flex: 1, width: "100%", backgroundColor: "white" }}>
+        <RepeatedDiv>
+          <InputConfiguration label="Nome" required disabled={false} />
+          <InputConfiguration label="Sexo" required disabled={false} />
+        </RepeatedDiv>
 
-      <RepeatedDiv>
-      <InputConfiguration label="Nome" required disabled={false} />
-      <InputConfiguration label="Sexo" required disabled={false} />
-      </RepeatedDiv>
+        <RepeatedDiv>
+          <InputConfiguration label="E-mail" required disabled={false} />
+          <InputConfiguration label="CPF" required disabled={false} />
+        </RepeatedDiv>
+        <RepeatedDiv>
+          <InputConfiguration
+            label="Data Nascimento"
+            required
+            disabled={false}
+          />
+        </RepeatedDiv>
+        <RepeatedDiv>
+          <InputConfiguration label="CEE" required disabled={false} />
+          <InputConfiguration label="Logradouro" required disabled={false} />
+        </RepeatedDiv>
 
-      <RepeatedDiv>
-      <InputConfiguration label="E-mail" required disabled={false} />
-      <InputConfiguration label="Senha" required disabled={false} />
-      </RepeatedDiv>
+        <RepeatedDiv>
+          <InputConfiguration label="Bairro" required disabled={false} />
+          <InputConfiguration label="Número" required disabled={false} />
+        </RepeatedDiv>
+
+        <RepeatedDiv>
+          <InputConfiguration label="Cidade" required disabled={false} />
+          <InputConfiguration label="Estado" required disabled={false} />
+        </RepeatedDiv>
       </div>
     </div>
   );
