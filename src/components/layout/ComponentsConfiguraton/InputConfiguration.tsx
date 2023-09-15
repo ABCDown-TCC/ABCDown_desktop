@@ -11,22 +11,23 @@ interface InputProps {
     // errors?: any;
     // register?: any;
     disabled?: boolean; // Tornamos 'disabled' obrigatório
-    width?:string,
+    customWidth?:string,
     height?:string
   }
   
-  function InputConfiguration({ label, type = 'text', required = false,  disabled,width,height }: InputProps) {
+  function InputConfiguration({ label, type = 'text', required = false,  disabled,customWidth,height }: InputProps) {
     return (
-      <div className={styles.inputContainer} style={{
-          width:width,
-          height:height,
-      }} >
+      <div className={styles.inputContainer} >
         <label className={styles.textTitle}>{label}:</label>
         <input
         //   {...register(name, { required })}
           type={type}
           className={styles.inputField}
           disabled={disabled} // Usamos a propriedade 'disabled' passada
+          style={{
+            width:customWidth,
+            height:height,
+        }}
         />
       </div>
     );

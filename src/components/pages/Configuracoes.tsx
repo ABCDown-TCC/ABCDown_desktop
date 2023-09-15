@@ -14,17 +14,18 @@ interface RepeatedDivProps {
 
 
 function RepeatedDiv({ children }: RepeatedDivProps) {
-  const height='50%';
+
+  const height = '50%';
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "row",
         backgroundColor: "RED",
-        width: "100%",
+        width: "max-content",
         gap: "2%",
-        alignItems: "center",
-        justifyContent: "center",
+        // alignItems: "center",
+        //justifyContent: "center",
       }}
     >
       {children}
@@ -33,6 +34,7 @@ function RepeatedDiv({ children }: RepeatedDivProps) {
 }
 
 function Configuracoes() {
+  const width = '90%'
   return (
     <div
       style={{
@@ -83,37 +85,57 @@ function Configuracoes() {
         </div>
       </UserDetails>
       <UserDetailsAndSavedItems />
-      <div style={{ flex: 1, width: "100%", backgroundColor: "white" }}>
-        <RepeatedDiv>
-          <InputConfiguration label="Nome" required disabled={false}  />
-          <InputConfiguration label="Sexo" required disabled={false} />
-        </RepeatedDiv>
+      <div style={{
+        flex: 1, width: "100%", backgroundColor: "pink", display: 'flex', flexDirection: 'column', alignItems: 'center'
+      }}>
+        <div
+          style={{
+            width: '90%',
+            height: 'max-content',
+            backgroundColor: 'blue'
+          }}
+        >
+          <RepeatedDiv>
+            <InputConfiguration label="Nome" required disabled={false} customWidth={width} />
+            <InputConfiguration label="Sexo" required disabled={false} />
+          </RepeatedDiv>
 
-        <RepeatedDiv>
-          <InputConfiguration label="E-mail" required disabled={false} />
-          <InputConfiguration label="CPF" required disabled={false} />
-        </RepeatedDiv>
-        <RepeatedDiv>
-          <InputConfiguration
-            label="Data Nascimento"
-            required
-            disabled={false}
-          />
-        </RepeatedDiv>
-        <RepeatedDiv>
-          <InputConfiguration label="CEE" required disabled={false} />
-          <InputConfiguration label="Logradouro" required disabled={false} />
-        </RepeatedDiv>
+          <RepeatedDiv>
+            <InputConfiguration label="E-mail" required disabled={false} />
+            <InputConfiguration label="CPF" required disabled={false} />
+          </RepeatedDiv>
 
-        <RepeatedDiv>
-          <InputConfiguration label="Bairro" required disabled={false} />
-          <InputConfiguration label="Número" required disabled={false} />
-        </RepeatedDiv>
+          <div
+            style={{
+              backgroundColor: 'yellow', // Correção: estava 'yelow'
+              width: '100%',
+            }}
+          >
+            <InputConfiguration
+              label="Data Nascimento"
+              required
+              disabled={false}
+              customWidth='100px'
+            />
+          </div>
 
-        <RepeatedDiv>
-          <InputConfiguration label="Cidade" required disabled={false} />
-          <InputConfiguration label="Estado" required disabled={false} />
-        </RepeatedDiv>
+
+          <RepeatedDiv>
+            <InputConfiguration label="CEE" required disabled={false} />
+            <InputConfiguration label="Logradouro" required disabled={false} />
+          </RepeatedDiv>
+
+          <RepeatedDiv>
+            <InputConfiguration label="Bairro" required disabled={false} />
+            <InputConfiguration label="Número" required disabled={false} />
+          </RepeatedDiv>
+
+          <RepeatedDiv>
+            <InputConfiguration label="Cidade" required disabled={false} />
+            <InputConfiguration label="Estado" required disabled={false} />
+          </RepeatedDiv>
+
+        </div>
       </div>
     </div>
   );
