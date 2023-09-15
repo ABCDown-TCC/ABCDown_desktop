@@ -12,6 +12,8 @@ import styles from '../layout/container_card/ContainerShareAbout.module.css';
 
 import { Link } from 'react-router-dom';
 
+
+
 function Home() {
     const heigthCommunity: string = '25vh';
     const widthCommunity:string = '85%';
@@ -19,6 +21,7 @@ function Home() {
     const heigthClassActivity: string = '35vh';
      const widthAboutShare:string = '41%';
      const heigthAboutShare:string ='20vh';
+
     return (
 
         <>

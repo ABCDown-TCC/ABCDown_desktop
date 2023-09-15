@@ -44,6 +44,7 @@ function Login() {
         const accessToken = responseData.acess_token; 
         sessionStorage.setItem("accessToken", accessToken);
         console.log("Token armazenado na sessionStorage:", accessToken);
+        fetchUserData()
       } else {
         console.log("Login não bem-sucedido");
       }
@@ -52,7 +53,7 @@ function Login() {
     }
   };
   async function fetchUserData() {
- 
+ const id = 16
     const accessToken = sessionStorage.getItem("accessToken");
     console.log(accessToken);
 
@@ -61,7 +62,7 @@ function Login() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:8181/professor/`, {
+      const response = await fetch(`http://localhost:8181/professor/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +72,10 @@ function Login() {
 
       if (response.ok) {
         const responseData = await response.json();
+             
+
         console.log(responseData);
+        return responseData; // Retorna os dados da função
       } else {
         console.log("Solicitação não bem-sucedida");
       }
@@ -79,7 +83,7 @@ function Login() {
       console.error("Erro ao fazer a solicitação:", error);
     }
   }
-  fetchUserData()
+  
 
   // Função para fazer uma solicitação GET protegida pelo token
   // Função para fazer uma solicitação GET protegida pelo token
