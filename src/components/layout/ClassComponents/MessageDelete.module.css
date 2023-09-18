@@ -4,14 +4,17 @@
     align-items: center;
     /* justify-content: center; */
     flex-direction: column;
+    
 }
 .custom_button_delete {
     background-color: #F95926;
     color: white;
     border-radius: 20px; /* Ajuste o valor conforme necessário */
     border: none; /* Remova a borda se desejar */
-    padding:1.5vh 2vw; /* Ajuste o preenchimento conforme necessário */
+    padding:1vh 2vw; 
     cursor: pointer; /* Adicione um cursor para indicar interatividade */
+    width: 30%;
+    font-size: 1.3rem;
   }
   
   .custom_button_cancel {
@@ -19,6 +22,14 @@
     color: black;
     border-radius: 20px; /* Ajuste o valor conforme necessário */
     border: none; /* Remova a borda se desejar */
-    padding:1.5vh 2vw; /* Ajuste o preenchimento conforme necessário */
+    padding:1vh 2vw; 
     cursor: pointer; /* Adicione um cursor para indicar interatividade */ 
+    width: 30%;
+    font-size: 1.3rem;
+
+
   }
+.containerClose  {
+  background-color: transparent;
+  border: none;
+}

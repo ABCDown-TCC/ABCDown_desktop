@@ -9,8 +9,11 @@ function CustomSelect(){
         justifyContent: 'space-between',
         width: '10vw',
         height: '5vh',
-        border: '1px solid #DDDDDD',
-        alignItems:'center'
+        border: '3px solid #DDDDDD',
+        alignItems:'center',
+        borderRadius:'10px',
+        padding:'0 1%',
+        fontSize:'1.5rem'
         // padding: '0.5rem',
       }}
     >
