@@ -29,12 +29,13 @@ function Login() {
     console.log(data);
 
     try {
-      const response = await fetch("http://localhost:8181/login/professor/", {
+      const response = await fetch("http://localhost:8181/login/professor", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+
       });
 
       if (response.ok) {
@@ -53,7 +54,7 @@ function Login() {
     }
   };
   async function fetchUserData() {
- const id = 16
+   const id = 29
     const accessToken = sessionStorage.getItem("accessToken");
     console.log(accessToken);
 
@@ -62,7 +63,7 @@ function Login() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:8181/professor/${id}`, {
+      const response = await fetch(`http://localhost:8181/professor/${accessToken}`, {    
         method: "GET",
         headers: {
           "Content-Type": "application/json",

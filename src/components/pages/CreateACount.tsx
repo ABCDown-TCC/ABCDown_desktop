@@ -58,12 +58,14 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
   const [bairro, setBairro] = useState("");
   const [estado, setEstado] = useState("");
   const [numero, setNumero] = useState("");
-  const [numeroTelefone, setnumeroProfessor] = useState("");
+  const [numeroTelefone, setnumeroTelefoneProfessor] = useState("");
   const [isNomeVazio, setIsNomeVazio] = useState(false);
   const [isSexoVazio, setIsSexoVazio] = useState(false);
   const [isCpfVazio, setIsCpfVazio] = useState(false);
   const [IsDataNascimentoVazio, setIsDataNascimentoVazio] = useState(false);
   const [isNumeroTelefoneVazio, setIsNumeorTelefoneVazio] = useState(false);
+  const [isNumeroCelularVazio, setIsNumeorCelularVazio] = useState(false);
+
   const [isCepVazio, setIsCepVazio] = useState(false);
   const [isCepInvalid, setIsCepInvalid] = useState(false);
 
@@ -112,6 +114,12 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
       hasError = true;
     } else {
       setIsCepVazio(false);
+    }
+    if (!numero) {
+      setIsNumeorCelularVazio(true);
+      hasError = true
+    } else {
+      setIsNumeorCelularVazio(false);
     }
 
 
@@ -221,7 +229,7 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
     setSexo("");
     setCpf("");
     setDataNascimento("");
-    setnumeroProfessor("");
+    setnumeroTelefoneProfessor("");
     setCep("");
     setEndereco("");
     setBairro("");
@@ -399,7 +407,7 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
               width={widthInputfullAddress}
               height={heightInput}
               value={numeroTelefone} // Fornecer o valor do estado
-              onChange={(e) => { setnumeroProfessor(e.target.value); setIsNumeorTelefoneVazio(false) }}
+              onChange={(e) => { setnumeroTelefoneProfessor(e.target.value); setIsNumeorTelefoneVazio(false) }}
 
             />
             {isNumeroTelefoneVazio && <span style={{ color: "red" }}>Telefone é obrigatório</span>}
@@ -465,14 +473,19 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
             disabled={true}
             onChange={(e) => setBairro(e.target.value)}
           />
+          <CustomDivInpuMessageError>
 
           <Input
             text="Numero"
             width={widthInputfullAddress}
             height={heightInput}
             value={numero} // Fornecer o valor do estado
-            onChange={(e) => setNumero(e.target.value)}
+            onChange={(e) => {setNumero(e.target.value);setIsNumeorCelularVazio(false)}}
           />
+            {isNumeroCelularVazio && <span style={{ color: "red" }}>Celular é obrigatório</span>}
+            {/* {isCepInvalid && <span style={{ color: "red" }}>Cep invalido</span>} */}
+            </CustomDivInpuMessageError>
+
         </div>
         <CustomDiv>
           <Btn
@@ -687,8 +700,8 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
           />
 
           {selectedPhoto && <progress value={progress} max='100' />}
-          <div style={{ display: "flex", flexDirection: "column", padding: "5% 0 7% 0", gap: "2vh", }}>
-            <CustomDiv>
+          <div style={{ display: "flex", flexDirection: "column", padding: "5% 0 7% 0", gap: "2vh",backgroundColor:'red'}}>
+            <CustomDiv style={{gap:'100px'}}>
               <CustomDivInpuMessageError>
                 <Input text="E-mail*" width={widthInputleft} height={heightInput} type="email" onChange={(e) => { setEmail(e.target.value); setIsEmailVazio(false) }} />
                 {isEmailVazio && <span style={{ color: "red" }}>Campo EmailObrigatorio</span>}
