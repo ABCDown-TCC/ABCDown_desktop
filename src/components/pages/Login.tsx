@@ -63,7 +63,7 @@ function Login() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:8181/professor/${accessToken}`, {    
+      const response = await fetch(`http://localhost:8181/professor/user`, {    
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -73,8 +73,6 @@ function Login() {
 
       if (response.ok) {
         const responseData = await response.json();
-             
-
         console.log(responseData);
         return responseData; // Retorna os dados da função
       } else {

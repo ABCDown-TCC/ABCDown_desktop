@@ -8,7 +8,7 @@ import ImageCompartilhar from '../layout/img_containers_cards/compartilhar.png'
 import ContainerCard from '../layout/container_card/ContainerCard'; // Verifique o caminho correto para o arquivo
 import ContainerShareAbout from '../layout/container_card/ContainerShareAbout';
 import styles from '../layout/container_card/ContainerShareAbout.module.css';
-
+import Crud from '../../Crud'
 
 import { Link } from 'react-router-dom';
 
