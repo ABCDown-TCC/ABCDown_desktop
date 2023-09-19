@@ -5,52 +5,35 @@ import Class from "../icons/class.svg";
 import Home from "../icons/home.svg";
 import Settings from "../icons/settings.svg";
 import Community from "../icons/community.svg";
-import Exit from "../icons/_icons.png";
+import Exit from "../icons/_icons.svg";
 import NavItem from "./NavItem";
 import ImageLogin from "../img_Crud/image_login.png";
 import MessageConfirmExit from "./MessageConfirmExit";
-
+import Crud from '../../../Crud'
 function Navibar() {
   const [showLabels, setShowLabels] = useState(true);
   const [showConfirmation, setShowConfirmation] = useState(false); // State to control the confirmation dialog
   const [responseData, setResponseData] = useState<{ professor: Array<{ id: number; nome: string ;foto:string}> } | null>(null);
 
   const navigate = useNavigate();
-  async function fetchUserData() {
-    const id = 16;
-    const accessToken = sessionStorage.getItem("accessToken");
-    console.log(accessToken);
+  function MeuComponente() {
+    useEffect(() => {
+      // Dentro de useEffect para chamada assíncrona
+      const fetchData = async () => {
+        // Chame a função 'get' do módulo Crud
+        const data = await Crud().get();
+        setResponseData(data); // Atualize o estado com os dados obtidos
 
-    if (!accessToken) {
-      console.error("Token de acesso não encontrado");
-      return;
-    }
+        // Faça algo com os dados obtidos, por exemplo, imprima no console
+        console.log(data);
+      };
+  
+      fetchData(); // Chame a função fetchData para buscar os dados
+    }, []);}
 
-    try {
-      const response = await fetch(`http://localhost:8181/professor/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+    MeuComponente()
 
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log(responseData);
-        setResponseData(responseData); // Atualize o estado com os dados da função
-
-      } else {
-        console.log("Solicitação não bem-sucedida");
-      }
-    } catch (error) {
-      console.error("Erro ao fazer a solicitação:", error);
-    }
-  }
-
-  useEffect(() => {
-    fetchUserData(); // Chame a função fetchData quando o componente for montado
-  }, []); 
+ 
      
 
   const toggleLabels = () => {
@@ -70,16 +53,21 @@ function Navibar() {
 
   return (
     <>
-      <NavItem
-        onClick={toggleLabels}
-       // icon={ImageLogin}
-       icon={responseData?.professor[0]?.foto || ''}
+<NavItem
+  onClick={toggleLabels}
+  icon={responseData?.professor[0]?.foto || ''}
+  style={{
+    border: 'solid 2px #F0754E',
+    borderRadius: '50%',
+    objectFit: 'contain',
+    height: '150px',
+    width: '150px',
+    /* max-width e max-height não precisam ser definidos aqui */
+  }}
+  to=""
+  label={showLabels && responseData?.professor[0].nome || ""}
+/>
 
-        to=""
-        //label={showLabels ? "Camila" : ""}
-        label={showLabels && responseData?.professor[0].nome || ""}
-
-      />
 
       <nav className={styles.container_nav}>
         <ul className={showLabels ? "" : styles.hiden}>

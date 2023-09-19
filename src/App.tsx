@@ -108,7 +108,9 @@ function App() {
 //node server.js
 //npm install react-hook-form
 
-
+//npmi
+// npm prisma regenerate
+//npm start:/dev
 
 export default App;
 

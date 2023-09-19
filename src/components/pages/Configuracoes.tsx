@@ -1,13 +1,12 @@
+import React, { useState, useEffect, ReactNode } from "react";
+
 import Header from "../layout/Header/Header";
 import UserDetails from "../layout/ConfigurationComponents/UserDetails";
 import UserDetailsAndSavedItems from "../layout/ComponentsConfiguraton/UserDetailsAndSavedItems";
-
 import TextWelcomeUser from "../layout/ComponentsConfiguraton/TextWelcomeUser";
 import InfoDisplay from "../layout/ComponentsConfiguraton/InfoDisplay";
-import React, { ReactNode } from "react";
-
 import InputConfiguration from "../layout/ComponentsConfiguraton/InputConfiguration";
-
+import Crud from '../../Crud'
 interface RepeatedDivProps {
   children: ReactNode;
 }
@@ -34,6 +33,39 @@ function RepeatedDiv({ children }: RepeatedDivProps) {
 }
 
 function Configuracoes() {
+  const [responseData, setResponseData] = useState<{
+    professor: Array<{
+      id: number;
+      nome: string;
+      foto: string;
+      cep: string;
+      cpf: string;
+      data_nascimento: string;
+      email: string;
+      nome_genero: string;
+      numero: string;
+      numeroProfessor: string;
+      senha: string;
+    }>;
+  } | null>(null);
+
+  function MeuComponente() {
+    useEffect(() => {
+      // Dentro de useEffect para chamada assíncrona
+      const fetchData = async () => {
+        // Chame a função 'get' do módulo Crud
+        const data = await Crud().get();
+        setResponseData(data); // Atualize o estado com os dados obtidos
+
+        // Faça algo com os dados obtidos, por exemplo, imprima no console
+        console.log(data);
+      };
+
+      fetchData(); // Chame a função fetchData para buscar os dados
+    }, []);
+  }
+
+  MeuComponente()
   const width = '90%'
   return (
     <div
@@ -64,13 +96,15 @@ function Configuracoes() {
               backgroundColor: "white",
             }}
           >
-            <img
+            {responseData?.professor[0] && (<img
+              src={responseData.professor[0].foto}
               style={{
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
               }}
-            />
+            />)}
+
           </div>
           <div
             style={{
@@ -78,9 +112,13 @@ function Configuracoes() {
               flexDirection: "column",
             }}
           >
-            <TextWelcomeUser nameUser="Guilherme" />
-            <InfoDisplay title="E-mail" information="camila@gmail.com" />
-            <InfoDisplay title="CPF" information="0908834993" />
+            {responseData?.professor[0] && (
+              <>
+                <TextWelcomeUser nameUser={responseData.professor[0].nome} />
+                <InfoDisplay title="E-mail" information={responseData.professor[0].email} />
+                <InfoDisplay title="CPF" information={responseData.professor[0].cpf} />
+              </>
+            )}
           </div>
         </div>
       </UserDetails>

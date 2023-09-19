@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Header from '../layout/Header/Header';
 import imageComunidade from '../layout/img_containers_cards/comunidade.png'
 import imageTurmas from '../layout/img_containers_cards/turmas.png'
@@ -9,7 +9,7 @@ import ContainerCard from '../layout/container_card/ContainerCard'; // Verifique
 import ContainerShareAbout from '../layout/container_card/ContainerShareAbout';
 import styles from '../layout/container_card/ContainerShareAbout.module.css';
 import Crud from '../../Crud'
-
+import React, { useEffect } from 'react'; 
 import { Link } from 'react-router-dom';
 
 
@@ -21,6 +21,21 @@ function Home() {
     const heigthClassActivity: string = '35vh';
      const widthAboutShare:string = '41%';
      const heigthAboutShare:string ='20vh';
+     function MeuComponente() {
+        useEffect(() => {
+          // Dentro de useEffect para chamada assíncrona
+          const fetchData = async () => {
+            // Chame a função 'get' do módulo Crud
+            const data = await Crud().get();
+      
+            // Faça algo com os dados obtidos, por exemplo, imprima no console
+            console.log(data);
+          };
+      
+          fetchData(); // Chame a função fetchData para buscar os dados
+        }, []);}
+
+        MeuComponente()
 
     return (
 
@@ -141,4 +156,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Home

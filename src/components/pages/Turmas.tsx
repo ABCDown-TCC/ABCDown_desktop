@@ -118,7 +118,179 @@ function Turmas() {
 
 
             }}>
-                <Card width="45%" height="35vh" onClick={onClickCard}>
+                <Card width="40%" height="35vh" onClick={onClickCard}>
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            width: "100%",
+                            height: "80%",
+                            backgroundColor:'red'
+                            //   backgroundColor: "orange",
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                //   alignItems: "center",
+                                //   backgroundColor: "red",
+                                justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
+                                marginLeft: "1vw",
+                                width: "50%",
+                                backgroundColor:'green'
+                            }}
+                        >
+                            <h2
+                                style={{
+                                    fontSize: "1.7vw",
+                                }}
+                            >
+                                Título do Card
+                            </h2>
+                            <p
+                                style={{
+                                    fontSize: "0.8vw",
+                                }}
+                            >
+                                Descrição dessa turma papsfcjdaovjodij
+                            </p>
+                        </div>
+                        <div
+                            style={{
+                                //   backgroundColor: "green",
+                                width: "50%",
+                                height: "100%",
+                                //  display:
+                            }}
+                        >
+                            <img src={image2} alt="" style={{
+                                width: '10vw',
+                                height: '20vh'
+                            }} />
+                        </div>
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            width: "100%",
+                            //   backgroundColor: "Pink",
+                            height: "20%",
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                //   backgroundColor: "green",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                marginLeft: "3vw",
+                            }}
+                        >
+                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
+                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
+                        </div>
+                        <div style={{ flex: "1", backgroundColor: "white" }}></div>
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                //   backgroundColor: "blue",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                marginRight: "3vw", // Corrected typo
+                            }}
+                        >
+                            <ContainerInfoDeleteContainer
+                                onClickDelete={onClickDelete}
+                                onClickIfo={onClickIfo}
+
+                            />
+                        </div>
+                    </div>
+                </Card>{deleteVisible && (
+                    <div
+                        style={{
+                            position: 'fixed',
+                            top: '0',
+                            left: '0',
+                            width: '100%',
+                            height: '100%',
+                            background: 'rgba(0, 0, 0, 0.5)', // Fundo escuro semi-transparente
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
+                        <MessageDelete onClickClose={onClickCloseMessageDelete} onClickCancel={onClickCancelMessageDelete} onClickDelete={onClickDEleteMessageDelete} />
+
+                    </div>
+                )}
+
+                {/* Modal de informações */}
+                {infoVisible && (
+                    <div
+                        style={{
+                            position: 'fixed',
+                            top: '0',
+                            left: '0',
+                            width: '100%',
+                            height: '100%',
+                            background: 'rgba(0, 0, 0, 0.5)', // Fundo escuro semi-transparente
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
+                        <Card width="45%" height="90%">
+                            <div style={{
+                                display: 'flex',
+                                // height: '10%',
+                                width: '100%',
+                                // backgroundColor: 'red',
+                                justifyContent: 'flex-end'
+                            }}>
+                                {/* <button className={styles.containerClose} onClick={props.onClickClose}> */}
+
+                                <button onClick={CloseWindownsInfo}>
+                                    <img src={ImageClose} alt="close" />
+                                </button>
+                            </div>
+                            <h1>Informações</h1>
+                            <h1>1º A</h1>
+                            <p>
+                                Lorem ipsum dolor sit amet. Ut quidem necessitatibus At animi voluptas ut provident cumque ut necessitatibus laborum est quibusdam esse. Lorem ipsum dolor sit amet. Ut quidem necessitatibus At animi voluptas ut provident cumque ut necessitatibus laborum est quibusdam esse.
+
+                                Lorem ipsum dolor sit amet. Ut quidem necessitatibus At animi voluptas ut provident cumque ut necessitatibus laborum est quibusdam esse.
+                            </p>
+                            <span onClick={toggleLista} style={{ cursor: "pointer", display: 'flex', flexDirection: 'row' }}>
+                                Aluno {listaVisivel ? "▼" : "▶"}
+                            </span>
+                            {listaVisivel && (
+                                <ul style={{ listStyle: "none" }}>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                </ul>
+                            )}
+                            <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', padding: '10px' }}>
+                                {/* Conteúdo da div principal */}
+                                <button style={{ width: '30px', height: '30px', borderRadius: '50%', backgroundColor: '#F5C74D', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', border: 'none' }}>
+                                    {/* Conteúdo do primeiro botão */}
+                                </button>
+                                <button style={{ width: '30px', height: '30px', borderRadius: '50%', backgroundColor: '#F95926', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', border: 'none' }}>
+                                    {/* Conteúdo do segundo botão */}
+                                </button>
+                            </div>
+
+
+                        </Card>
+                    </div>
+                )}
+
+<Card width="45%" height="35vh" onClick={onClickCard}>
                     <div
                         style={{
                             display: "flex",
@@ -259,29 +431,29 @@ function Turmas() {
                             <h1>Informações</h1>
                             <h1>1º A</h1>
                             <p>
-                            Lorem ipsum dolor sit amet. Ut quidem necessitatibus At animi voluptas ut provident cumque ut necessitatibus laborum est quibusdam esse. Lorem ipsum dolor sit amet. Ut quidem necessitatibus At animi voluptas ut provident cumque ut necessitatibus laborum est quibusdam esse.
+                                Lorem ipsum dolor sit amet. Ut quidem necessitatibus At animi voluptas ut provident cumque ut necessitatibus laborum est quibusdam esse. Lorem ipsum dolor sit amet. Ut quidem necessitatibus At animi voluptas ut provident cumque ut necessitatibus laborum est quibusdam esse.
 
-Lorem ipsum dolor sit amet. Ut quidem necessitatibus At animi voluptas ut provident cumque ut necessitatibus laborum est quibusdam esse.
+                                Lorem ipsum dolor sit amet. Ut quidem necessitatibus At animi voluptas ut provident cumque ut necessitatibus laborum est quibusdam esse.
                             </p>
                             <span onClick={toggleLista} style={{ cursor: "pointer", display: 'flex', flexDirection: 'row' }}>
-        Aluno {listaVisivel ? "▼" : "▶"}
-      </span>
-      {listaVisivel && (
-        <ul style={{ listStyle: "none" }}>
-        <li>1</li>
-          <li>2</li>
-          <li>3</li>
-        </ul>
-      )}
-<div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', padding: '10px' }}>
-    {/* Conteúdo da div principal */}
-    <button style={{ width: '30px', height: '30px', borderRadius: '50%', backgroundColor: '#F5C74D', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', border: 'none' }}>
-        {/* Conteúdo do primeiro botão */}
-    </button>
-    <button style={{ width: '30px', height: '30px', borderRadius: '50%', backgroundColor: '#F95926', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', border: 'none' }}>
-        {/* Conteúdo do segundo botão */}
-    </button>
-</div>
+                                Aluno {listaVisivel ? "▼" : "▶"}
+                            </span>
+                            {listaVisivel && (
+                                <ul style={{ listStyle: "none" }}>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                </ul>
+                            )}
+                            <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', padding: '10px' }}>
+                                {/* Conteúdo da div principal */}
+                                <button style={{ width: '30px', height: '30px', borderRadius: '50%', backgroundColor: '#F5C74D', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', border: 'none' }}>
+                                    {/* Conteúdo do primeiro botão */}
+                                </button>
+                                <button style={{ width: '30px', height: '30px', borderRadius: '50%', backgroundColor: '#F95926', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', border: 'none' }}>
+                                    {/* Conteúdo do segundo botão */}
+                                </button>
+                            </div>
 
 
                         </Card>

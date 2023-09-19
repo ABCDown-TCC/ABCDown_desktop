@@ -9,13 +9,13 @@ interface NavItemProps {
     className?: string;
     onClick?: () => void;
     classNameImg?: string;
-   
+    style?: React.CSSProperties;
 }
 
-function NavItem({ icon, to, label, className, onClick, classNameImg }: NavItemProps) {
+function NavItem({ icon, to, label, className, onClick, classNameImg, style }: NavItemProps) {
     const linkContent = (
         <React.Fragment>
-            <img src={icon} alt={label} className={classNameImg ? styles[classNameImg] : ''} />
+            <img src={icon} alt={label} className={classNameImg ? styles[classNameImg] : ''} style={style} />
             <span className={styles.label}>{label}</span> {/* Use <span> to apply styles to the label */}
         </React.Fragment>
     );

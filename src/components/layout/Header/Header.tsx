@@ -1,7 +1,7 @@
 // components/PageHeader.js
 import React from 'react';
 import styles from './Header.module.css'
-import Notifications from '../icons/notifications.png'
+import Notifications from '../icons/notifications.svg'
 
 interface HeaderProps {
     title: string; // Defina o tipo apropriado para o título, por exemplo, string.
