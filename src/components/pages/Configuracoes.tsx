@@ -1,5 +1,4 @@
 import React, { useState, useEffect, ReactNode } from "react";
-
 import Header from "../layout/Header/Header";
 import UserDetails from "../layout/ConfigurationComponents/UserDetails";
 import UserDetailsAndSavedItems from "../layout/ComponentsConfiguraton/UserDetailsAndSavedItems";
@@ -14,14 +13,16 @@ interface RepeatedDivProps {
 
 function RepeatedDiv({ children }: RepeatedDivProps) {
 
-  const height = '50%';
+
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "row",
-        backgroundColor: "RED",
-        width: "max-content",
+        //backgroundColor: "blue",
+        justifyContent: 'space-between',
+        width: "100%",
+        height: 'max-content',
         gap: "2%",
         // alignItems: "center",
         //justifyContent: "center",
@@ -31,8 +32,48 @@ function RepeatedDiv({ children }: RepeatedDivProps) {
     </div>
   );
 }
+interface ProfessorInfoProps {
+  name: string;
+  number: string
+}
+function ProfessorInfo(props: ProfessorInfoProps) {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems:'center'
+    }}>
+      <span style={{
+        color: '#3393C3',
+        fontWeight: 'bold',
+        fontSize:'1.5vw'
+      }}>
+        {props.number}
+      </span>
+      <span style={{
+        color: '#3393C3',
+        fontWeight: 'bold',
+        fontSize:'0.8vw'
 
+      }}>
+        {props.name}
+      </span>
+    </div>
+  );
+}
 function Configuracoes() {
+  const [currentScreen, setCurrentScreen] = useState("screen1"); // Initialize with the default screen
+  const handleMyDataClick = () => {
+    // Lógica para exibir e editar os dados do usuário
+    console.log("Meus Dados clicado");
+    setCurrentScreen("screen1"); // Set the current screen to "screen1"
+  };
+
+  const handleSavedClick = () => {
+    // Lógica para exibir itens salvos
+    console.log("Salvos clicado");
+    setCurrentScreen("screen2"); // Set the current screen to "screen2"
+  };
   const [responseData, setResponseData] = useState<{
     professor: Array<{
       id: number;
@@ -48,6 +89,7 @@ function Configuracoes() {
       senha: string;
     }>;
   } | null>(null);
+
 
   function MeuComponente() {
     useEffect(() => {
@@ -66,7 +108,93 @@ function Configuracoes() {
   }
 
   MeuComponente()
-  const width = '90%'
+
+  const widthInputRigth = '35%'
+  const widthInputLeft = '60%'
+
+
+  const screen1Content = (
+<>
+
+<div style={{
+      flex: 1,
+      width: '100%',
+      backgroundColor: 'white',
+      display: 'flex',
+      justifyContent: 'center'
+    }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          // backgroundColor:'red',
+          width: '80%',
+          height: '100%',
+          gap: '2vh'
+
+        }}>
+        < RepeatedDiv>
+          <InputConfiguration label="Nome" required disabled={true} customWidth={widthInputLeft} />
+          <InputConfiguration label="Sexo" required disabled={true} customWidth={widthInputRigth} />
+        </RepeatedDiv>
+        <RepeatedDiv>
+          <InputConfiguration label="E-mail" required disabled={true} customWidth={widthInputLeft} />
+          <InputConfiguration label="CPF" required disabled={true} customWidth={widthInputRigth} />
+        </RepeatedDiv>
+
+        {/* data nascimento */}
+        <div
+          style={{
+            width: '100%',
+          }}
+        >
+          <InputConfiguration label="Data Nascimento" required disabled={true} customWidth={widthInputLeft} />
+        </div>
+        <RepeatedDiv>
+          <InputConfiguration label="CEE" required disabled={true} customWidth={widthInputRigth} />
+          <InputConfiguration label="Logradouro" required disabled={true} customWidth={widthInputLeft} />
+        </RepeatedDiv>
+
+        <RepeatedDiv>
+          <InputConfiguration label="Bairro" required disabled={true} customWidth={widthInputLeft} />
+          <InputConfiguration label="Número" required disabled={true} customWidth={widthInputRigth} />
+        </RepeatedDiv>
+
+        <RepeatedDiv>
+          <InputConfiguration label="Cidade" required disabled={true} customWidth={widthInputLeft} />
+          <InputConfiguration label="Estado" required disabled={true} customWidth={widthInputRigth} />
+        </RepeatedDiv>
+      </div>
+    </div>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        width: '100%',
+        backgroundColor:'white',
+        gap:'3%'
+        
+      }}
+    >
+      <ProfessorInfo number='10' name="Professor 1" />
+      <ProfessorInfo number='20' name="Professor 2" />
+      <ProfessorInfo number='30' name="Professor 3" />
+    </div></>
+  )
+
+  const screen2Content = (
+  <>
+  <div style={{
+      flex: 1,
+      width: '100%',
+      backgroundColor: 'white',
+      display: 'flex',
+      justifyContent: 'center'
+    }}>
+<span>test</span>
+    </div>
+  
+  </>)
   return (
     <div
       style={{
@@ -74,17 +202,19 @@ function Configuracoes() {
         width: "100%",
         height: "100%",
         flexDirection: "column",
+        backgroundColor: '#F0754E'
       }}
     >
-      <Header title="Configuraçoes" color="#F0754E" />
+      <Header title="" color="#F0754E" />
       <UserDetails>
         <div
           style={{
             display: "flex",
             flexDirection: "row",
-            backgroundColor: "blue",
+           // backgroundColor: "blue",
             gap: "30px",
             marginLeft: "3%",
+            width:'max-content'
           }}
         >
           <div
@@ -94,6 +224,7 @@ function Configuracoes() {
               borderRadius: "50%",
               overflow: "hidden",
               backgroundColor: "white",
+              border:'2px solid white'
             }}
           >
             {responseData?.professor[0] && (<img
@@ -101,7 +232,8 @@ function Configuracoes() {
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "contain",
+                objectPosition: "center center", // Adjust this value as needed
               }}
             />)}
 
@@ -121,60 +253,32 @@ function Configuracoes() {
             )}
           </div>
         </div>
+        <div style={{ display: 'flex', justifyContent: 'flex-end',backgroundColor:'red', marginRight:'3%' }}>
+  <button
+    style={{
+      backgroundColor: 'white',
+      border: 'none',
+      borderRadius: '8px',
+      padding: '10px 20px',
+      cursor: 'pointer',
+      color: '#333',
+      width: 'max-content',
+    }}
+  >
+    Editar
+  </button>
+</div>
+
+
       </UserDetails>
-      <UserDetailsAndSavedItems />
-      <div style={{
-        flex: 1, width: "100%", backgroundColor: "pink", display: 'flex', flexDirection: 'column', alignItems: 'center'
-      }}>
-        <div
-          style={{
-            width: '90%',
-            height: 'max-content',
-            backgroundColor: 'blue'
-          }}
-        >
-          <RepeatedDiv>
-            <InputConfiguration label="Nome" required disabled={false} customWidth={width} />
-            <InputConfiguration label="Sexo" required disabled={false} />
-          </RepeatedDiv>
+ 
+      <UserDetailsAndSavedItems
+        handleMyDataClick={handleMyDataClick}
+        handleSavedClick={handleSavedClick}
+      />
+ {currentScreen === "screen1" && screen1Content}
+ {currentScreen === "screen2" && screen2Content}
 
-          <RepeatedDiv>
-            <InputConfiguration label="E-mail" required disabled={false} />
-            <InputConfiguration label="CPF" required disabled={false} />
-          </RepeatedDiv>
-
-          <div
-            style={{
-              backgroundColor: 'yellow', // Correção: estava 'yelow'
-              width: '100%',
-            }}
-          >
-            <InputConfiguration
-              label="Data Nascimento"
-              required
-              disabled={false}
-              customWidth='100px'
-            />
-          </div>
-
-
-          <RepeatedDiv>
-            <InputConfiguration label="CEE" required disabled={false} />
-            <InputConfiguration label="Logradouro" required disabled={false} />
-          </RepeatedDiv>
-
-          <RepeatedDiv>
-            <InputConfiguration label="Bairro" required disabled={false} />
-            <InputConfiguration label="Número" required disabled={false} />
-          </RepeatedDiv>
-
-          <RepeatedDiv>
-            <InputConfiguration label="Cidade" required disabled={false} />
-            <InputConfiguration label="Estado" required disabled={false} />
-          </RepeatedDiv>
-
-        </div>
-      </div>
     </div>
   );
 }

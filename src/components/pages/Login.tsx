@@ -10,6 +10,9 @@ import ImageGoogle from "../layout/loginImages/Google.png";
 import { useState, useEffect } from "react";
 import AuthenticationOptions from "../layout/FormComponents/AuthenticationOptions";
 import UserDecisionHandler from "../layout/FormComponents/UserDecisionHandler";
+import Card from '../layout//Cards'
+import { useNavigate } from 'react-router-dom'; // version 5.2.0
+import ImageClose from '../layout//FormComponents//imageMessage/close.svg'
 
 function Login() {
   const heightInput: string = "5vh";
@@ -17,8 +20,16 @@ function Login() {
   const widthInput: string = "35vw";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginFalha, setLoginFalha] = useState(false)
   let accessToken = ""; // Variável no escopo superior
   const [data, setData] = useState(null);
+  const navigate = useNavigate()
+  function CloseWindowns() {
+    console.log('close janela info')
+    setLoginFalha(false);
+
+
+  }
 
   const handleLogin = async () => {
     console.log("Login Clicado");
@@ -41,20 +52,23 @@ function Login() {
       if (response.ok) {
         console.log("Login bem-sucedido");
         const responseData = await response.json();
-        console.log("responseData:", responseData); 
-        const accessToken = responseData.acess_token; 
+        console.log("responseData:", responseData);
+        const accessToken = responseData.acess_token;
         sessionStorage.setItem("accessToken", accessToken);
         console.log("Token armazenado na sessionStorage:", accessToken);
         fetchUserData()
+        navigate('/')
+
       } else {
         console.log("Login não bem-sucedido");
+        setLoginFalha(true)
       }
     } catch (error) {
       console.error("Erro ao fazer a solicitação:", error);
     }
   };
   async function fetchUserData() {
-   const id = 29
+    const id = 29
     const accessToken = sessionStorage.getItem("accessToken");
     console.log(accessToken);
 
@@ -63,7 +77,7 @@ function Login() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:8181/professor/user`, {    
+      const response = await fetch(`http://localhost:8181/professor/user`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -82,7 +96,7 @@ function Login() {
       console.error("Erro ao fazer a solicitação:", error);
     }
   }
-  
+
 
   // Função para fazer uma solicitação GET protegida pelo token
   // Função para fazer uma solicitação GET protegida pelo token
@@ -208,6 +222,39 @@ function Login() {
             </div>
           </div>
         </div>
+        {loginFalha && (
+          <div
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <Card width="50%" height="50%">
+              <div style={{
+                display: 'flex',
+                // height: '10%',
+                width: '100%',
+                // backgroundColor: 'red',
+                justifyContent: 'flex-end'
+              }}>
+                {/* <button className={styles.containerClose} onClick={props.onClickClose}> */}
+
+                <button onClick={CloseWindowns}>
+                  <img src={ImageClose} alt="close" />
+                </button>
+              </div>
+              <p>Login falhou.Confira Email ou senha para ver se estao corretos ou confira se voce possui uma conta</p>
+            </Card>
+          </div>
+        )}
+
       </div>
     </>
   );

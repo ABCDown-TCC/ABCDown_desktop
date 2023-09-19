@@ -4,7 +4,8 @@
     border-top:1px solid white;
     height: max-content;
     display: flex;
-    align-items: center;
+    
     padding: 4vh 0;
+    flex-direction: column;
 
 }

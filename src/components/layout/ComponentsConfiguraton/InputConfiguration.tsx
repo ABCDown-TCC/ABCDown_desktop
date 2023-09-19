@@ -17,7 +17,10 @@ interface InputProps {
   
   function InputConfiguration({ label, type = 'text', required = false,  disabled,customWidth,height }: InputProps) {
     return (
-      <div className={styles.inputContainer} >
+      <div className={styles.inputContainer} 
+      style={{
+        width:customWidth,}}
+      >
         <label className={styles.textTitle}>{label}:</label>
         <input
         //   {...register(name, { required })}
@@ -25,7 +28,7 @@ interface InputProps {
           className={styles.inputField}
           disabled={disabled} // Usamos a propriedade 'disabled' passada
           style={{
-            width:customWidth,
+           
             height:height,
         }}
         />
