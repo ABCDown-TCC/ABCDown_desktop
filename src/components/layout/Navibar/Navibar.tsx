@@ -14,6 +14,7 @@ function Navibar() {
   const [showLabels, setShowLabels] = useState(true);
   const [showConfirmation, setShowConfirmation] = useState(false); // State to control the confirmation dialog
   const [responseData, setResponseData] = useState<{ professor: Array<{ id: number; nome: string ;foto:string}> } | null>(null);
+  
 
   const navigate = useNavigate();
   function MeuComponente() {
@@ -60,8 +61,8 @@ function Navibar() {
     border: 'solid 2px #F0754E',
     borderRadius: '50%',
     objectFit: 'contain',
-    height: '150px',
-    width: '150px',
+    height: '110px',
+    width: '120px',
     /* max-width e max-height não precisam ser definidos aqui */
   }}
   to=""

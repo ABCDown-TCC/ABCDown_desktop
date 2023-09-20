@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,ChangeEvent  } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styles from './InputConfiguration.module.css';
 
@@ -13,9 +13,11 @@ interface InputProps {
     disabled?: boolean; // Tornamos 'disabled' obrigatório
     customWidth?:string,
     height?:string
+    value?:string
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void; 
   }
   
-  function InputConfiguration({ label, type = 'text', required = false,  disabled,customWidth,height }: InputProps) {
+  function InputConfiguration({ value,label, type = 'text', required = false,  disabled,customWidth,height,onChange }: InputProps) {
     return (
       <div className={styles.inputContainer} 
       style={{
@@ -27,6 +29,8 @@ interface InputProps {
           type={type}
           className={styles.inputField}
           disabled={disabled} // Usamos a propriedade 'disabled' passada
+          value={value}
+          onChange={onChange}
           style={{
            
             height:height,
