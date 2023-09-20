@@ -5,7 +5,7 @@ import styles from './InputConfiguration.module.css';
 
 interface InputProps {
     label?: string;
-    name?: keyof FormData;
+    name?: string;
     type?: string;
     required?: boolean;
     // errors?: any;

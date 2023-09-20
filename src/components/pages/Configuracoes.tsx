@@ -12,8 +12,6 @@ import editImage from '../layout/icons/edit.svg'
 interface RepeatedDivProps {
   children: ReactNode;
 }
-
-
 function RepeatedDiv({ children }: RepeatedDivProps) {
 
 
@@ -80,39 +78,282 @@ function Configuracoes() {
       senha: string;
     }>;
   } | null>(null);
-  const [currentScreen, setCurrentScreen] = useState("screen1"); // use state para monitoraer pagian de meus dados e salvos
-  const [edit, setEdit] = useState(true)
-  const [form, setForm] = useState("noForm")
-  const [inputValue, setInputValue] = useState('');
 
   
-function teste() {
-  console.log(inputValue)
-}
-teste()
-  const handleMyDataClick = () => {
-    // Lógica para exibir e editar os dados do usuário
-    console.log("Meus Dados clicado");
-    setCurrentScreen("screen1"); // Set the current screen to "screen1"
+  const [currentScreen, setCurrentScreen] = useState("screen1"); // use state para monitoraer pagian de meus dados e salvos
+  const [form, setForm] = useState("noForm")
+  const [inputValue, setInputValue] = useState('');
+  const [alterarInput, setAlterarInput] = useState("doNotAlter");
+  const [editedNome, setEditedNome] = useState('');
+  const [formData, setFormData] = useState({
+    nome: '',
+    cpf: '',
+    data_nascimento: '',
+    foto: '', // Add other fields here
+    email: '',
+    senha: '',
+    id_genero: 1,
+    numero: '',
+    cep: '',
+    numeroTelefone: '',
+  });
+
+  // Define a function to handle changes in input fields
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleSavedClick = () => {
-    // Lógica para exibir itens salvos
-    console.log("Salvos clicado");
-    setCurrentScreen("screen2"); // Set the current screen to "screen2"
+  const handleSubmit = async () => {
+    console.log("test", formData);
   };
+const widthInputRigth = '35%'
+  const widthInputLeft = '60%'
+
+  const handleNomeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEditedNome(e.target.value);
+  };
+    const handleMyDataClick = () => {
+      // Lógica para exibir e editar os dados do usuário
+      console.log("Meus Dados clicado");
+      setCurrentScreen("screen1"); // Set the current screen to "screen1"
+    };
+  
+    const handleSavedClick = () => {
+      // Lógica para exibir itens salvos
+      console.log("Salvos clicado");
+      setCurrentScreen("screen2"); // Set the current screen to "screen2"
+    };
+  
+  
+    const Edit = () => {
+      console.log('clique');
+      setAlterarInput("tAlter"); // Corrija para "tAlter" em vez de "tAlte"
+      setForm("form");
+    }
+    
+    function cancelForm() {
+      console.log('cancelar')
+      setAlterarInput("doNotAlter")
+      setForm("noForm")
+      
+    }
+
+    const noAlterInput = (<>
+          <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          // backgroundColor:'red',
+          width: '80%',
+          height: '100%',
+          gap: '2vh',
+          paddingTop: '3%'
+
+        }}>
+<RepeatedDiv>
+  <InputConfiguration
+    label="Nome"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputLeft}
+    value={responseData?.professor[0]?.nome}
+  />
+  <InputConfiguration
+    label="Sexo"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputRigth}
+    value={responseData?.professor[0]?.nome_genero}
+  />
+</RepeatedDiv>
+<RepeatedDiv>
+  <InputConfiguration
+    label="E-mail"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputLeft}
+    value={responseData?.professor[0]?.email}
+  />
+  <InputConfiguration
+    label="CPF"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputRigth}
+    value={responseData?.professor[0]?.cpf}
+  />
+</RepeatedDiv>
+
+{/* data nascimento */}
+<div
+  style={{
+    width: '100%',
+  }}
+>
+  <InputConfiguration
+    label="Data Nascimento"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputLeft}
+    value={responseData?.professor[0].data_nascimento}
+  />
+</div>
+<RepeatedDiv>
+  <InputConfiguration
+    label="CEP"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputRigth}
+    value={responseData?.professor[0].cep}
+    onChange={(e) => setInputValue(e.target.value)}
+  />
+  <InputConfiguration
+    label="Logradouro"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputLeft}
+  />
+</RepeatedDiv>
+
+<RepeatedDiv>
+  <InputConfiguration
+    label="Bairro"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputLeft}
+  />
+  <InputConfiguration
+    label="Número"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputRigth}
+    value={responseData?.professor[0]?.numero}
+  />
+</RepeatedDiv>
+
+<RepeatedDiv>
+  <InputConfiguration
+    label="Cidade"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputLeft}
+  />
+  <InputConfiguration
+    label="Estado"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputRigth}
+  />
+</RepeatedDiv>
+
+      </div>
+    </>)
+
+const AlterInput = (<>
+        <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          // backgroundColor:'red',
+          width: '80%',
+          height: '100%',
+          gap: '2vh',
+          paddingTop: '3%'
+
+        }}>
+<RepeatedDiv>
+<InputConfiguration
+
+        label="Nome"
+        required
+        customWidth={widthInputLeft}
+        name="nome"
+        value={formData.nome}
+        onChange={handleInputChange}
+      />
+      <InputConfiguration
+    label="Sexo"
+    required
+    customWidth={widthInputRigth}
+  />
+</RepeatedDiv>
+<RepeatedDiv>
+  <InputConfiguration
+    label="E-mail"
+    required
+    customWidth={widthInputLeft}
+  />
+  <InputConfiguration
+    label="CPF"
+    required
+    customWidth={widthInputRigth}
+  />
+</RepeatedDiv>
+
+{/* data nascimento */}
+<div
+  style={{
+    width: '100%',
+  }}
+>
+  <InputConfiguration
+    label="Data Nascimento"
+    required
+    customWidth={widthInputLeft}
+  />
+</div>
+<RepeatedDiv>
+  <InputConfiguration
+    label="CEP"
+    required
+    customWidth={widthInputRigth}
+  />
+  <InputConfiguration
+    label="Logradouro"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputLeft}
+  />
+</RepeatedDiv>
+
+<RepeatedDiv>
+  <InputConfiguration
+    label="Bairro"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputLeft}
+  />
+  <InputConfiguration
+    label="Número"
+    required
+    customWidth={widthInputRigth}
+  />
+</RepeatedDiv>
+
+<RepeatedDiv>
+  <InputConfiguration
+    label="Cidade"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputLeft}
+  />
+  <InputConfiguration
+    label="Estado"
+    required
+    disabled={true} // Defina como true para desabilitar o input
+    customWidth={widthInputRigth}
+  />
+</RepeatedDiv>
+
+      {/* Botão ou ícone para limpar o campo */}
+
+</div>
+  </>)
 
 
-  const Edit = () => {
-    console.log('clcik')
-    setEdit(false)
-    setForm("form")
-  }
-  function cancelForm() {
-    console.log('cancelar')
-    setForm("noForm")
-    setEdit(true)
-  }
   const noForm = (
     <>
       <div
@@ -148,6 +389,7 @@ teste()
           text="Salvar mudanças"
           color="#43B1B1"
           width='20vw'
+          onClick={handleSubmit}
         />
       </div>
     </>
@@ -174,11 +416,6 @@ teste()
   }
 
   MeuComponente()
-
-  const widthInputRigth = '35%'
-  const widthInputLeft = '60%'
-
-
   const screen1Content = (<>
     <div style={{
       flex: 1,
@@ -187,53 +424,9 @@ teste()
       display: 'flex',
       justifyContent: 'center'
     }}>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          // backgroundColor:'red',
-          width: '80%',
-          height: '100%',
-          gap: '2vh',
-          paddingTop: '3%'
-
-        }}>
-        < RepeatedDiv>
-          <InputConfiguration label="Nome" required disabled={edit} customWidth={widthInputLeft} value={responseData?.professor[0]?.nome} />
-          <InputConfiguration label="Sexo" required disabled={false} customWidth={widthInputRigth} value={responseData?.professor[0]?.nome_genero} />
-        </RepeatedDiv>
-        <RepeatedDiv>
-          <InputConfiguration label="E-mail" required disabled={edit} customWidth={widthInputLeft} value={responseData?.professor[0]?.email} />
-          <InputConfiguration label="CPF" required disabled={edit} customWidth={widthInputRigth} value={responseData?.professor[0]?.cpf} />
-        </RepeatedDiv>
-
-        {/* data nascimento */}
-        <div
-          style={{
-            width: '100%',
-          }}
-        >
-          <InputConfiguration label="Data Nascimento" required disabled={edit} customWidth={widthInputLeft} value={responseData?.professor[0].data_nascimento} />
-        </div>
-        <RepeatedDiv>
-          <InputConfiguration label="CEP" required disabled={edit} customWidth={widthInputRigth} value={responseData?.professor[0].cep}  onChange={(e) => {setInputValue(e.target.value);}}/>
-          <InputConfiguration label="Logradouro" required disabled={true} customWidth={widthInputLeft} />
-        </RepeatedDiv>
-
-        <RepeatedDiv>
-          <InputConfiguration label="Bairro" required disabled={true} customWidth={widthInputLeft} />
-          <InputConfiguration label="Número" required disabled={edit} customWidth={widthInputRigth} value={responseData?.professor[0]?.numero} />
-        </RepeatedDiv>
-
-        <RepeatedDiv>
-          <InputConfiguration label="Cidade" required disabled={true} customWidth={widthInputLeft} />
-          <InputConfiguration label="Estado" required disabled={true} customWidth={widthInputRigth} />
-        </RepeatedDiv>
-      </div>
-
+{alterarInput === "doNotAlter" && noAlterInput}
+{alterarInput === "tAlter" && AlterInput}
     </div>
-
-
     {form === "form" && forms}
     {form === "noForm" && noForm}
 
@@ -332,22 +525,15 @@ teste()
             <img src={editImage} alt="" />
             Editar
           </button>
-
-
         </div>
-
-
       </UserDetails>
-
       <UserDetailsAndSavedItems
         handleMyDataClick={handleMyDataClick}
         handleSavedClick={handleSavedClick}
       />
       {currentScreen === "screen1" && screen1Content}
       {currentScreen === "screen2" && screen2Content}
-
     </div>
   );
 }
-
 export default Configuracoes;
