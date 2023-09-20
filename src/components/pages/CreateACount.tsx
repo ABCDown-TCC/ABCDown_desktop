@@ -6,9 +6,9 @@ import HeaderLogin from "../layout/FormComponents/HeaderLogin";
 import RegistrationInstructions from "../layout/FormComponents/RegistrationInstructions";
 import Input from "../layout/FormComponents/Input";
 import GetImage from "../layout/FormComponents/imageGetImage/getImage.svg";
-import CustomDiv from '../layout/FormComponents/CustomDiv'
-import CustomDivInpuMessageError from '../layout/FormComponents/CustomDivInpuMessageError'
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import CustomDiv from "../layout/FormComponents/CustomDiv";
+import CustomDivInpuMessageError from "../layout/FormComponents/CustomDivInpuMessageError";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase";
 import { url } from "inspector";
 
@@ -26,7 +26,7 @@ interface UserData {
   //estado?: string;
   numero: string;
   cep: string;
-  numeroTelefone: string
+  numeroTelefone: string;
 }
 
 interface Option {
@@ -34,8 +34,6 @@ interface Option {
   nome_genero: string;
 }
 function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
-
-
   const heightInput: string = "4vh";
   const heightButton: string = "6.5vh";
   const widthInputleft: string = "28vw";
@@ -69,14 +67,13 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
   const [isCepVazio, setIsCepVazio] = useState(false);
   const [isCepInvalid, setIsCepInvalid] = useState(false);
 
-
   const checkUserDataCompletion = () => {
     let hasError = false;
 
     if (!nome) {
       setIsNomeVazio(true);
       hasError = true;
-      console.log('nome')
+      console.log("nome");
     } else {
       setIsNomeVazio(false);
     }
@@ -103,11 +100,10 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
     }
     if (!numeroTelefone) {
       setIsNumeorTelefoneVazio(true);
-      hasError = true
+      hasError = true;
     } else {
       setIsNumeorTelefoneVazio(false);
     }
-
 
     if (!cep) {
       setIsCepVazio(true);
@@ -117,12 +113,10 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
     }
     if (!numero) {
       setIsNumeorCelularVazio(true);
-      hasError = true
+      hasError = true;
     } else {
       setIsNumeorCelularVazio(false);
     }
-
-
 
     // Continue verificando outros campos conforme necessário
 
@@ -133,12 +127,12 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
         cpf,
         data_nascimento: dataNascimento,
         //endereco,
-       // bairro,
-       // estado,
+        // bairro,
+        // estado,
         id_genero: Number(sexo), // Convert sexo from string to number
         numero,
         cep,
-        numeroTelefone: numeroTelefone
+        numeroTelefone: numeroTelefone,
       };
       const professorData = {
         ...userData,
@@ -147,10 +141,9 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
         photo: "", // Preencha com o valor da foto
       };
       proceedToLoginData(userData);
-      console.log(userData)
+      console.log(userData);
     }
   };
-
 
   const handleInputClick = async () => {
     // validateCepLength()
@@ -159,7 +152,7 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
 
     const isCepValid = await validateCep(); // Valide o CEP antes de prosseguir
     // if (isCepValid) {
-    checkUserDataCompletion();  // Validate the inputs
+    checkUserDataCompletion(); // Validate the inputs
     // }
   };
 
@@ -323,7 +316,9 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
                 setIsNomeVazio(false); // Remove a mensagem de erro ao começar a digitar
               }}
             />
-            {isNomeVazio && <span style={{ color: "red" }}>Nome é obrigatório</span>}
+            {isNomeVazio && (
+              <span style={{ color: "red" }}>Nome é obrigatório</span>
+            )}
             {/* <Input
                         text="sexo"
                         width={widthInputright}
@@ -338,7 +333,7 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap:'12px'
+                gap: "12px",
               }}
             >
               <label>Gênero</label>
@@ -347,7 +342,6 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
                   setSexo(e.target.value);
                   setIsSexoVazio(false); // Remove a mensagem de erro ao começar a digitar
                 }}
-
                 style={{
                   width: widthInputright,
                   height: heightInput,
@@ -367,11 +361,11 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
                   </option>
                 ))}
               </select>
-              {isSexoVazio && <span style={{ color: "red" }}>Sexo é obrigatório</span>}
-
+              {isSexoVazio && (
+                <span style={{ color: "red" }}>Sexo é obrigatório</span>
+              )}
             </div>
           </CustomDivInpuMessageError>
-
         </CustomDiv>
         <CustomDiv>
           <CustomDivInpuMessageError>
@@ -385,8 +379,9 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
                 setIsCpfVazio(false);
               }}
             />
-            {isCpfVazio && <span style={{ color: "red" }}>Cpf é obrigatório</span>}
-
+            {isCpfVazio && (
+              <span style={{ color: "red" }}>Cpf é obrigatório</span>
+            )}
           </CustomDivInpuMessageError>
 
           <CustomDivInpuMessageError>
@@ -395,11 +390,15 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
               width={widthInputfullAddress}
               height={heightInput}
               value={dataNascimento} // Fornecer o valor do estado
-              onChange={(e) => { setDataNascimento(e.target.value); setIsDataNascimentoVazio(false) }}
+              onChange={(e) => {
+                setDataNascimento(e.target.value);
+                setIsDataNascimentoVazio(false);
+              }}
               type="date"
             />
-            {IsDataNascimentoVazio && <span style={{ color: "red" }}>Data é obrigatório</span>}
-
+            {IsDataNascimentoVazio && (
+              <span style={{ color: "red" }}>Data é obrigatório</span>
+            )}
           </CustomDivInpuMessageError>
           <CustomDivInpuMessageError>
             <Input
@@ -407,13 +406,15 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
               width={widthInputfullAddress}
               height={heightInput}
               value={numeroTelefone} // Fornecer o valor do estado
-              onChange={(e) => { setnumeroTelefoneProfessor(e.target.value); setIsNumeorTelefoneVazio(false) }}
-
+              onChange={(e) => {
+                setnumeroTelefoneProfessor(e.target.value);
+                setIsNumeorTelefoneVazio(false);
+              }}
             />
-            {isNumeroTelefoneVazio && <span style={{ color: "red" }}>Telefone é obrigatório</span>}
-
+            {isNumeroTelefoneVazio && (
+              <span style={{ color: "red" }}>Telefone é obrigatório</span>
+            )}
           </CustomDivInpuMessageError>
-
         </CustomDiv>
 
         <CustomDiv>
@@ -426,15 +427,14 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
               onChange={(e) => {
                 handleCepChange(e);
                 setIsCpfVazio(false);
-                setIsCepInvalid(false)
+                setIsCepInvalid(false);
               }}
             />
-            {isCepVazio && <span style={{ color: "red" }}>Cep é obrigatório</span>}
+            {isCepVazio && (
+              <span style={{ color: "red" }}>Cep é obrigatório</span>
+            )}
             {/* {isCepInvalid && <span style={{ color: "red" }}>Cep invalido</span>} */}
-
-
           </CustomDivInpuMessageError>
-
 
           <Input
             text="Endereco"
@@ -474,18 +474,21 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
             onChange={(e) => setBairro(e.target.value)}
           />
           <CustomDivInpuMessageError>
-
-          <Input
-            text="Numero"
-            width={widthInputfullAddress}
-            height={heightInput}
-            value={numero} // Fornecer o valor do estado
-            onChange={(e) => {setNumero(e.target.value);setIsNumeorCelularVazio(false)}}
-          />
-            {isNumeroCelularVazio && <span style={{ color: "red" }}>Celular é obrigatório</span>}
+            <Input
+              text="Numero"
+              width={widthInputfullAddress}
+              height={heightInput}
+              value={numero} // Fornecer o valor do estado
+              onChange={(e) => {
+                setNumero(e.target.value);
+                setIsNumeorCelularVazio(false);
+              }}
+            />
+            {isNumeroCelularVazio && (
+              <span style={{ color: "red" }}>Celular é obrigatório</span>
+            )}
             {/* {isCepInvalid && <span style={{ color: "red" }}>Cep invalido</span>} */}
-            </CustomDivInpuMessageError>
-
+          </CustomDivInpuMessageError>
         </div>
         <CustomDiv>
           <Btn
@@ -506,7 +509,6 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
   );
 }
 
-
 function LoginDataSection({ userData }: { userData: UserData | null }) {
   const heightInput: string = "4vh";
   const heightButton: string = "6.5vh";
@@ -518,31 +520,33 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
   const widthBtnRigth: string = "15vw";
   const widthBtnLeft: string = "30vw";
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+  const [selectedPhotoVazio, setSelectedPhotoVazio] = useState(false)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmEmail, setComfirmEmail] = useState("");
   const [comfirmpassword, setComfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
   const [isEmailVazio, setIsEmailVazio] = useState(false);
-  const [ispasswordVazio, setIsPasswordVazio] = useState(false)
-  const [progress, setProgress] = useState(0)
+  const [ispasswordVazio, setIsPasswordVazio] = useState(false);
+
+  const [isConfirmEmailVazio, setIsConfirmEmailVazio] = useState(false);
+  const [isConfirmpasswordVazio, setIsConfirmPasswordVazio] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const requestData = {
-   
-      nome:userData?.nome,
-      cpf:userData?.cpf,
-      data_nascimento:userData?.data_nascimento,
-      foto: selectedPhoto,
-      email: email,
-      senha: password,
-     id_genero:userData?.id_genero,
-     numero: userData?.numero,
-     cep: userData?.cep,
-     numeroTelefone: userData?.numeroTelefone  
-      //endereco: userData?.endereco || "",
-      // bairro: userData?.bairro || "",
-      //estado: userData?.estado || "",
-    
+    nome: userData?.nome,
+    cpf: userData?.cpf,
+    data_nascimento: userData?.data_nascimento,
+    foto: selectedPhoto,
+    email: email,
+    senha: password,
+    id_genero: userData?.id_genero,
+    numero: userData?.numero,
+    cep: userData?.cep,
+    numeroTelefone: userData?.numeroTelefone,
+    //endereco: userData?.endereco || "",
+    // bairro: userData?.bairro || "",
+    //estado: userData?.estado || "",
   };
   // const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   const file = event.target.files?.[0];
@@ -568,12 +572,10 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
   //     reader.onload = () => {
   //       setSelectedPhoto(reader.result as string);
 
-
   //     };
   //     reader.readAsDataURL(file);
   //   }
   // };
-
 
   const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -582,23 +584,26 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         "state_changed",
-        snapshot => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setProgress(progress);
         },
-        error => {
+        (error) => {
           alert(error);
         },
         () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((url: string) => { // Add type annotation here
+          getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
+            // Add type annotation here
             setSelectedPhoto(url); // Assuming setSelectedPhoto is a function to set the selected photo URL
+            
           });
         }
       );
     }
   };
 
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   function CreatePost() {
     fetch("http://localhost:8181/professor/", {
       method: "POST",
@@ -607,29 +612,29 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
       },
       body: JSON.stringify(requestData),
     })
-      .then((resp) => { 
-        
+      .then((resp) => {
         if (!resp.ok) {
           throw new Error(`HTTP error! Status: ${resp.status}`);
         }
         return resp.json();
       })
       .then((data) => {
-        
         navigate("/login", {
           state: { message: "usuario criado com sucesso!" },
         });
-        
-        
       })
       .catch((err) => {
         console.error("Fetch error:", err);
         console.log(JSON.stringify(requestData));
       });
   }
-  
 
   const checkEmptyInput = () => {
+    // if (selectedPhoto === null) {
+    //   setSelectedPhotoVazio(true);
+    // } else {
+    //   setSelectedPhotoVazio(false);
+    // }
     // Verifique se o campo de email está vazio
     if (!email) {
       setIsEmailVazio(true);
@@ -645,45 +650,89 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
     } else {
       setIsPasswordVazio(false);
     }
+    if (!confirmEmail) {
+      console.log("campo confimacao email vazio");
+      setIsConfirmEmailVazio(true);
+    } else {
+      setIsConfirmEmailVazio(false);
+    }
+    if (!comfirmpassword) {
+      setIsConfirmPasswordVazio(true);
+      console.log("campo confimacao senha vazio");
+    } else {
+      setIsConfirmPasswordVazio(false);
+    }
 
     // Verifique se ambos os campos de email e senha não estão vazios
     if (email && password) {
       // Chame a função desejada aqui
       CreatePost();
-      console.log("checkEmptyInput")
+      console.log("checkEmptyInput");
     }
   };
-
 
   const handleDivClick = () => {
     const fileInput = document.getElementById(
       "hiddenFileInput"
     ) as HTMLInputElement;
     if (fileInput) {
+     // checkEmptyInput()
       fileInput.click();
     }
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", backgroundColor: "white", }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+        backgroundColor: "white",
+      }}
+    >
       <HeaderLogin />
-      <div style={{
-        display: "flex", flexDirection: "column", width: "max-content",// alignItems: 'center',// justifyContent:'center'
-      }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "max-content", // alignItems: 'center',// justifyContent:'center'
+        }}
+      >
         <RegistrationInstructions
           textTitulo="Crie uma conta agora!"
           textDescription="Estamos quase lá!
         Preencha o restante das suas informações para finalizarmos"
         />
 
-        <span style={{ fontWeight: "bold", fontSize: "1vw", marginTop: "4%", }}>
+        <span style={{ fontWeight: "bold", fontSize: "1vw", marginTop: "4%" }}>
           Parte 3
         </span>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", backgroundColor: "white", }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+            backgroundColor: "white",
+          }}
+        >
           {/* ... Rest of your code ... */}
-
-          <div style={{ height: "30vh", width: "20vw", borderRadius: "30px", border: "3px solid #EAEAEA", backgroundColor: "#F5F5F5", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", }}
-            onClick={handleDivClick}>
+          <CustomDivInpuMessageError>
+          <div
+            style={{
+              height: "30vh",
+              width: "20vw",
+              borderRadius: "30px",
+              border: "3px solid #EAEAEA",
+              backgroundColor: "#F5F5F5",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onClick={handleDivClick}
+          >
             {selectedPhoto ? (
               <img
                 src={selectedPhoto}
@@ -691,48 +740,107 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             ) : (
-              <img src={GetImage} alt="Descrição da imagem" style={{ width: "30%", height: "30%" }} />
+              <img
+                src={GetImage}
+                alt="Descrição da imagem"
+                style={{ width: "30%", height: "30%" }}
+              />
             )}
           </div>
 
           <input
-            type="file" id="hiddenFileInput" accept="image/*" style={{ display: "none" }} onChange={handlePhotoChange}
+            type="file"
+            id="hiddenFileInput"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={handlePhotoChange}
           />
+            {/* {selectedPhotoVazio && (
+    <span style={{ color: "red" }}>Campo Foto Obrigatório</span>
+  )} */}
+     </CustomDivInpuMessageError>
 
-          {selectedPhoto && <progress value={progress} max='100' />}
-          <div style={{ display: "flex", flexDirection: "column", padding: "5% 0 7% 0", gap: "2vh",backgroundColor:'red'}}>
-            <CustomDiv style={{gap:'100px'}}>
+          {selectedPhoto && <progress value={progress} max="100" />}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              padding: "5% 0 7% 0",
+              gap: "2vh",
+              backgroundColor: "",
+            }}
+          >
+            <CustomDiv style={{ gap: "100px" }}>
               <CustomDivInpuMessageError>
-                <Input text="E-mail*" width={widthInputleft} height={heightInput} type="email" onChange={(e) => { setEmail(e.target.value); setIsEmailVazio(false) }} />
-                {isEmailVazio && <span style={{ color: "red" }}>Campo EmailObrigatorio</span>}
+                <Input
+                  text="E-mail*"
+                  width={widthInputleft}
+                  height={heightInput}
+                  type="email"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setIsEmailVazio(false);
+                  }}
+                />
+                {isEmailVazio && (
+                  <span style={{ color: "red" }}>Campo EmailObrigatorio</span>
+                )}
               </CustomDivInpuMessageError>
               <CustomDivInpuMessageError>
-                <Input text="Senha*" width={widthInputright} height={heightInput} type="password" onChange={(e) => {setPassword(e.target.value); setIsPasswordVazio(false)}} />
-                {ispasswordVazio && <span style={{ color: "red" }}>Campo Senha Obrigatorio</span>}
+                <Input
+                  text="Senha*"
+                  width={widthInputright}
+                  height={heightInput}
+                  type="password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setIsPasswordVazio(false);
+                  }}
+                />
+                {ispasswordVazio && (
+                  <span style={{ color: "red" }}>Campo Senha Obrigatorio</span>
+                )}
               </CustomDivInpuMessageError>
             </CustomDiv>
 
             <CustomDiv>
               <CustomDivInpuMessageError>
-                
                 <Input
                   text="Confirmação do e-mail*"
                   width={widthInputleft}
                   height={heightInput}
                   type="email"
-                  onChange={(e) => { setComfirmEmail(e.target.value); setErrorMessage(false) }}
+                  onChange={(e) => {
+                    setIsConfirmEmailVazio(false)
+                    setComfirmEmail(e.target.value);
+                  }}
                 />
-                {errorMessage && <span style={{ color: "red" }}>Email não corresponde</span>}
-
+                {isConfirmEmailVazio && (
+                  <span style={{ color: "red" }}>
+                    Campo confirmar email Obrigatorio
+                  </span>
+                )}
               </CustomDivInpuMessageError>
 
               <CustomDivInpuMessageError>
-                <Input text="Confirmação de senha*"
-                  width={widthInputright} height={heightInput}
+                <Input
+                  text="Confirmação de senha*"
+                  width={widthInputright}
+                  height={heightInput}
                   type="password"
-                  onChange={(e) => setComfirmPassword(e.target.value)} />
-                {errorMessage && <span style={{ color: "red" }}>Senha não corresponde</span>}
-
+                  onChange={(e) =>{
+                     setComfirmPassword(e.target.value);
+                     setIsConfirmPasswordVazio(false);
+                    }}
+                />
+                {isConfirmpasswordVazio && (
+                  <span style={{ color: "red" }}>
+                    Campo confirmar Senha Obrigatorio
+                  </span>
+                )}
+                {errorMessage && (
+                  <span style={{ color: "red" }}>Senha não corresponde</span>
+                )}
               </CustomDivInpuMessageError>
             </CustomDiv>
           </div>
@@ -751,8 +859,6 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
               width={widthBtnLeft}
               onClick={checkEmptyInput}
             />
-
-
           </CustomDiv>
         </div>
       </div>
@@ -766,7 +872,6 @@ function CreateACount() {
   const proceedToLoginData = (userData: UserData) => {
     setUserData(userData); // Set the userData received from UserDataSection
     setCreateCoute("loginData");
-
   };
 
   return (
