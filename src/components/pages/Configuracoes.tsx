@@ -8,7 +8,8 @@ import InputConfiguration from "../layout/ComponentsConfiguraton/InputConfigurat
 import Crud from '../../Crud'
 import Btn from "../layout/FormComponents/Btn";
 import editImage from '../layout/icons/edit.svg'
-
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../../firebase";
 interface RepeatedDivProps {
   children: ReactNode;
 }
@@ -84,7 +85,13 @@ function Configuracoes() {
   const [form, setForm] = useState("noForm")
   const [inputValue, setInputValue] = useState('');
   const [alterarInput, setAlterarInput] = useState("doNotAlter");
-  const [editedNome, setEditedNome] = useState('');
+
+  const [cpf, setCpf] = useState("");
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+  const [changeImage,setChangeImage] = useState('noChanceImage')
+
+
+
   const [formData, setFormData] = useState({
     nome: '',
     cpf: '',
@@ -92,12 +99,57 @@ function Configuracoes() {
     foto: '', // Add other fields here
     email: '',
     senha: '',
-    id_genero: 1,
+    id_genero:null,
     numero: '',
     cep: '',
     numeroTelefone: '',
   });
+  const [logradouro, setLogradouro] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [estado, setEstado] = useState("");
+  const [isCepInvalid, setIsCepInvalid] = useState(false);
+  const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newCep = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+    setCpf(newCep);
+    setFormData({
+      ...formData,
+      cep: newCep,
+    });
+  };
+  
 
+  useEffect(() => {
+    // Validar o CEP e buscar dados do CEP quando o valor do CEP for um CEP completo (com 8 dígitos)
+    if (cpf.length === 8) {
+      validateCep();
+    }
+  }, [cpf]);
+  
+  const validateCep = async () => {
+    try {
+      const apiUrl = `http://localhost:3001/api/cep/${cpf}`;
+      const response = await fetch(apiUrl);
+  
+      if (response.ok) {
+        const data = await response.json();
+        if (!data.erro) {
+          setLogradouro(data.logradouro);
+          setBairro(data.bairro);
+          setCidade(data.localidade);
+          setEstado(data.uf);
+          setIsCepInvalid(false); // CEP é válido
+        } else {
+          setIsCepInvalid(true); // CEP é inválido
+        }
+      } else {
+        setIsCepInvalid(true); // Erro na requisição
+      }
+    } catch (error) {
+      console.error("Erro ao buscar dados do CEP:", error);
+      setIsCepInvalid(true); // Erro ao buscar dados do CEP
+    }
+  };
   // Define a function to handle changes in input fields
   
 
@@ -136,15 +188,17 @@ const widthInputRigth = '35%'
       console.log('clique');
       setAlterarInput("tAlter"); // Corrija para "tAlter" em vez de "tAlte"
       setForm("form");
+      setChangeImage("chanceImage");
     }
     
     function cancelForm() {
       console.log('cancelar')
       setAlterarInput("doNotAlter")
       setForm("noForm")
+      setChangeImage("noChanceImage");
       
     }
-
+  
     const noAlterInput = (<>
           <div
         style={{
@@ -177,6 +231,7 @@ const widthInputRigth = '35%'
   <InputConfiguration
     label="E-mail"
     required
+    
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
     value={responseData?.professor[0]?.email}
@@ -188,6 +243,7 @@ const widthInputRigth = '35%'
     customWidth={widthInputRigth}
     value={responseData?.professor[0]?.cpf}
   />
+  
 </RepeatedDiv>
 
 {/* data nascimento */}
@@ -218,6 +274,7 @@ const widthInputRigth = '35%'
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
+    value={logradouro}
   />
 </RepeatedDiv>
 
@@ -227,6 +284,7 @@ const widthInputRigth = '35%'
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
+    value={bairro}
   />
   <InputConfiguration
     label="Número"
@@ -243,12 +301,14 @@ const widthInputRigth = '35%'
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
+    value={cidade}
   />
   <InputConfiguration
     label="Estado"
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputRigth}
+    value={estado}
   />
 </RepeatedDiv>
 
@@ -291,6 +351,7 @@ onChange={handleChange}
     label="E-mail"
     required
     customWidth={widthInputLeft}
+    type="email"
     name="email"
 id="email"
 value={formData.email}
@@ -330,29 +391,48 @@ justifyContent: 'space-between',
   />
 
 <InputConfiguration
-    label="Numero de telefone"
-    required
-    customWidth="30%"
-  />
+  label="Número telefone"
+  required
+  customWidth="30%"
+  name="numeroTelefone" 
+  id="snumeroTelefone" 
+  value={formData.numeroTelefone} 
+  onChange={handleChange} 
+/>
 
 <InputConfiguration
     label="Senha"
     required
     customWidth="30%"
+    type="password"
+    name="senha" 
+    id="senha" 
+    value={formData.senha} 
+    onChange={handleChange} 
   />
 </div>
 <RepeatedDiv>
 <InputConfiguration
-  label="Número telefone"
+  label="CEP"
   required
   customWidth={widthInputRigth}
+  name="cpf"
+  id="cpf"
+  value={formData.cpf}
+  onChange={(e) => {
+    handleCepChange(e);
+    // Chame outras funções aqui, se necessário
+   
+  }}
 />
+
 
   <InputConfiguration
     label="Logradouro"
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
+    value={logradouro}
   />
 </RepeatedDiv>
 
@@ -362,11 +442,16 @@ justifyContent: 'space-between',
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
+    value={bairro}
   />
   <InputConfiguration
     label="Número"
     required
     customWidth={widthInputRigth}
+    name="numero" 
+    id="numero" 
+    value={formData.numero} 
+    onChange={handleChange} 
   />
 </RepeatedDiv>
 
@@ -376,12 +461,14 @@ justifyContent: 'space-between',
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
+    value={cidade}
   />
   <InputConfiguration
     label="Estado"
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputRigth}
+    value={estado}
   />
 </RepeatedDiv>
 
@@ -432,10 +519,6 @@ justifyContent: 'space-between',
     </>
   )
 
-
-
-
-
   function MeuComponente() {
     useEffect(() => {
       // Dentro de useEffect para chamada assíncrona
@@ -482,6 +565,114 @@ justifyContent: 'space-between',
     </div>
 
   </>)
+
+
+const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const file = event.target.files?.[0];
+  if (file) {
+    const storageRef = ref(storage, `images/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+       
+      },
+      (error) => {
+        alert(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
+          setSelectedPhoto(url); // Define a imagem selecionada
+          setFormData({
+            ...formData,
+            foto: url,
+          });
+        });
+      }
+    );
+  }
+};
+
+const handleDivClick = () => {
+  // Aqui você pode adicionar a lógica para abrir o seletor de arquivo
+  const fileInput = document.getElementById("hiddenFileInput");
+  if (fileInput) {
+    fileInput.click();
+  }
+};
+const noChanceImage = (<>
+  <div
+    style={{
+      width: "200px",
+      height: "200px",
+      borderRadius: "50%",
+      overflow: "hidden",
+      backgroundColor: "white",
+      border: '2px solid white'
+    }}
+  >
+    {responseData?.professor[0] && (<img
+      src={responseData.professor[0].foto}
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "contain",
+        objectPosition: "center center", // Adjust this value as needed
+      }}
+    />)}
+  </div>
+</>)
+
+const ChanceImage = (<>
+<div>
+{/* ... Rest of your code ... */}
+<div
+style={{
+  width: "200px",
+  height: "200px",
+  borderRadius: "50%",
+  overflow: "hidden",
+  backgroundColor: "white",
+  border: "2px solid white",
+}}
+onClick={handleDivClick}
+>
+{selectedPhoto ? (
+  <img
+    src={selectedPhoto}
+    alt="Selected"
+             style={{
+      width: "100%", // Defina a largura como 100% da div pai
+      height: "100%", // Defina a altura como 100% da div pai
+      objectFit: "cover",
+      objectPosition: "center center",
+    }}
+  />
+) : (
+  <img
+    src={responseData?.professor[0]?.foto}
+    alt="Descrição da imagem"
+    style={{
+      width: "100%", // Defina a largura como 100% da div pai
+      height: "100%", // Defina a altura como 100% da div pai
+    
+  
+    }}
+  />
+)}
+</div>
+
+<input
+type="file"
+id="hiddenFileInput"
+accept="image/*"
+style={{ display: "none" }}
+onChange={handlePhotoChange}
+/>
+{/* Rest of your code... */}
+</div>
+</>)
   return (
     <div
       style={{
@@ -504,26 +695,9 @@ justifyContent: 'space-between',
             width: 'max-content'
           }}
         >
-          <div
-            style={{
-              width: "200px",
-              height: "200px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              backgroundColor: "white",
-              border: '2px solid white'
-            }}
-          >
-            {responseData?.professor[0] && (<img
-              src={responseData.professor[0].foto}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                objectPosition: "center center", // Adjust this value as needed
-              }}
-            />)}
-          </div>
+
+    {changeImage === "noChanceImage" && noChanceImage}
+{changeImage === "chanceImage" && ChanceImage}
           <div
             style={{
               display: "flex",

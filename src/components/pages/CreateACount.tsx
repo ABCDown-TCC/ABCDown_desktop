@@ -719,34 +719,46 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
         >
           {/* ... Rest of your code ... */}
           <CustomDivInpuMessageError>
-          <div
-            style={{
-              height: "30vh",
-              width: "20vw",
-              borderRadius: "30px",
-              border: "3px solid #EAEAEA",
-              backgroundColor: "#F5F5F5",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            onClick={handleDivClick}
-          >
-            {selectedPhoto ? (
-              <img
-                src={selectedPhoto}
-                alt="Selected"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            ) : (
-              <img
-                src={GetImage}
-                alt="Descrição da imagem"
-                style={{ width: "30%", height: "30%" }}
-              />
-            )}
-          </div>
+          <div>
+      {/* ... Rest of your code ... */}
+      <div
+        style={{
+          height: "30vh",
+          width: "20vw",
+          borderRadius: "30px",
+          border: "3px solid #EAEAEA",
+          backgroundColor: "#F5F5F5",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        onClick={handleDivClick}
+      >
+        {selectedPhoto ? (
+          <img
+            src={selectedPhoto}
+            alt="Selected"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        ) : (
+          <img
+            src={GetImage}
+            alt="Descrição da imagem"
+            style={{ width: "30%", height: "30%" }}
+          />
+        )}
+      </div>
+
+      <input
+        type="file"
+        id="hiddenFileInput"
+        accept="image/*"
+        style={{ display: "none" }}
+        onChange={handlePhotoChange}
+      />
+      {/* Rest of your code... */}
+    </div>
 
           <input
             type="file"
@@ -757,7 +769,7 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
           />
             {/* {selectedPhotoVazio && (
     <span style={{ color: "red" }}>Campo Foto Obrigatório</span>
-  )} */}
+   )} */}
      </CustomDivInpuMessageError>
 
           {selectedPhoto && <progress value={progress} max="100" />}
