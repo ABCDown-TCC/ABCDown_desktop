@@ -99,8 +99,10 @@ function Configuracoes() {
   });
 
   // Define a function to handle changes in input fields
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+  
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
@@ -108,14 +110,15 @@ function Configuracoes() {
   };
 
   const handleSubmit = async () => {
-    console.log("test", formData);
+    console.log("Dados enviados:", formData);
+  
+    // Adicione aqui a lógica para enviar os dados para o servidor ou fazer a postagem.
   };
+
 const widthInputRigth = '35%'
   const widthInputLeft = '60%'
 
-  const handleNomeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedNome(e.target.value);
-  };
+
     const handleMyDataClick = () => {
       // Lógica para exibir e editar os dados do usuário
       console.log("Meus Dados clicado");
@@ -267,12 +270,15 @@ const AlterInput = (<>
 <RepeatedDiv>
 <InputConfiguration
 
-        label="Nome"
-        required
-        customWidth={widthInputLeft}
-        name="nome"
-        value={formData.nome}
-        onChange={handleInputChange}
+label="Nome"
+type="text"
+required
+customWidth={widthInputLeft}
+name="nome"
+id="nome"
+value={formData.nome}
+onChange={handleChange} 
+       
       />
       <InputConfiguration
     label="Sexo"
@@ -285,11 +291,19 @@ const AlterInput = (<>
     label="E-mail"
     required
     customWidth={widthInputLeft}
+    name="email"
+id="email"
+value={formData.email}
+onChange={handleChange} 
   />
   <InputConfiguration
     label="CPF"
     required
     customWidth={widthInputRigth}
+    name="cpf"
+    id="cpf"
+value={formData.cpf}
+onChange={handleChange} 
   />
 </RepeatedDiv>
 
@@ -297,20 +311,43 @@ const AlterInput = (<>
 <div
   style={{
     width: '100%',
+    display:'flex',
+    flexDirection:'row',
+
+justifyContent: 'space-between',
   }}
 >
   <InputConfiguration
     label="Data Nascimento"
     required
-    customWidth={widthInputLeft}
+    customWidth="30%"
+    type="date"
+    name="data_nascimento" 
+    id="data_nascimento" 
+    value={formData.data_nascimento} 
+    onChange={handleChange} 
+    
+  />
+
+<InputConfiguration
+    label="Numero de telefone"
+    required
+    customWidth="30%"
+  />
+
+<InputConfiguration
+    label="Senha"
+    required
+    customWidth="30%"
   />
 </div>
 <RepeatedDiv>
-  <InputConfiguration
-    label="CEP"
-    required
-    customWidth={widthInputRigth}
-  />
+<InputConfiguration
+  label="Número telefone"
+  required
+  customWidth={widthInputRigth}
+/>
+
   <InputConfiguration
     label="Logradouro"
     required
@@ -389,7 +426,7 @@ const AlterInput = (<>
           text="Salvar mudanças"
           color="#43B1B1"
           width='20vw'
-          onClick={handleSubmit}
+          onClick={() => handleSubmit()} 
         />
       </div>
     </>

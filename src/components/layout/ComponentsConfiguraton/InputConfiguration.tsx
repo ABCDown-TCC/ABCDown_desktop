@@ -15,9 +15,10 @@ interface InputProps {
     height?:string
     value?:string
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void; 
+    id?: string
   }
   
-  function InputConfiguration({ value,label, type = 'text', required = false,  disabled,customWidth,height,onChange }: InputProps) {
+  function InputConfiguration({id, value,label, type = 'text', required = false,  disabled,customWidth,height,onChange,name }: InputProps) {
     return (
       <div className={styles.inputContainer} 
       style={{
@@ -26,14 +27,16 @@ interface InputProps {
         <label className={styles.textTitle}>{label}:</label>
         <input
         //   {...register(name, { required })}
-          type={type}
-          className={styles.inputField}
-          disabled={disabled} // Usamos a propriedade 'disabled' passada
-          value={value}
-          onChange={onChange}
-          style={{
-           
-            height:height,
+        type={type}
+        id={id}
+        name={name}
+        className={styles.inputField}
+        disabled={disabled}
+        value={value}
+        onChange={onChange}
+        style={{
+          height: height,
+      
         }}
         />
       </div>
