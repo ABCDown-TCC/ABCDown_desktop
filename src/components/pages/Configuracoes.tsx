@@ -63,6 +63,10 @@ function ProfessorInfo(props: ProfessorInfoProps) {
     </div>
   );
 }
+interface Option {
+  id_genero: number;
+  nome_genero: string;
+}
 function Configuracoes() {
   const [responseData, setResponseData] = useState<{
     professor: Array<{
@@ -81,34 +85,77 @@ function Configuracoes() {
   } | null>(null);
 
   
+  
+ 
+
+
   const [currentScreen, setCurrentScreen] = useState("screen1"); // use state para monitoraer pagian de meus dados e salvos
   const [form, setForm] = useState("noForm")
   const [inputValue, setInputValue] = useState('');
   const [alterarInput, setAlterarInput] = useState("doNotAlter");
-
   const [cpf, setCpf] = useState("");
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [changeImage,setChangeImage] = useState('noChanceImage')
-
+  const [options, setOptions] = useState<Option[]>([]);
+  const [logradouro, setLogradouro] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [estado, setEstado] = useState("");
+  const [isCepInvalid, setIsCepInvalid] = useState(false);
 
 
   const [formData, setFormData] = useState({
+
     nome: '',
     cpf: '',
     data_nascimento: '',
     foto: '', // Add other fields here
     email: '',
     senha: '',
-    id_genero:null,
+    id_genero: 0,
     numero: '',
     cep: '',
     numeroTelefone: '',
   });
-  const [logradouro, setLogradouro] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [estado, setEstado] = useState("");
-  const [isCepInvalid, setIsCepInvalid] = useState(false);
+
+
+  function MeuComponente() {
+    useEffect(() => {
+      // Dentro de useEffect para chamada assíncrona
+      const fetchData = async () => {
+        // Chame a função 'get' do módulo Crud
+        const data = await Crud().get();
+        setResponseData(data); // Atualize o estado com os dados obtidos
+
+        // Faça algo com os dados obtidos, por exemplo, imprima no console
+        console.log(data);
+        console.log('meu  id', responseData?.professor[0].id)
+      };
+
+      fetchData(); // Chame a função fetchData para buscar os dados
+    }, []);
+  }
+
+  MeuComponente()
+
+
+  function updateData() {
+    const fetchData = async () => {
+      // Chame a função 'get' do módulo Crud
+      const professorId = responseData?.professor[0].id;
+
+      if (professorId !== undefined) {
+        const data = await Crud().put(formData, { id: professorId });
+        console.log(data);
+      } else {
+        console.error("ID do professor não está definido.");
+      }
+      // Atualize o estado com os dados obtidos
+
+      // Faça algo com os dados obtidos, por exemplo, imprima no console
+      
+    };
+  }
   const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newCep = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
     setCpf(newCep);
@@ -118,7 +165,22 @@ function Configuracoes() {
     });
   };
   
-
+  // useEffect(() => {
+  //   // Fazer a solicitação GET para obter as opções de gênero
+  //   fetch("http://localhost:5000/tbl_genero", {
+  //     method: "GET",
+  //     headers: { Accept: "application/json" },
+  //   }) // Substitua pela URL correta
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       //  setGeneros(data.tbl_genero);
+  //       setOptions(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Erro ao buscar os gêneros:", error);
+  //     });
+  // }, []);
   useEffect(() => {
     // Validar o CEP e buscar dados do CEP quando o valor do CEP for um CEP completo (com 8 dígitos)
     if (cpf.length === 8) {
@@ -163,8 +225,23 @@ function Configuracoes() {
 
   const handleSubmit = async () => {
     console.log("Dados enviados:", formData);
-  
+    const fetchData = async () => {
+      // Chame a função 'get' do módulo Crud
+      const professorId = responseData?.professor[0].id;
+
+      if (professorId !== undefined) {
+        const data = await Crud().put(formData, { id: professorId });
+        console.log('feito as mudancas',data);
+      } else {
+        console.error("ID do professor não está definido.");
+      }
+      // Atualize o estado com os dados obtidos
+
+      // Faça algo com os dados obtidos, por exemplo, imprima no console
+      
+    };
     // Adicione aqui a lógica para enviar os dados para o servidor ou fazer a postagem.
+    fetchData()
   };
 
 const widthInputRigth = '35%'
@@ -196,6 +273,19 @@ const widthInputRigth = '35%'
       setAlterarInput("doNotAlter")
       setForm("noForm")
       setChangeImage("noChanceImage");
+      setFormData({
+        ...formData,
+        nome: '',
+        cpf: '',
+        data_nascimento: '',
+        foto: '', // Add other fields here
+        email: '',
+        senha: '',
+        id_genero:0,
+        numero: '',
+        cep: '',
+        numeroTelefone: '',
+      });
       
     }
   
@@ -217,14 +307,14 @@ const widthInputRigth = '35%'
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
-    value={responseData?.professor[0]?.nome}
+    value={responseData?.professor[0]?.nome || ''}
   />
   <InputConfiguration
     label="Sexo"
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputRigth}
-    value={responseData?.professor[0]?.nome_genero}
+    value={responseData?.professor[0]?.nome_genero || ''}
   />
 </RepeatedDiv>
 <RepeatedDiv>
@@ -234,14 +324,14 @@ const widthInputRigth = '35%'
     
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
-    value={responseData?.professor[0]?.email}
+    value={responseData?.professor[0]?.email || ''} 
   />
   <InputConfiguration
     label="CPF"
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputRigth}
-    value={responseData?.professor[0]?.cpf}
+    value={responseData?.professor[0]?.cpf || ''}
   />
   
 </RepeatedDiv>
@@ -257,7 +347,7 @@ const widthInputRigth = '35%'
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
-    value={responseData?.professor[0].data_nascimento}
+    value={responseData?.professor[0].data_nascimento || ''}
   />
 </div>
 <RepeatedDiv>
@@ -266,7 +356,7 @@ const widthInputRigth = '35%'
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputRigth}
-    value={responseData?.professor[0].cep}
+    value={responseData?.professor[0].cep || ''}
     onChange={(e) => setInputValue(e.target.value)}
   />
   <InputConfiguration
@@ -291,7 +381,7 @@ const widthInputRigth = '35%'
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputRigth}
-    value={responseData?.professor[0]?.numero}
+    value={responseData?.professor[0]?.numero || ''}
   />
 </RepeatedDiv>
 
@@ -301,14 +391,14 @@ const widthInputRigth = '35%'
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputLeft}
-    value={cidade}
+    value={''}
   />
   <InputConfiguration
     label="Estado"
     required
     disabled={true} // Defina como true para desabilitar o input
     customWidth={widthInputRigth}
-    value={estado}
+    value={ ''}
   />
 </RepeatedDiv>
 
@@ -340,11 +430,48 @@ value={formData.nome}
 onChange={handleChange} 
        
       />
-      <InputConfiguration
-    label="Sexo"
-    required
-    customWidth={widthInputRigth}
-  />
+
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+    //backgroundColor:'black',
+    width: widthInputRigth, // Adicione largura aqui
+    //width: widthInputRigth, // Adicione largura aqui
+    // Outros estilos aqui
+  }}
+>
+  <label>Sexo</label>
+  <select
+  onChange={(e) => setFormData({ ...formData, id_genero: parseInt(e.target.value) })}
+  style={{
+    
+    
+      // Outros estilos aqui
+      borderRadius: "8px", // Estava com erro de ponto e vírgula em vez de vírgula
+      borderWidth: "1px",
+      borderStyle: "solid",
+      outline: "none",
+      padding: "4px 7px",
+      height: "3vh",
+      
+      backgroundColor: "#F6F6F6",
+    }}
+  >
+    <option value=""></option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    {/* {options.map((option) => (
+      <option key={option.id_genero} value={option.id_genero}>
+        {option.nome_genero}
+      </option>
+    ))} */}
+  </select>
+</div>
+
 </RepeatedDiv>
 <RepeatedDiv>
   <InputConfiguration
@@ -416,9 +543,9 @@ justifyContent: 'space-between',
   label="CEP"
   required
   customWidth={widthInputRigth}
-  name="cpf"
-  id="cpf"
-  value={formData.cpf}
+  name="cep"
+  id="cep"
+  value={formData.cep}
   onChange={(e) => {
     handleCepChange(e);
     // Chame outras funções aqui, se necessário
@@ -519,23 +646,7 @@ justifyContent: 'space-between',
     </>
   )
 
-  function MeuComponente() {
-    useEffect(() => {
-      // Dentro de useEffect para chamada assíncrona
-      const fetchData = async () => {
-        // Chame a função 'get' do módulo Crud
-        const data = await Crud().get();
-        setResponseData(data); // Atualize o estado com os dados obtidos
-
-        // Faça algo com os dados obtidos, por exemplo, imprima no console
-        console.log(data);
-      };
-
-      fetchData(); // Chame a função fetchData para buscar os dados
-    }, []);
-  }
-
-  MeuComponente()
+  
   const screen1Content = (<>
     <div style={{
       flex: 1,

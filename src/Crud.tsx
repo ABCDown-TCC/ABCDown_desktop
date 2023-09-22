@@ -31,7 +31,59 @@ function Crud() {
     }
   }
 
-  return { get }; // Retorna um objeto com o método 'get'
+
+
+  interface idUser{
+    id: number
+  }
+
+  async function put(formData: {
+    nome: string;
+    cpf: string;
+    data_nascimento: string;
+    foto: string;
+    email: string;
+    senha: string;
+    id_genero: number;
+    numero: string;
+    cep: string;
+    numeroTelefone: string;
+  }, id: idUser) {
+
+    const jsonData = {
+      nome: formData.nome,
+      cpf: formData.cpf,
+      data_nascimento: formData.data_nascimento,
+      foto: formData.foto,
+      email: formData.email,
+      senha: formData.senha,
+      id_genero: formData.id_genero,
+      numero: formData.numero,
+      cep: formData.cep,
+      numeroTelefone: formData.numeroTelefone,
+    };
+    try {
+      const response = await fetch (`http://localhost:8181/professor/${id.id}`,{
+        method:'PUT',
+        headers:{
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(jsonData )
+      })
+      if(response.ok) {
+        const dataResponse = await response.json();
+
+        console.log('dados atualizados', dataResponse)
+        return dataResponse;
+      }else {
+        console.error("Erro ao atualizar o registro");
+    }
+    } catch (error) {
+      console.error("Erro ao processar a solicitação:", error);
+  }
+  }
+
+  return { get , put}; // Retorna um objeto com o método 'get'
 }
 
 export default Crud;
