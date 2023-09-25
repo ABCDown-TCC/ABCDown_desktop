@@ -18,7 +18,8 @@ function Button(props: ButtonProps) {
                 style={{ 
                     backgroundColor: props.color,
                     width: props.width,
-                    height: props.height
+                    height: props.height,
+     
                 }}
                 onClick={props.onClick} // Chame a prop onClick aqui
             >

@@ -1,11 +1,12 @@
 import Btn from "../layout/FormComponents/Btn";
-import NameInputField from "../layout/componentsModal/NameInputField";
+import  { NameInputField, DescriptionInputField }  from "../layout/componentsModal/NameInputField";
 import Card from "../layout/Cards";
 import image1 from "../layout/ClassComponents/ImagesClass/imageClassContainer1.svg";
 import image2 from "../layout/ClassComponents/ImagesClass/imageClassContainer2.svg";
 import React, { useState, useEffect } from "react";
 import ContainerInfoDeleteContainer from "../layout/ClassComponents/ContainerInfoDeleteContainer";
 import MessageDelete from '../layout/ClassComponents/MessageDelete'
+import imageCreateClass from '../layout/img_containers_cards/imageCreateClass.svg'
 function TestCard() {
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -257,26 +258,26 @@ function TestCard() {
         </div>
       </Card> */}
 
-      <Card width="60%" height="85%">
-            <div>
-              <h1>Adicione uma turma</h1>
-              <NameInputField title="Nome da turma" placeholder="Adicione um nome a sua turma"/>
-              <NameInputField title="Descrição" placeholder="Adicione uma descrição" className="styleDescription"/>
+      <Card width="35%" height="70%">
+      <div style={{ display: 'flex',  flexDirection: 'column', alignItems: 'center', height:'100%',gap:'5%'}}>
+              <h1 style={{marginTop:'10%'}}>Adicione uma turma</h1>
+              <img src={imageCreateClass} alt="" />
+<div style={{ display: 'flex', flexDirection: 'column', width: '90%', backgroundColor: '' ,gap:'3vh' }}>
 
-              <div style={{display: 'flex', flexDirection: 'row'}}>
-              <Btn text="Voltar" color="#F0754E"/>
-            {/* <Btn
-              text="Mandar"
-              color="#43B1B1"
-              width={widthBtnLeft}
-              onClick={CreatePost}
-            /> */}
+
+<NameInputField title="Nome da turma" placeholder="Adicione um nome a sua turma"  width='60%'/>
+              <DescriptionInputField title="Descrição" placeholder="Adicione uma descrição" width='100%' height="10vh"/>
+
+              <div style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-between' , marginTop:'5%'}}>
+              <Btn text="Cancelat" color="#F0754E" width="10vw" height="3.5vh"/>
             <Btn
-              text="Mandar"
+              text="Criar"
               color="#43B1B1"
- 
+                width="15vw"
+                height="3.5vh"
             />
               </div>
+</div>
             </div>
       </Card>
 

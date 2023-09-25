@@ -11,19 +11,25 @@ import image2 from "../layout/ClassComponents/ImagesClass/imageClassContainer2.s
 import React, { useState } from 'react';
 import MessageDelete from '../layout/ClassComponents/MessageDelete'
 import ImageClose from '../layout//FormComponents//imageMessage/close.svg'
-
+import imageCreateClass from '../layout/img_containers_cards/imageCreateClass.svg'
+import  { NameInputField, DescriptionInputField }  from "../layout/componentsModal/NameInputField";
+import Btn from "../layout/FormComponents/Btn";
 
 function Turmas() {
     const [infoVisible, setInfoVisible] = useState(false);
     const [deleteVisible, setDeleteVisible] = useState(false);
     const [adicionarSalaVisible, setAdicionarSalaVisible] = useState(false);
+    const [isCreateClass, setIsCreateClass] = useState(false);
 
     const [listaVisivel, setListaVisivel] = useState(false);
 
     const toggleLista = () => {
         setListaVisivel(!listaVisivel);
     };
-
+function cancelCreateAClass() {
+console.log('cancel Create a class')
+setIsCreateClass(false)
+}
     function onClickDelete() {
         console.log("DElete");
         setDeleteVisible(true)
@@ -59,7 +65,7 @@ function Turmas() {
     }
 
     function createClass() {
-
+        setIsCreateClass(true)
         console.log('adicionar turma')
     }
     return (
@@ -69,7 +75,8 @@ function Turmas() {
             flexDirection: 'column',
             width: '100%',
             height: '100%',
-            alignItems: 'center'
+            alignItems: 'center',
+            backgroundColor:'#f2f2f2'
         }}>
 
             <Header title="Turmas" />
@@ -109,6 +116,45 @@ function Turmas() {
             </div>
 
             <CreateButton image={addClass} onclick={createClass} />
+
+            {isCreateClass && (
+                    <div
+                        style={{
+                            position: 'fixed',
+                            top: '0',
+                            left: '0',
+                            width: '100%',
+                            height: '100%',
+                            background: 'rgba(0, 0, 0, 0.5)', // Fundo escuro semi-transparente
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
+        <Card width="35%" height="70%">
+      <div style={{ display: 'flex',  flexDirection: 'column', alignItems: 'center', height:'100%',gap:'5%'}}>
+              <h1 style={{marginTop:'10%'}}>Adicione uma turma</h1>
+              <img src={imageCreateClass} alt="" />
+<div style={{ display: 'flex', flexDirection: 'column', width: '90%', backgroundColor: '' ,gap:'3vh' }}>
+
+
+<NameInputField title="Nome da turma" placeholder="Adicione um nome a sua turma"  width='60%'/>
+              <DescriptionInputField title="Descrição" placeholder="Adicione uma descrição" width='100%' height="10vh"/>
+
+              <div style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-between' , marginTop:'5%'}}>
+              <Btn text="Cancelat" color="#F0754E" width="10vw" height="3.5vh" onClick={cancelCreateAClass}/>
+            <Btn
+              text="Criar"
+              color="#43B1B1"
+                width="15vw"
+                height="3.5vh"
+            />
+              </div>
+</div>
+            </div>
+      </Card>
+                    </div>
+                )}
             <div style={{
                 display: 'flex',
                 flexWrap: 'wrap', // Permite que as divs filhas sejam dispostas em linhas com 2 divs em cada linha
@@ -125,7 +171,7 @@ function Turmas() {
                             flexDirection: "row",
                             width: "100%",
                             height: "80%",
-                            backgroundColor:'red'
+                           // backgroundColor:'red'
                             //   backgroundColor: "orange",
                         }}
                     >
@@ -138,7 +184,7 @@ function Turmas() {
                                 justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
                                 marginLeft: "1vw",
                                 width: "50%",
-                                backgroundColor:'green'
+                              //  backgroundColor:'green'
                             }}
                         >
                             <h2

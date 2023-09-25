@@ -1,8 +1,30 @@
 .containerInputField{
     display: flex;
     flex-direction: column;
+    width: 100%;
+    gap: 10px;
+ 
 }
+.nameInputField {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 0.9px solid #8b8b8b;
+    font-size: 1rem;
+    padding: 0 0 7px 1.3%;
 
-.styleDescription{
-    border: 10px solid #b8b8b8;
-}
+  }
+  
+  
+  .nameInputField:focus {
+    outline: none;
+  }
+  .descriptionInputField {
+    border: 0.9px solid #8b8b8b;
+    font-size: 1rem;
+    padding: 0 0 0 1.3%;
+
+  }
+  .descriptionInputField:focus {
+    outline: none; 
+  }
