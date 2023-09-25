@@ -1,3 +1,5 @@
+import Btn from "../layout/FormComponents/Btn";
+import NameInputField from "../layout/componentsModal/NameInputField";
 import Card from "../layout/Cards";
 import image1 from "../layout/ClassComponents/ImagesClass/imageClassContainer1.svg";
 import image2 from "../layout/ClassComponents/ImagesClass/imageClassContainer2.svg";
@@ -37,7 +39,7 @@ function TestCard() {
         gap: "1vw",
       }}
     >
-      <Card width="35%" height="35vh">
+      {/* <Card width="35%" height="35vh">
         <div
           style={{
             display: "flex",
@@ -126,9 +128,9 @@ function TestCard() {
             />
           </div>
         </div>
-      </Card>
+      </Card> */}
 
-      <Card width="35%" height="35vh">
+      {/* <Card width="35%" height="35vh">
         <div
           style={{
             display: "flex",
@@ -202,9 +204,9 @@ function TestCard() {
             />
           </div>
         </div>
-      </Card>
+      </Card> */}
 
-      <Card width="35%" height="35vh">
+      {/* <Card width="35%" height="35vh">
         <div
           style={{
             display: "flex",
@@ -253,9 +255,32 @@ function TestCard() {
             />
           </div>
         </div>
+      </Card> */}
+
+      <Card width="60%" height="85%">
+            <div>
+              <h1>Adicione uma turma</h1>
+              <NameInputField title="Nome da turma" placeholder="Adicione um nome a sua turma"/>
+              <NameInputField title="Descrição" placeholder="Adicione uma descrição" className="styleDescription"/>
+
+              <div style={{display: 'flex', flexDirection: 'row'}}>
+              <Btn text="Voltar" color="#F0754E"/>
+            {/* <Btn
+              text="Mandar"
+              color="#43B1B1"
+              width={widthBtnLeft}
+              onClick={CreatePost}
+            /> */}
+            <Btn
+              text="Mandar"
+              color="#43B1B1"
+ 
+            />
+              </div>
+            </div>
       </Card>
 
-      <MessageDelete onClickClose={onClickCloseMessageDelete} onClickCancel={onClickCancelMessageDelete} onClickDelete={onClickDEleteMessageDelete}/>
+      {/* <MessageDelete onClickClose={onClickCloseMessageDelete} onClickCancel={onClickCancelMessageDelete} onClickDelete={onClickDEleteMessageDelete}/> */}
     </div>
   );
 }

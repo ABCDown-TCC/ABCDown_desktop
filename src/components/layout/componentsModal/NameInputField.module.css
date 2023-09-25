@@ -1,0 +1,8 @@
+.containerInputField{
+    display: flex;
+    flex-direction: column;
+}
+
+.styleDescription{
+    border: 10px solid #b8b8b8;
+}

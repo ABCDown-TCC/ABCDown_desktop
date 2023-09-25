@@ -63,10 +63,13 @@ function Crud() {
       numeroTelefone: formData.numeroTelefone,
     };
     try {
+      const accessToken = sessionStorage.getItem("accessToken");
+
       const response = await fetch (`http://localhost:8181/professor/${id.id}`,{
         method:'PUT',
         headers:{
           "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(jsonData )
       })
@@ -77,9 +80,11 @@ function Crud() {
         return dataResponse;
       }else {
         console.error("Erro ao atualizar o registro");
+       
     }
     } catch (error) {
       console.error("Erro ao processar a solicitação:", error);
+      console.log(jsonData)
   }
   }
 

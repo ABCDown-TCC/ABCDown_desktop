@@ -226,12 +226,12 @@ function Configuracoes() {
   const handleSubmit = async () => {
     console.log("Dados enviados:", formData);
     const fetchData = async () => {
-      // Chame a função 'get' do módulo Crud
+   
       const professorId = responseData?.professor[0].id;
 
       if (professorId !== undefined) {
         const data = await Crud().put(formData, { id: professorId });
-        console.log('feito as mudancas',data);
+        
       } else {
         console.error("ID do professor não está definido.");
       }
