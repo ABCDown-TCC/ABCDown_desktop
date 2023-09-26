@@ -12,3 +12,18 @@
     height:3.5%;
   
 }
+
+.createClass{
+    background-color: #43B1B1;
+    position: fixed;
+    bottom: 3%;
+    right:3%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width:2.5%;
+    height:3.5%;
+  
+}

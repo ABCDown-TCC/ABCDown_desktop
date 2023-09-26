@@ -56,6 +56,7 @@ import MessageConfirmExit from './components/layout/Navibar/MessageConfirmExit'
 import TestCard from './components/pages/TestCard'
 import InputInfo from './components/pages/InputInfo'
 import TesteInputConfiguration from './components/pages/TesteInputConfiguration'
+import Students from './components/pages/Students'
 function App() {
   const divStyle: React.CSSProperties = {
     margin: '0',
@@ -86,6 +87,8 @@ function App() {
             <Route path="/turmas" element={<Turmas />} />
             <Route path="/comunidade" element={<Comunidade />} />
             <Route path="/configuracoes" element={<Configuracoes />} />
+            <Route path="/turmas/alunos" element={<Students/>}/>
+            
           </Route>
           {/* Rota sem Sidebar */}
           <Route path="/login" element={<Login />} />
@@ -96,6 +99,8 @@ function App() {
           <Route path="/createacsountreacthook" element={<CreateACountReactHook/>} />
           <Route path="/testCard" element={<TestCard/>} />
           <Route path="/testeInputConfiguration" element={<TesteInputConfiguration/>}/>
+          {/* <Route path="/turmas/alunos" element={<Students/>}/> */}
+
 
       
 
