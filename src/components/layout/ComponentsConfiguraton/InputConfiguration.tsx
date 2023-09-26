@@ -15,10 +15,11 @@ interface InputProps {
     height?:string
     value?:string
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void; 
-    id?: string
+    id?: string;
+    placeholder?: string
   }
   
-  function InputConfiguration({id, value,label, type = 'text', required = false,  disabled,customWidth,height,onChange,name }: InputProps) {
+  function InputConfiguration({placeholder,id, value,label, type = 'text', required = false,  disabled,customWidth,height,onChange,name }: InputProps) {
     return (
       <div className={styles.inputContainer} 
       style={{
@@ -34,6 +35,7 @@ interface InputProps {
         disabled={disabled}
         value={value}
         onChange={onChange}
+        placeholder={placeholder}
         style={{
           height: height,
       

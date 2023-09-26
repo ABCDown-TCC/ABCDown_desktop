@@ -10,6 +10,7 @@ import Btn from "../layout/FormComponents/Btn";
 import editImage from '../layout/icons/edit.svg'
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase";
+
 interface RepeatedDivProps {
   children: ReactNode;
 }
@@ -228,7 +229,8 @@ function Configuracoes() {
     const fetchData = async () => {
    
       const professorId = responseData?.professor[0].id;
-
+      const professor = responseData?.professor[0];
+      
       if (professorId !== undefined) {
         const data = await Crud().put(formData, { id: professorId });
         
@@ -427,6 +429,7 @@ customWidth={widthInputLeft}
 name="nome"
 id="nome"
 value={formData.nome}
+placeholder={responseData?.professor[0].nome}
 onChange={handleChange} 
        
       />
@@ -460,7 +463,7 @@ onChange={handleChange}
       backgroundColor: "#F6F6F6",
     }}
   >
-    <option value=""></option>
+    <option value="" style={{color:'red'}}>{responseData?.professor[0].nome_genero}</option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -480,6 +483,7 @@ onChange={handleChange}
     customWidth={widthInputLeft}
     type="email"
     name="email"
+    placeholder={responseData?.professor[0].email}
 id="email"
 value={formData.email}
 onChange={handleChange} 
@@ -490,6 +494,8 @@ onChange={handleChange}
     customWidth={widthInputRigth}
     name="cpf"
     id="cpf"
+    placeholder={responseData?.professor[0].cpf}
+
 value={formData.cpf}
 onChange={handleChange} 
   />
@@ -525,6 +531,8 @@ justifyContent: 'space-between',
   id="snumeroTelefone" 
   value={formData.numeroTelefone} 
   onChange={handleChange} 
+  placeholder={responseData?.professor[0].numeroProfessor}
+
 />
 
 <InputConfiguration
@@ -543,6 +551,8 @@ justifyContent: 'space-between',
   label="CEP"
   required
   customWidth={widthInputRigth}
+  placeholder={responseData?.professor[0].cep}
+
   name="cep"
   id="cep"
   value={formData.cep}
@@ -579,6 +589,8 @@ justifyContent: 'space-between',
     id="numero" 
     value={formData.numero} 
     onChange={handleChange} 
+    placeholder={responseData?.professor[0].numero}
+
   />
 </RepeatedDiv>
 
