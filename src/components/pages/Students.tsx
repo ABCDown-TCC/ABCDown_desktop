@@ -19,13 +19,13 @@ interface DateSelectorProps {
 }
 function DateSelector(props: DateSelectorProps) {
     return (
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column" ,gap:'15px'}}>
             <label style={{}}>
                 {props.labelText}:
             </label>
             <input
                 type="date"
-                style={{ border: "1px solid #B8B8B8", padding: "5px", outline: "none", }} // Define a cor da borda do input
+                style={{ border: "1px solid #B8B8B8", padding: "5px", outline: "none", width: '9vw', height: '3.4vh' }} // Define a cor da borda do input
             />
         </div>
     );
@@ -34,16 +34,16 @@ function DateSelector(props: DateSelectorProps) {
 function AlunosContent() {
     // Coloque o conteúdo da guia "Alunos" aqui
     return (
-      <div>
-        {/* Adicione o conteúdo específico da guia "Alunos" aqui */}
-        <h2>Conteúdo dos Alunos</h2>
-        {/* Outros elementos relacionados aos alunos */}
-      </div>
+        <div>
+            {/* Adicione o conteúdo específico da guia "Alunos" aqui */}
+            <h2>Conteúdo dos Alunos</h2>
+            {/* Outros elementos relacionados aos alunos */}
+        </div>
     );
-  }
+}
 function Students() {
     const [isCreateActivity, setIsCreateActivity] = useState(false);
-    const [activeTab, setActiveTab] = useState("atividade"); // Estado inicial para a aba Atividade
+    const [activeTab, setActiveTab] = useState("atividade"); 
     const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
     function createActivity() {
@@ -155,7 +155,7 @@ function Students() {
                                 display: 'flex',
                                 // height: '10%',
                                 width: '100%',
-                                backgroundColor: 'red',
+                               // backgroundColor: 'red',
                                 justifyContent: 'flex-end'
                             }}>
 
@@ -164,38 +164,37 @@ function Students() {
                                 </button>
                             </div>
                             <div>
-                                <span style={{
-                                    color: '#939393',
-                                    paddingLeft: '10%',
-                                    fontSize: '1.8rem'
-                                }}>
-                                    Postagem de tarefa de casa
-                                </span>
+
                             </div>
                             <div
                                 style={{
                                     flex: 1,
                                     display: 'flex', // Adicione display: flex para que alignItems funcione
                                     justifyContent: 'center',
+                                    height:'100%'
                                 }}
                             >
+
                                 <div
                                     style={{
                                         display: 'flex',
                                         width: '90%',
-                                        //   backgroundColor:'pink',
+                                      //  backgroundColor:'blue',
                                         justifyContent: 'center',
-                                        flexDirection: 'column'
+                                        flexDirection: 'column',
+                                        height:'100%'
                                     }}
                                 >
+                                    <span style={{ color: '#939393', fontSize: '1.8rem' }}>Postagem de tarefa de casa</span>
                                     <div style={{
                                         display: 'flex',
                                         flexDirection: 'row',
-                                        //  backgroundColor: 'green',
-                                        width: '90%',
+                                       //   backgroundColor: 'green',
+                                        width: '100%',
                                         justifyContent: 'center',
                                         gap: '20%',
-                                        borderBottom: '1px solid #D3D3D3'
+                                        borderBottom: '1px solid #D3D3D3',
+                                        marginTop:'5%'
                                     }}>
                                         <span
                                             onClick={() => {
@@ -209,7 +208,7 @@ function Students() {
                                                 borderBottom: activeTab === 'atividade' ? '2px solid #43B1B1' : '#000',
                                                 paddingBottom: '10px',
                                                 width: '10%',
-                                                fontSize: '1.2rem'
+                                                fontSize: '1.5rem'
 
 
                                             }}
@@ -226,7 +225,7 @@ function Students() {
                                                 borderBottom: activeTab === 'alunos' ? '2px solid #43B1B1' : '#000',
                                                 paddingBottom: '10px',
                                                 width: '10%',
-                                                fontSize: '1.2rem'
+                                                fontSize: '1.5rem'
 
                                             }}
                                         >
@@ -239,14 +238,17 @@ function Students() {
                                             display: 'flex',
                                             flexDirection: 'row',
                                             width: '100%',
-                                            //   backgroundColor: 'red',
+                                            height:'max-content',
+                                           // backgroundColor: 'green',
+                                            margin:'5% 0'
                                         }}
                                     >
                                         <div
                                             style={{
                                                 display: 'flex',
-                                                width: '50%',
-                                                //  background: 'green'
+                                                width: 'auto',
+                                                //  background: 'green',
+                                                paddingRight: '2vw'
                                             }}
                                         >
                                             <CustomDivInpuMessageError>
@@ -308,8 +310,8 @@ function Students() {
                                         <div
                                             style={{
                                                 display: 'flex',
-                                                width: '50%',
-                                                //   background: 'red'
+                                                width: '100%',
+                                                //background: 'red'
 
                                             }}
                                         >
@@ -317,56 +319,87 @@ function Students() {
                                                 style={{
                                                     display: 'flex',
                                                     flexDirection: 'column',
-                                                    justifyContent: 'space-evenly'
+                                                    justifyContent: 'space-evenly',
+                                                    //backgroundColor:'red',
+                                                    width: '100%'
+
                                                 }}
                                             >
-                                                <NameInputField title="Título" placeholder="Adicione um título" width='100%' />
-                                                <NameInputField title="Matéria" placeholder="Adicione uma matéria" width='160%' />
+                                                <NameInputField title="Título" placeholder="Adicione um título" width='auto' />
+                                                <NameInputField title="Matéria" placeholder="Adicione uma matéria" width='auto' />
                                             </div>
                                         </div>
 
                                     </div>
-                                    <DescriptionInputField title="Descrição" placeholder="Adicione uma descrição" width='100%' height="10vh" />
+
                                     <div style={{
                                         display: 'flex',
-                                        flexDirection: 'row'
-                                    }} >
-                                        <DateSelector labelText="Data de envio" />
-                                        <DateSelector labelText="Entrega" />
-                                    </div>
-                                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                                        <input
-                                            type="file"
-                                            id="fileInput"
-                                            onChange={handleFileUpload}
-                                            style={{ display: "none" }}
-                                        />
-                                        <div
-                                            style={{
+                                        flexDirection: 'column',
+                                      //backgroundColor: 'blue',
+                                        width: '100%',
+                                       height: '50%',
+                                    }}>
+                                        <div style={{
+                                           // backgroundColor: 'pink',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            height: '90%',
+                                        //    width: '100%',
+                                        justifyContent:'space-between'
 
-                                                padding: "10px 20px 10px 20px",
-                                                textAlign: "center",
-                                                cursor: "pointer",
-                                                backgroundColor: '#3393C3',
-                                                color: 'white',
-                                                borderRadius: '10px',
-                                                fontWeight: '600',
+                                           // gap: '45px'
+
+                                        }}>
+                                            <DescriptionInputField title="Descrição" placeholder="Adicione uma descrição" width='100%' height="15vh" />
+                                            <div style={{
                                                 display: 'flex',
                                                 flexDirection: 'row',
-                                                alignItems: 'center',
-                                                gap: '20px'
-                                            }}
-                                            onClick={() => document.getElementById("fileInput")?.click()}
-                                        >
-                                            <img src={ImageUpload} alt="" />
-                                            Arquivo da atividade
+                                              //  backgroundColor: 'green',
+                                                gap: '5%'
+                                            }} >
+                                                <DateSelector labelText="Data de envio" />
+                                                <DateSelector labelText="Entrega" />
+                                            </div>
+                                            <div style={{
+                                                // backgroundColor:'red',
+                                                width: 'max-content'
+                                            }}>
+                                                <input
+                                                    type="file"
+                                                    id="fileInput"
+                                                    onChange={handleFileUpload}
+                                                    style={{ display: "none" }}
+                                                />
+                                                <div
+                                                    style={{
+
+                                                        padding: "10px 20px 10px 20px",
+                                                        textAlign: "center",
+                                                        cursor: "pointer",
+                                                        backgroundColor: '#3393C3',
+                                                        color: 'white',
+                                                        borderRadius: '10px',
+                                                        fontWeight: '600',
+                                                        display: 'flex',
+                                                        flexDirection: 'row',
+                                                        alignItems: 'center',
+                                                        gap: '20px'
+                                                    }}
+                                                    onClick={() => document.getElementById("fileInput")?.click()}
+                                                >
+                                                    <img src={ImageUpload} alt="" />
+                                                    Arquivo da atividade
+                                                </div>
+                                            </div>
                                         </div>
+
                                     </div>
+
                                 </div>
 
                             </div>
-    {/* ... Outro conteúdo do seu componente principal ... */}
-    
+
+
 
 
                         </Card>
@@ -378,5 +411,8 @@ function Students() {
 }
 
 export default Students;
+
+
+//</div>
 
 
