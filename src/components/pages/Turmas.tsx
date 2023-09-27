@@ -133,36 +133,56 @@ function Turmas() {
                         justifyContent: 'center',
                     }}
                 >
-                    <Card width="35%" height="90%">
-                        <div style={{ display: 'flex', flexDirection: 'column', width:'100%',alignItems: 'center', height: '100%',justifyContent:'space-between',backgroundColor:'red'
-                        //  gap: '5%' 
-                         }}>
-<div style={{
-    display:'flex',
-    flexDirection:'column',
-    height:'50%',
-    backgroundColor:'blue',
-    width:'90%',
-    alignItems:'center',
-    justifyContent:'center'
+                    <Card width="35%" height="80%">
+                        <div style={{
+                            display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', height: '100%',
+                          //  backgroundColor:'red'
+                            //  gap: '5%' 
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: '40%',
+                            // backgroundColor:'blue',
+                                width: '90%',
+                                alignItems: 'center',
+                                justifyContent: 'space-evenly'
 
-}}>
+                            }}>
                                 <h1 style={{
-                                 //marginTop: '10%'
-                                  }}>Adicione uma turma</h1>
-                            <img src={imageCreateClass} alt="" width='60%' height='40%'/>
-</div>
-                            <div style={{ display: 'flex', flexDirection: 'column', width: '90%',height:'50%', backgroundColor: 'green',justifyContent:'space-evenly'
-                            //  gap: '3vh' 
-                             }}>
+                                    //marginTop: '10%'
+                                }}>Adicione uma turma</h1>
+                                <img src={imageCreateClass} alt="" width='45%' />
+                            </div>
+                            <div style={{
+                                display: 'flex', flexDirection: 'column', width: '90%', height: '40%',
+                              //  backgroundColor: 'green',
+                                //justifyContent: 'space-between'
+                                  gap: '20%' 
+                            }}>
 
 
                                 <NameInputField title="Nome da turma" placeholder="Adicione um nome a sua turma" width='60%' />
                                 <DescriptionInputField title="Descrição" placeholder="Adicione uma descrição" width='100%' height="10vh" />
 
-                                <div style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-between',
-                                // marginTop: '5%'
-                             }}>
+
+                            </div>
+
+                            <div style={{
+  
+                                height: '20%',
+                              //  backgroundColor:'pink',
+                                width:'90%',
+                               
+            
+                            }}>
+
+                                <div style={{
+                                    display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-between', 
+                                    //backgroundColor: 'red',
+                                     //marginTop:''
+                                    // marginTop: '5%'
+                                }}>
                                     <Btn text="Cancelat" color="#F0754E" width="10vw" height="3.5vh" onClick={cancelCreateAClass} />
                                     <Btn
                                         text="Criar"
