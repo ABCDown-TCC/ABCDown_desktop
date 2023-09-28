@@ -92,107 +92,219 @@ function AlunosContent() {
                 //  backgroundColor: 'black'
 
             }}>
-            {/* Adicione o conteúdo específico da guia "Alunos" aqui */}
-            <SelectableItem
-                label="Todos"
-                selected={selectedItem === "Todos"}
-                onSelect={() => setSelectedItemAll()}
+            <div style={{
+                width: '100%',
+                height: '20%',
+                // backgroundColor: 'pink',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end'
+            }}>
+                {/* Adicione o conteúdo específico da guia "Alunos" aqui */}
+                <span>Postar ativodade para</span>
 
-            />
-            <SelectableItem
-                label="Selecionar"
-                selected={selectedItem === "Selecionar"}
-                onSelect={() => setSelectedItemSelect()}
-            />
+                <div style={{
+                    width: '100%',
+                    height: '40%',
+                    //backgroundColor: 'red',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-evenly'
+
+                }}>
+                    <SelectableItem
+                        label="Todos"
+                        selected={selectedItem === "Todos"}
+                        onSelect={() => setSelectedItemAll()}
+
+                    />
+                    <SelectableItem
+                        label="Selecionar"
+                        selected={selectedItem === "Selecionar"}
+                        onSelect={() => setSelectedItemSelect()}
+                    />
+
+                </div>
+
+            </div>
             <div
                 style={{
                     display: 'flex',
                     width: '100%',
                     //  backgroundColor:'black',
-                    justifyContent: 'space-evenly',
+                    //justifyContent: 'space-evenly',
                     flexDirection: 'column',
-                    height: '80%',
-                    //backgroundColor: 'green'
+                    height: '70%',
+                    //  backgroundColor: 'green'
                 }}
 
             >
                 {selectedItem === "Todos" && (
+                    <>
+                        <div style={{
+                            width: '100%',
+                            height: '20%',
+                            backgroundColor: 'purple'
+                        }}>
 
 
-                    <span
-                        style={{
-                            fontSize: '0.76w'
-                        }}
-                    >
-                        *Todos os alunos da turma 1º A receberão essa atividade. Para mudar isso, basta selecionar a opção
-                        <button
-                            onClick={setSelectedItemSelect}
-                            style={{
-                                backgroundColor: 'transparent', // Define a cor de fundo como transparente
-                                cursor: 'pointer',
-                                border: 'none', // Remove a borda padrão
-                                color: '#3393C3', // Define a cor de fundo
+                            <span
+                                style={{
+                                    fontSize: '0.76w'
+                                }}
+                            >
+                                *Todos os alunos da turma 1º A receberão essa atividade. Para mudar isso, basta selecionar a opção
+                                <button
+                                    onClick={setSelectedItemSelect}
+                                    style={{
+                                        backgroundColor: 'transparent', // Define a cor de fundo como transparente
+                                        cursor: 'pointer',
+                                        border: 'none', // Remove a borda padrão
+                                        color: '#3393C3', // Define a cor de fundo
 
-                            }}
-                        >
-                            Personalizar
-                        </button>
-                    </span>
+                                    }}
+                                >
+                                    Personalizar
+                                </button>
+                            </span>
+                        </div>
+
+                    </>
                 )}
 
                 {selectedItem === "Selecionar" && (
 
                     <>
-                        <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
 
+
+                        <div style={{
+                            width: '100%',
+                            height: '15%',
+                            // backgroundColor: 'purple',
+                            display: 'flex',
+                            justifyContent: 'space-evenly',
+                            flexDirection: 'column'
+                        }}>
+                            <span>Busque os que receberão a tarefa!</span>
                             <div style={{
-
-                                border: '1px solid #D3D3D3',
-                                borderRadius: '5px',
-                                width: '200px',
-                                //backgroundColor: 'white',
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                gap: '5%'
+                                display: 'flex', flexDirection: 'row', width: '100%', height: '3vh',
+                                //  backgroundColor: 'blue', 
+                                justifyContent: 'space-between'
                             }}>
-                                <img
-                                    src={SeratchInput}
 
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Digite algo"
+                                <div style={{
+
+                                    border: '1px solid #D3D3D3',
+                                    //borderRadius: '5px',
+                                    width: '60%',
+                                    //backgroundColor: 'white',
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    gap: '5%'
+                                }}>
+                                    <img
+                                        src={SeratchInput}
+
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder="Digite algo"
+                                        style={{
+                                            width: '100%', height: '90%', border: 'none', outline: 'none'
+
+                                        }}
+                                    />
+
+                                </div>
+                                <button
                                     style={{
-                                        width: '100%', height: '90%', border: 'none', outline: 'none'
-
+                                        //padding: "10px 20px",
+                                        width: '30%',
+                                        height: '100%',
+                                        justifyContent: 'center',
+                                        // textAlign: "center",
+                                        cursor: "pointer",
+                                        backgroundColor: '#3393C3',
+                                        color: 'white',
+                                        borderRadius: '5px',
+                                        fontWeight: '600',
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        alignItems: 'center',
+                                        // gap: '20px',
+                                        border: 'none', // Removendo a borda
+                                        outline: 'none', // Removendo o contorno de foco
                                     }}
-                                />
+
+                                >
+                                    Adicionar
+                                </button>
+
 
                             </div>
-                            <button
-    style={{
-        padding: "10px 20px",
-        textAlign: "center",
-        cursor: "pointer",
-        backgroundColor: '#3393C3',
-        color: 'white',
-        borderRadius: '10px',
-        fontWeight: '600',
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: '20px',
-        border: 'none', // Removendo a borda
-        outline: 'none', // Removendo o contorno de foco
-    }}
+                        </div>
 
->
-Adicionar
-</button>
+                        <div style={{
+                            width: '100%',
+                            height: 'max-content',
+                            backgroundColor: 'white',
+                            borderRadius: '4px',
+                            //border:'1px solid black',
+                            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)'
+                        }}>
+
+                            <div
+                                style={{
+                                    width: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems:'center'
+
+
+                                }}
+                            >
+                                <div style={{ width: '90%' }}>
+                                    <div
+                                        style={{
+                                            width: '100%',
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            justifyContent: 'space-between ',
+                                            backgroundColor: 'red'
+
+
+                                        }}
+                                    >
+                                        <div style={{
+                                            display: 'flex', flexDirection: 'row', alignItems: 'center',
+                                            //backgroundColor:'blue'
+
+                                        }}>
+                                            <span style={{ marginRight: '8px' }}>Total</span>
+                                            <span style={{
+                                                width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#D3D3D3',
+
+                                                display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                            }}>1</span>
+                                        </div>
+
+                                        <button style={{
+                                            backgroundColor: '#D3D3D3',
+                                            color: '#000', padding: '10px 20px', border: 'none', cursor: 'pointer'
+                                        }}>Excluir</button>
+
+
+
+                                    </div>
+                                    <span>nome</span>
+                                </div>
+                            </div>
 
 
                         </div>
+
 
                     </>
                 )}
