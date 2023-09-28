@@ -62,11 +62,12 @@ function App() {
     margin: '0',
     padding: '0',
     boxSizing: 'border-box',
-    backgroundColor: 'lightgray',
+    backgroundColor: '#f2f2f2',
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
-    height: '100vh',
+    height:'100%',
+  
   };
 
   return (

@@ -174,15 +174,17 @@ function AlunosContent() {
         )}
 
         {selectedItem === "Selecionar" && (
-          <>
+          <div style={{ gap: '10%', display: 'flex', flexDirection: 'column' }}>
             <div
               style={{
                 width: "100%",
-                height: "15%",
+                //height: "20%",
                 // backgroundColor: 'purple',
                 display: "flex",
                 justifyContent: "space-evenly",
                 flexDirection: "column",
+                gap: '2vh'
+
               }}
             >
               <span>Busque os que receberão a tarefa!</span>
@@ -248,11 +250,13 @@ function AlunosContent() {
             <div
               style={{
                 width: "100%",
-                height: "max-content",
+                //height: "max-content",
                 backgroundColor: "white",
                 borderRadius: "4px",
                 //border:'1px solid black',
                 boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+
+
               }}
             >
               <div
@@ -262,119 +266,167 @@ function AlunosContent() {
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
-                  height:'20%'
-                  
+                  height: '100%',
+                  // backgroundColor: 'red',
+
+
                 }}
               >
-                <div style={{ width: "90%",backgroundColor:'blue',  height:'100%' }}>
-                  <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between ",
-                      backgroundColor: "red",
-                      //height:'100%'
-                    }}
-                  >
+                <div style={{
+                  width: "90%",
+
+                  // backgroundColor: 'blue',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-evenly',
+                  height: '25vh'
+                }}>
+                  <div style={{
+                    display: 'flex', flexDirection: 'column',
+                    // backgroundColor: 'green', 
+                    height: '15%', justifyContent: 'space-between'
+                  }}>
                     <div
                       style={{
+                        width: "100%",
                         display: "flex",
                         flexDirection: "row",
-                        alignItems: "center",
-                        //backgroundColor:'blue'
-                      //  height:'100%'
+                        justifyContent: "space-between ",
+                        // backgroundColor: "pink",
+                        alignItems: 'center',
+                        height: 'max-content'
+
                       }}
                     >
-                      <span style={{ marginRight: "8px" }}>Total</span>
-                      <span
+                      <div
                         style={{
-                          width: "24px",
-                          height: "24px",
-                          borderRadius: "50%",
-                          backgroundColor: "#D3D3D3",
-
                           display: "flex",
+                          flexDirection: "row",
                           alignItems: "center",
-                          justifyContent: "center",
+                          //backgroundColor:'blue'
+                          //  height:'100%'
+
                         }}
                       >
-                        1
-                      </span>
-                    </div>
+                        <span style={{ marginRight: "8px" }}>Total</span>
+                        <span
+                          style={{
+                            width: "24px",
+                            height: "24px",
+                            borderRadius: "50%",
+                            backgroundColor: "#D3D3D3",
 
-                    <button
-                      style={{
-                        backgroundColor: "#D3D3D3",
-                        color: "#000",
-                        padding: "10px 20px",
-                        border: "none",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Excluir
-                    </button>
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          1
+                        </span>
+                      </div>
+
+                      <button
+                        style={{
+                          backgroundColor: "#D3D3D3",
+                          color: "#000",
+                          //padding: "10px 20px",
+                          border: "none",
+                          cursor: "pointer", height: '2vh', width: '6vw', alignItems: 'center', justifyContent: 'center', borderRadius: '3px',
+                        }}>
+                        Excluir
+                      </button>
+                    </div>
+                    <span>nome</span>
                   </div>
-                  <span>nome</span>
                   <div
                     style={{
                       display: "flex",
                       flexDirection: "column",
                       width: "100%",
                       overflow: "auto",
-                      maxHeight: "80%", // Defina a altura máxima da div com scroll em relação à div pai
-                      backgroundColor: "red",
-                      height: "20%",
+                      maxHeight: "70%", // Defina a altura máxima da div com scroll em relação à div pai
+                      //backgroundColor: "red",
+                      height: "100%",
                     }}
                   >
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
-                    <h1>test</h1>
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      border: '1px solid #D3D3D3',
+                      height: '4vh',
+                      // backgroundColor:'red'
+                      padding: '0.5vh 0'
+                    }}>
+                      <div style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        // backgroundColor:'red',
+                        width: 'min-content',
+                        justifyContent: 'flex-end',
+                        whiteSpace: 'nowrap',
+                        paddingLeft: '1vw'
+                      }}>
+                        <img
+                          style={{
+                            width: '40px',
+                            height: '40px',
+                            borderRadius: '50%',
+                            backgroundColor: '#ccc',
+                            marginRight: '10px'
+                          }}
+                          src=""
+
+                        />
+
+                        <span>N</span>
+                      </div>
+
+                      <div
+                        style={{
+                          paddingRight: '1vw'
+                        }}>
+                        <button style={{
+                          width: '0.5vw',
+                          height: '1vh',
+                          border: '1px solid black', // Remova a borda padrão
+                          backgroundColor: 'white',
+                          borderRadius: '5px',
+                          color: 'white', // Cor do texto
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer'
+                        }}>
+                          {/* Conteúdo do botão */}
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
       <div
         style={{
           width: "100%",
           height: "10%",
-          backgroundColor: "red",
+          // backgroundColor: "red",
         }}
       >
-        <Btn text="Postarr" color="#43B1B1" width="15vw" height="3.5vh" />
+        <Btn text="Postarr" color="#43B1B1" width="10vw" height="4.5vh" />
       </div>
     </div>
   );
 }
-function Students() {
-  const [isCreateActivity, setIsCreateActivity] = useState(false);
-  const [activeTab, setActiveTab] = useState("atividade");
+
+function AtividadeContent() {
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
-  function createActivity() {
-    console.log("criar Atividade clicada");
-    setIsCreateActivity(true);
-  }
-  function closeWindowsCreateActivity() {
-    console.log("fechar janela closeWindowsCreateActivity");
-    setIsCreateActivity(false);
-  }
-  // ...
-  function toggleTab(tabName: string) {
-    // Adicione o tipo 'string' aqui
-    setActiveTab(tabName);
-  }
   const handleDivClick = () => {
     const fileInput = document.getElementById(
       "hiddenFileInput"
@@ -415,80 +467,69 @@ function Students() {
       console.log("Arquivo selecionado:", selectedFile);
     }
   }
-  function AtividadeContent() {
-    return (
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        //  backgroundColor:'black',
+        justifyContent: "space-evenly",
+        flexDirection: "column",
+        height: "100%",
+      }}
+    >
       <div
         style={{
           display: "flex",
+          flexDirection: "row",
           width: "100%",
-          //  backgroundColor:'black',
-          justifyContent: "space-evenly",
-          flexDirection: "column",
-          height: "100%",
+          height: "max-content",
+          // backgroundColor: 'green',
+          //margin: '5% 0'
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection: "row",
-            width: "100%",
-            height: "max-content",
-            // backgroundColor: 'green',
-            //margin: '5% 0'
+            width: "auto",
+            //  background: 'green',
+            paddingRight: "2vw",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              width: "auto",
-              //  background: 'green',
-              paddingRight: "2vw",
-            }}
-          >
-            <CustomDivInpuMessageError>
-              <div>
-                {/* ... Rest of your code ... */}
-                <div
-                  style={{
-                    height: "17vh",
-                    width: "12vw",
-                    borderRadius: "30px",
-                    border: "3px solid #EAEAEA",
-                    backgroundColor: "#F5F5F5",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  onClick={handleDivClick}
-                >
-                  {selectedPhoto ? (
-                    <img
-                      src={selectedPhoto}
-                      alt="Selected"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                  ) : (
-                    <img
-                      src={GetImage}
-                      alt="Descrição da imagem"
-                      style={{ width: "30%", height: "30%" }}
-                    />
-                  )}
-                </div>
-
-                <input
-                  type="file"
-                  id="hiddenFileInput"
-                  accept="image/*"
-                  style={{ display: "none" }}
-                  onChange={handlePhotoChange}
-                />
-                {/* Rest of your code... */}
+          <CustomDivInpuMessageError>
+            <div>
+              {/* ... Rest of your code ... */}
+              <div
+                style={{
+                  height: "17vh",
+                  width: "12vw",
+                  borderRadius: "30px",
+                  border: "3px solid #EAEAEA",
+                  backgroundColor: "#F5F5F5",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                onClick={handleDivClick}
+              >
+                {selectedPhoto ? (
+                  <img
+                    src={selectedPhoto}
+                    alt="Selected"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={GetImage}
+                    alt="Descrição da imagem"
+                    style={{ width: "30%", height: "30%" }}
+                  />
+                )}
               </div>
 
               <input
@@ -498,114 +539,150 @@ function Students() {
                 style={{ display: "none" }}
                 onChange={handlePhotoChange}
               />
-            </CustomDivInpuMessageError>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              //background: 'red'
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-evenly",
-                //backgroundColor:'red',
-                width: "100%",
-              }}
-            >
-              <NameInputField
-                title="Título"
-                placeholder="Adicione um título"
-                width="auto"
-              />
-              <NameInputField
-                title="Matéria"
-                placeholder="Adicione uma matéria"
-                width="auto"
-              />
+              {/* Rest of your code... */}
             </div>
-          </div>
+
+            <input
+              type="file"
+              id="hiddenFileInput"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handlePhotoChange}
+            />
+          </CustomDivInpuMessageError>
         </div>
 
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            //  backgroundColor: 'blue',
             width: "100%",
-            height: "50%",
+            //background: 'red'
           }}
         >
           <div
             style={{
-              // backgroundColor: 'blue',
               display: "flex",
               flexDirection: "column",
-              height: "90%",
-              //    width: '100%',
-              justifyContent: "space-between",
-
-              // gap: '45px'
+              justifyContent: "space-evenly",
+              //backgroundColor:'red',
+              width: "100%",
             }}
           >
-            <DescriptionInputField
-              title="Descrição"
-              placeholder="Adicione uma descrição"
-              width="100%"
-              height="15vh"
+            <NameInputField
+              title="Título"
+              placeholder="Adicione um título"
+              width="auto"
+            />
+            <NameInputField
+              title="Matéria"
+              placeholder="Adicione uma matéria"
+              width="auto"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          //  backgroundColor: 'blue',
+          width: "100%",
+          height: "50%",
+        }}
+      >
+        <div
+          style={{
+            // backgroundColor: 'blue',
+            display: "flex",
+            flexDirection: "column",
+            height: "90%",
+            //    width: '100%',
+            justifyContent: "space-between",
+
+            // gap: '45px'
+          }}
+        >
+          <DescriptionInputField
+            title="Descrição"
+            placeholder="Adicione uma descrição"
+            width="100%"
+            height="15vh"
+          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              //  backgroundColor: 'red',
+              gap: "5%",
+            }}
+          >
+            <DateSelector labelText="Data de envio" />
+            <DateSelector labelText="Entrega" />
+          </div>
+          <div
+            style={{
+              //  backgroundColor: 'red',
+              width: "max-content",
+            }}
+          >
+            <input
+              type="file"
+              id="fileInput"
+              onChange={handleFileUpload}
+              style={{ display: "none" }}
             />
             <div
               style={{
+                padding: "10px 20px 10px 20px",
+                textAlign: "center",
+                cursor: "pointer",
+                backgroundColor: "#3393C3",
+                color: "white",
+                borderRadius: "10px",
+                fontWeight: "600",
                 display: "flex",
                 flexDirection: "row",
-                //  backgroundColor: 'red',
-                gap: "5%",
+                alignItems: "center",
+                gap: "20px",
               }}
+              onClick={() => document.getElementById("fileInput")?.click()}
             >
-              <DateSelector labelText="Data de envio" />
-              <DateSelector labelText="Entrega" />
-            </div>
-            <div
-              style={{
-                //  backgroundColor: 'red',
-                width: "max-content",
-              }}
-            >
-              <input
-                type="file"
-                id="fileInput"
-                onChange={handleFileUpload}
-                style={{ display: "none" }}
-              />
-              <div
-                style={{
-                  padding: "10px 20px 10px 20px",
-                  textAlign: "center",
-                  cursor: "pointer",
-                  backgroundColor: "#3393C3",
-                  color: "white",
-                  borderRadius: "10px",
-                  fontWeight: "600",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: "20px",
-                }}
-                onClick={() => document.getElementById("fileInput")?.click()}
-              >
-                <img src={ImageUpload} alt="" />
-                Arquivo da atividade
-              </div>
+              <img src={ImageUpload} alt="" />
+              Arquivo da atividade
             </div>
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
+}
+
+function RenderActivityAndStudentSelection() {
+
+  <>
+  
+  </>
+} 
+function Students() {
+  const [isCreateActivity, setIsCreateActivity] = useState(false);
+  const [activeTab, setActiveTab] = useState("atividade");
+
+  function createActivity() {
+    console.log("criar Atividade clicada");
+    setIsCreateActivity(true);
   }
+  function closeWindowsCreateActivity() {
+    console.log("fechar janela closeWindowsCreateActivity");
+    setIsCreateActivity(false);
+  }
+  // ...
+  function toggleTab(tabName: string) {
+    // Adicione o tipo 'string' aqui
+    setActiveTab(tabName);
+  }
+
+
   return (
     <>
       <div
@@ -623,7 +700,8 @@ function Students() {
         <div
           style={{
             width: "90%",
-            marginTop: "3%",
+            //marginTop: "3%",
+            backgroundColor:'blue'
           }}
         >
           <SearchInput text="Buscar turma" />
@@ -631,9 +709,10 @@ function Students() {
 
         <div
           style={{
-            marginTop: "2%",
+           //marginTop: "2%",
             width: "100%",
             height: "max-content",
+            backgroundColor:'pink'
           }}
         >
           <ContainerLogo />
@@ -642,14 +721,14 @@ function Students() {
         <div
           style={{
             width: "90%",
-            marginBottom: "3%",
+           // marginBottom: "3%",
+           backgroundColor:'green'
           }}
         >
           <CustomSelect />
         </div>
 
         <CreateButton image={addActivity} onclick={createActivity} />
-
         {isCreateActivity && (
           <div
             style={{
@@ -678,7 +757,6 @@ function Students() {
                   <img src={ImageClose} alt="close" />
                 </button>
               </div>
-              <div></div>
               <div
                 style={{
                   flex: 1,
@@ -690,13 +768,15 @@ function Students() {
                 <div
                   style={{
                     display: "flex",
-                    width: "90%",
+                    width: "80%",
                     //  backgroundColor:'blue',
                     // justifyContent: 'center',
                     flexDirection: "column",
                     height: "100%",
                   }}
                 >
+
+                  {/* //aqui */}
                   <div
                     style={{
                       display: "flex",
@@ -774,6 +854,28 @@ function Students() {
             </Card>
           </div>
         )}
+
+<div style={{
+                display: 'flex',
+                flexWrap: 'wrap', // Permite que as divs filhas sejam dispostas em linhas com 2 divs em cada linha
+                justifyContent: 'space-evenly', // Espaço uniforme entre as divs filhas
+                width: '90%',
+                //backgroundColor:'red',
+                //gap:'30px',
+                alignItems:'center',
+                backgroundColor:'red',
+                flexDirection:'column'
+
+            }}>
+<h1 style={{backgroundColor:'blue'}}>test</h1>
+<h1>test</h1>
+<h1>test</h1>
+<h1>test</h1>
+<h1>test</h1>
+<h1>test</h1>
+
+
+        </div>
       </div>
     </>
   );

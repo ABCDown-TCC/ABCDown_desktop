@@ -296,7 +296,7 @@ const widthInputRigth = '35%'
         style={{
           display: 'flex',
           flexDirection: 'column',
-          // backgroundColor:'red',
+          //backgroundColor:'red',
           width: '80%',
           height: '100%',
           gap: '2vh',
@@ -624,7 +624,7 @@ justifyContent: 'space-between',
           display: 'flex',
           justifyContent: 'center',
           width: '100%',
-          height: '10%',
+          height: '30%',
           backgroundColor: 'white',
           alignItems: 'center',
           gap: '3%'
@@ -640,7 +640,7 @@ justifyContent: 'space-between',
 
   const forms = (
     <>
-      <div style={{ width: '100%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', height: '10%', gap: '12%' }}>
+      <div style={{ width: '100%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', height: '30%', gap: '12%' }}>
         <Btn
           text="Cancelar"
           color="#F0754E"
@@ -664,6 +664,7 @@ justifyContent: 'space-between',
       flex: 1,
       width: '100%',
       backgroundColor: 'white',
+     
       display: 'flex',
       justifyContent: 'center'
     }}>
@@ -801,9 +802,9 @@ onChange={handlePhotoChange}
       style={{
         display: "flex",
         width: "100%",
-        height: "100%",
+        height: "100vh",
         flexDirection: "column",
-        backgroundColor: '#F0754E'
+        //backgroundColor: 'red'
       }}
     >
       <Header title="" color="#F0754E" />
@@ -812,10 +813,11 @@ onChange={handlePhotoChange}
           style={{
             display: "flex",
             flexDirection: "row",
-            // backgroundColor: "blue",
+            //backgroundColor: "blue",
             gap: "30px",
             marginLeft: "3%",
-            width: 'max-content'
+            width: 'max-content',
+            
           }}
         >
 
@@ -865,8 +867,10 @@ onChange={handlePhotoChange}
         handleMyDataClick={handleMyDataClick}
         handleSavedClick={handleSavedClick}
       />
-      {currentScreen === "screen1" && screen1Content}
+<div style={{width:'100%', height:'100%',backgroundColor:'white'}}>
+{currentScreen === "screen1" && screen1Content}
       {currentScreen === "screen2" && screen2Content}
+</div>
     </div>
   );
 }
