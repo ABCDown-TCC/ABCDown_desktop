@@ -18,6 +18,7 @@ import {
 import ImageUpload from "../layout/img_containers_cards/imageUpload.svg";
 import Btn from "../layout/FormComponents/Btn";
 import SeratchInput from "../layout/img_containers_cards/searchInput.svg";
+import ContainerInfoDeleteContainer from "../layout/ClassComponents/ContainerInfoDeleteContainer";
 
 interface DateSelectorProps {
   labelText?: string;
@@ -661,9 +662,9 @@ function AtividadeContent() {
 function RenderActivityAndStudentSelection() {
 
   <>
-  
+
   </>
-} 
+}
 function Students() {
   const [isCreateActivity, setIsCreateActivity] = useState(false);
   const [activeTab, setActiveTab] = useState("atividade");
@@ -682,6 +683,12 @@ function Students() {
     setActiveTab(tabName);
   }
 
+  function onClickDelete() {
+    console.log("DElete");
+  }
+  function onClickIfo() {
+    console.log("Info");
+  }
 
   return (
     <>
@@ -690,9 +697,10 @@ function Students() {
           display: "flex",
           flexDirection: "column",
           width: "100%",
-          height: "100%",
+          height: "100vh",
           alignItems: "center",
-          backgroundColor: "#f2f2f2",
+
+
         }}
       >
         <Header title="Turmas" />
@@ -701,7 +709,7 @@ function Students() {
           style={{
             width: "90%",
             //marginTop: "3%",
-            backgroundColor:'blue'
+            backgroundColor: 'blue'
           }}
         >
           <SearchInput text="Buscar turma" />
@@ -709,10 +717,10 @@ function Students() {
 
         <div
           style={{
-           //marginTop: "2%",
+            //marginTop: "2%",
             width: "100%",
             height: "max-content",
-            backgroundColor:'pink'
+            backgroundColor: 'pink'
           }}
         >
           <ContainerLogo />
@@ -720,9 +728,9 @@ function Students() {
 
         <div
           style={{
-            width: "90%",
-           // marginBottom: "3%",
-           backgroundColor:'green'
+            width: "70%",
+            // marginBottom: "3%",
+            backgroundColor: 'green'
           }}
         >
           <CustomSelect />
@@ -855,24 +863,337 @@ function Students() {
           </div>
         )}
 
-<div style={{
-                display: 'flex',
-                flexWrap: 'wrap', // Permite que as divs filhas sejam dispostas em linhas com 2 divs em cada linha
-                justifyContent: 'space-evenly', // Espaço uniforme entre as divs filhas
-                width: '90%',
-                //backgroundColor:'red',
-                //gap:'30px',
-                alignItems:'center',
-                backgroundColor:'red',
-                flexDirection:'column'
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap', // Permite que as divs filhas sejam dispostas em linhas com 2 divs em cada linha
+          //justifyContent: 'space-evenly', // Espaço uniforme entre as divs filhas
+          width: '70%',
+          //backgroundColor: 'red',
+          //gap:'30px',
+          // alignItems: 'center',
+          justifyContent: 'space-between',
+          height:'100%',
+          overflowY: 'auto',
+  gap:'4vh',
+         // backgroundColor:'red',
+          //minHeight:'100%',
+          // overflowY: 'auto',
+          // height:'100vh'
 
-            }}>
-<h1 style={{backgroundColor:'blue'}}>test</h1>
-<h1>test</h1>
-<h1>test</h1>
-<h1>test</h1>
-<h1>test</h1>
-<h1>test</h1>
+        }}>
+          {/* inicios alunos */}
+     
+
+
+          <Card width="45%" height="25vh">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-start", // Alinhar à esquerda
+                gap: "2vw", // Espaçamento igual entre os elementos
+                // backgroundColor: "Red",
+                height: "80%",
+              }}
+            >
+              <div
+                style={{
+                  width: "8vw", // Largura desejada
+                  height: "13vh", // Altura desejada
+                  backgroundColor: "gray", // Cor de fundo cinza
+                  borderRadius: "50%", // Borda arredondada para torná-la redonda
+                  display: "flex",
+                  justifyContent: "center", // Centraliza horizontalmente
+                  alignItems: "center", // Centraliza verticalmente
+                }}
+              >
+                <img src="" alt="" />
+              </div>
+              <span style={{ fontSize: '1.2vw' }}>Nome do aluno</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                // backgroundColor: "blue",
+                justifyContent: "flex-end",
+                height: "20%",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  marginRight: "3%", // Corrected typo,
+                  //backgroundColor: "red",
+                }}
+              >
+                <ContainerInfoDeleteContainer
+                  onClickDelete={onClickDelete}
+                  onClickIfo={onClickIfo}
+                />
+              </div>
+            </div>
+          </Card>
+
+          <Card width="45%" height="25vh">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-start", // Alinhar à esquerda
+                gap: "2vw", // Espaçamento igual entre os elementos
+                // backgroundColor: "Red",
+                height: "80%",
+              }}
+            >
+              <div
+                style={{
+                  width: "8vw", // Largura desejada
+                  height: "13vh", // Altura desejada
+                  backgroundColor: "gray", // Cor de fundo cinza
+                  borderRadius: "50%", // Borda arredondada para torná-la redonda
+                  display: "flex",
+                  justifyContent: "center", // Centraliza horizontalmente
+                  alignItems: "center", // Centraliza verticalmente
+                }}
+              >
+                <img src="" alt="" />
+              </div>
+              <span style={{ fontSize: '1.2vw' }}>Nome do aluno</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                // backgroundColor: "blue",
+                justifyContent: "flex-end",
+                height: "20%",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  marginRight: "3%", // Corrected typo,
+                  //backgroundColor: "red",
+                }}
+              >
+                <ContainerInfoDeleteContainer
+                  onClickDelete={onClickDelete}
+                  onClickIfo={onClickIfo}
+                />
+              </div>
+            </div>
+          </Card>
+          <Card width="45%" height="25vh">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-start", // Alinhar à esquerda
+                gap: "2vw", // Espaçamento igual entre os elementos
+                // backgroundColor: "Red",
+                height: "80%",
+              }}
+            >
+              <div
+                style={{
+                  width: "8vw", // Largura desejada
+                  height: "13vh", // Altura desejada
+                  backgroundColor: "gray", // Cor de fundo cinza
+                  borderRadius: "50%", // Borda arredondada para torná-la redonda
+                  display: "flex",
+                  justifyContent: "center", // Centraliza horizontalmente
+                  alignItems: "center", // Centraliza verticalmente
+                }}
+              >
+                <img src="" alt="" />
+              </div>
+              <span style={{ fontSize: '1.2vw' }}>Nome do aluno</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                // backgroundColor: "blue",
+                justifyContent: "flex-end",
+                height: "20%",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  marginRight: "3%", // Corrected typo,
+                  //backgroundColor: "red",
+                }}
+              >
+                <ContainerInfoDeleteContainer
+                  onClickDelete={onClickDelete}
+                  onClickIfo={onClickIfo}
+                />
+              </div>
+            </div>
+          </Card>
+
+
+          <Card width="45%" height="25vh">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-start", // Alinhar à esquerda
+                gap: "2vw", // Espaçamento igual entre os elementos
+                // backgroundColor: "Red",
+                height: "80%",
+              }}
+            >
+              <div
+                style={{
+                  width: "8vw", // Largura desejada
+                  height: "13vh", // Altura desejada
+                  backgroundColor: "gray", // Cor de fundo cinza
+                  borderRadius: "50%", // Borda arredondada para torná-la redonda
+                  display: "flex",
+                  justifyContent: "center", // Centraliza horizontalmente
+                  alignItems: "center", // Centraliza verticalmente
+                }}
+              >
+                <img src="" alt="" />
+              </div>
+              <span style={{ fontSize: '1.2vw' }}>Nome do aluno</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                // backgroundColor: "blue",
+                justifyContent: "flex-end",
+                height: "20%",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  marginRight: "3%", // Corrected typo,
+                  //backgroundColor: "red",
+                }}
+              >
+                <ContainerInfoDeleteContainer
+                  onClickDelete={onClickDelete}
+                  onClickIfo={onClickIfo}
+                />
+              </div>
+            </div>
+          </Card>
+
+
+          <Card width="45%" height="25vh">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-start", // Alinhar à esquerda
+                gap: "2vw", // Espaçamento igual entre os elementos
+                // backgroundColor: "Red",
+                height: "80%",
+              }}
+            >
+              <div
+                style={{
+                  width: "8vw", // Largura desejada
+                  height: "13vh", // Altura desejada
+                  backgroundColor: "gray", // Cor de fundo cinza
+                  borderRadius: "50%", // Borda arredondada para torná-la redonda
+                  display: "flex",
+                  justifyContent: "center", // Centraliza horizontalmente
+                  alignItems: "center", // Centraliza verticalmente
+                }}
+              >
+                <img src="" alt="" />
+              </div>
+              <span style={{ fontSize: '1.2vw' }}>Nome do aluno</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                // backgroundColor: "blue",
+                justifyContent: "flex-end",
+                height: "20%",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  marginRight: "3%", // Corrected typo,
+                  //backgroundColor: "red",
+                }}
+              >
+                <ContainerInfoDeleteContainer
+                  onClickDelete={onClickDelete}
+                  onClickIfo={onClickIfo}
+                />
+              </div>
+            </div>
+          </Card>
+
+
+          <Card width="45%" height="25vh">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-start", // Alinhar à esquerda
+                gap: "2vw", // Espaçamento igual entre os elementos
+                // backgroundColor: "Red",
+                height: "80%",
+              }}
+            >
+              <div
+                style={{
+                  width: "8vw", // Largura desejada
+                  height: "13vh", // Altura desejada
+                  backgroundColor: "gray", // Cor de fundo cinza
+                  borderRadius: "50%", // Borda arredondada para torná-la redonda
+                  display: "flex",
+                  justifyContent: "center", // Centraliza horizontalmente
+                  alignItems: "center", // Centraliza verticalmente
+                }}
+              >
+                <img src="" alt="" />
+              </div>
+              <span style={{ fontSize: '1.2vw' }}>Nome do aluno</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                // backgroundColor: "blue",
+                justifyContent: "flex-end",
+                height: "20%",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  marginRight: "3%", // Corrected typo,
+                  //backgroundColor: "red",
+                }}
+              >
+                <ContainerInfoDeleteContainer
+                  onClickDelete={onClickDelete}
+                  onClickIfo={onClickIfo}
+                />
+              </div>
+            </div>
+          </Card>
+          {/* fim alunos */}
+
 
 
         </div>

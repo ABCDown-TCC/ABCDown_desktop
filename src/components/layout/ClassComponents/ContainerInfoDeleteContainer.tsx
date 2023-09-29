@@ -20,6 +20,7 @@
 // export default ContainerInfoDeleteContainer;
 import React from "react";
 import styles from './ContainerInfoDeleteContainer.module.css'
+import imageDelete from './ImagesClass/delete.svg'
 
 interface PropsContainerInfoDeleteContainer {
   onClickIfo?: () => void
@@ -45,7 +46,7 @@ function ContainerInfoDeleteContainer(props: PropsContainerInfoDeleteContainer) 
     <div style={{ width: "max-content", height: "max-content" }}>
       <div style={{ display: "flex", flexDirection: "row", justifyContent: 'space-between', alignItems: 'center', gap: '0.8vw' }}>
         <button className={styles.info} onClick={handleInfoClick}>Info</button>
-        <button className={styles.delete} onClick={handleDeleteClick}></button>
+        <button className={styles.delete} onClick={handleDeleteClick}><img src={imageDelete } alt="" /></button>
       </div>
     </div>
   );

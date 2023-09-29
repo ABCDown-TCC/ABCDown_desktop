@@ -62,34 +62,45 @@ function App() {
     margin: '0',
     padding: '0',
     boxSizing: 'border-box',
-    backgroundColor: '#f2f2f2',
+   // backgroundColor: 'red',
     display: 'flex',
-    flexDirection: 'row',
+    // flexDirection: 'row',
     width: '100%',
-    height:'100%',
+    height:'100vh',
+  //  justifyContent:'flex-end',
+   backgroundColor: "#ef764e",
+
+
   
   };
 
   return (
     <div style={divStyle}>
-      <Router>
+<Router>
         <Routes>
           {/* Rota com Sidebar */}
           <Route
             path="/"
             element={
               <>
-                <Sidebar />
-                <Outlet /> {/* Renderiza rotas aninhadas */}
+          {/* <div style={{ display: 'flex', height: '100%' }}> */}
+          <Sidebar />
+          {/* <div style={{ width: '80%' }}> */}
+            <Outlet />
+          {/* </div> */}
+        {/* </div> */}
+                {/* Renderiza rotas aninhadas */}
               </>
             }
           >
+           
+
             <Route index element={<Home />} />
             <Route path="/turmas" element={<Turmas />} />
             <Route path="/comunidade" element={<Comunidade />} />
             <Route path="/configuracoes" element={<Configuracoes />} />
             <Route path="/turmas/alunos" element={<Students/>}/>
-            
+
           </Route>
           {/* Rota sem Sidebar */}
           <Route path="/login" element={<Login />} />
@@ -108,7 +119,7 @@ function App() {
           
         </Routes>
       </Router>
-    </div>
+      </div>
   );
 }
 //npm install firebase

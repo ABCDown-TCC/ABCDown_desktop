@@ -40,7 +40,7 @@ function TestCard() {
         gap: "1vw",
       }}
     >
-      {/* <Card width="35%" height="35vh">
+      <Card width="35%" height="35vh">
         <div
           style={{
             display: "flex",
@@ -129,9 +129,9 @@ function TestCard() {
             />
           </div>
         </div>
-      </Card> */}
+      </Card> 
 
-      {/* <Card width="35%" height="35vh">
+       <Card width="35%" height="35vh">
         <div
           style={{
             display: "flex",
@@ -205,58 +205,9 @@ function TestCard() {
             />
           </div>
         </div>
-      </Card> */}
+      </Card> 
 
-      {/* <Card width="35%" height="35vh">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "flex-start", // Alinhar à esquerda
-            gap: "2vw", // Espaçamento igual entre os elementos
-            // backgroundColor: "Red",
-            height: "80%",
-          }}
-        >
-          <div
-            style={{
-              width: "9vw", // Largura desejada
-              height: "15vh", // Altura desejada
-              backgroundColor: "gray", // Cor de fundo cinza
-              borderRadius: "50%", // Borda arredondada para torná-la redonda
-              display: "flex",
-              justifyContent: "center", // Centraliza horizontalmente
-              alignItems: "center", // Centraliza verticalmente
-            }}
-          >
-            <img src="" alt="" />
-          </div>
-          <span style={{fontSize:'1.2vw'}}>Nome do aluno</span>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            // backgroundColor: "blue",
-            justifyContent: "flex-end",
-            marginRight: "3vw", // Corrected typo
-            height: "20%",
-            width: "100%",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              marginRight: "3vw", // Corrected typo
-            }}
-          >
-            <ContainerInfoDeleteContainer
-              onClickDelete={onClickDelete}
-              onClickIfo={onClickIfo}
-            />
-          </div>
-        </div>
-      </Card> */}
+
 
       <Card width="35%" height="70%">
       <div style={{ display: 'flex',  flexDirection: 'column', alignItems: 'center', height:'100%',gap:'5%'}}>
@@ -281,7 +232,6 @@ function TestCard() {
             </div>
       </Card>
 
-      {/* <MessageDelete onClickClose={onClickCloseMessageDelete} onClickCancel={onClickCancelMessageDelete} onClickDelete={onClickDEleteMessageDelete}/> */}
     </div>
   );
 }

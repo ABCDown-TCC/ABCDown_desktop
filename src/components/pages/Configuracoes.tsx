@@ -798,6 +798,7 @@ onChange={handlePhotoChange}
 </div>
 </>)
   return (
+
     <div
       style={{
         display: "flex",
@@ -872,6 +873,7 @@ onChange={handlePhotoChange}
       {currentScreen === "screen2" && screen2Content}
 </div>
     </div>
+  
   );
 }
 export default Configuracoes;

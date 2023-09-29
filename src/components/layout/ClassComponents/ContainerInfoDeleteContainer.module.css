@@ -33,9 +33,9 @@
   
 }
 
-.delete:hover {
-  background-color: white; /* Cor de fundo ao passar o mouse */
-  border: 1.4px solid #F95926; /* Cor da borda ao passar o mouse */
-  color: #F95926; /* Cor do texto ao passar o mouse, se necessário */
+/* .delete:hover {
+  background-color: white; 
+  border: 1.4px solid #F95926; 
+  color: #F95926; 
 }
-  
+   */

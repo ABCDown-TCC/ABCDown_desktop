@@ -5,10 +5,11 @@
     background-color:#FFF;
     /* width: 20%; */
     width: max-content;
-    height: 100vh;
+    height: 100%;
     /* padding: 2%; */
     align-items: center;
     border: 1px solid #EAEAEA; /* largura estilo cor */
-    
-
+    /* position: fixed;
+    left: 0;
+    top: 0; */
 }
