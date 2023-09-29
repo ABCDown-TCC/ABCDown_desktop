@@ -1,18 +1,23 @@
-import styles from './UserDetails.module.css'
+import styles from './UserDetails.module.css';
 
 interface CardsProps {
-
-    children?: React.ReactNode;
-  }
-function UserDetails(props: CardsProps) {
-    return (
-        <>
-            <div className={styles.ContainerUserDetails}>
-            {props.children}
-            </div>
-
-        </>
-    )
-
+  color?: string; // Renomeei backgroundColor para color
+  children?: React.ReactNode;
+  height?: string
 }
-export default UserDetails 
+
+function UserDetails(props: CardsProps) {
+  const containerStyle = {
+    backgroundColor: props.color || '', // Use a cor de fundo fornecida ou vazia se não fornecida
+    height: props.height || 'max-content'
+  };
+
+
+  return (
+    <div className={styles.ContainerUserDetails} style={containerStyle}>
+      {props.children}
+    </div>
+  );
+}
+
+export default UserDetails;

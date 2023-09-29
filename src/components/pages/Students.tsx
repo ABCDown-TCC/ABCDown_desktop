@@ -19,6 +19,7 @@ import ImageUpload from "../layout/img_containers_cards/imageUpload.svg";
 import Btn from "../layout/FormComponents/Btn";
 import SeratchInput from "../layout/img_containers_cards/searchInput.svg";
 import ContainerInfoDeleteContainer from "../layout/ClassComponents/ContainerInfoDeleteContainer";
+import { useNavigate, Link } from 'react-router-dom';
 
 interface DateSelectorProps {
   labelText?: string;
@@ -659,15 +660,10 @@ function AtividadeContent() {
   );
 }
 
-function RenderActivityAndStudentSelection() {
-
-  <>
-
-  </>
-}
 function Students() {
   const [isCreateActivity, setIsCreateActivity] = useState(false);
   const [activeTab, setActiveTab] = useState("atividade");
+  const navigate = useNavigate();
 
   function createActivity() {
     console.log("criar Atividade clicada");
@@ -689,7 +685,11 @@ function Students() {
   function onClickIfo() {
     console.log("Info");
   }
+function onClickCard() { 
+  navigate('/turmas/alunos/aluno')
+  console.log('click card de aluno')
 
+}
   return (
     <>
       <div
@@ -704,12 +704,12 @@ function Students() {
         }}
       >
         <Header title="Turmas" />
-
+{/* aqui */}
         <div
           style={{
             width: "90%",
-            //marginTop: "3%",
-            backgroundColor: 'blue'
+            marginTop: "3%",
+            //backgroundColor: 'blue'
           }}
         >
           <SearchInput text="Buscar turma" />
@@ -717,10 +717,10 @@ function Students() {
 
         <div
           style={{
-            //marginTop: "2%",
+            marginTop: "2%",
             width: "100%",
             height: "max-content",
-            backgroundColor: 'pink'
+          //  backgroundColor: 'pink'
           }}
         >
           <ContainerLogo />
@@ -729,8 +729,8 @@ function Students() {
         <div
           style={{
             width: "70%",
-            // marginBottom: "3%",
-            backgroundColor: 'green'
+             marginBottom: "3%",
+            //backgroundColor: 'green'
           }}
         >
           <CustomSelect />
@@ -872,20 +872,21 @@ function Students() {
           //gap:'30px',
           // alignItems: 'center',
           justifyContent: 'space-between',
-          height:'100%',
+          height: '100%',
           overflowY: 'auto',
-  gap:'4vh',
-         // backgroundColor:'red',
+          gap: '4vh',
+          //backgroundColor:'blue',
+          padding: '4% 4%',
           //minHeight:'100%',
           // overflowY: 'auto',
           // height:'100vh'
 
         }}>
           {/* inicios alunos */}
-     
 
 
-          <Card width="45%" height="25vh">
+
+          <Card width="45%" height="25vh" onClick={onClickCard}>
             <div
               style={{
                 display: "flex",
@@ -936,7 +937,7 @@ function Students() {
             </div>
           </Card>
 
-          <Card width="45%" height="25vh">
+          <Card width="45%" height="25vh" onClick={onClickCard} >
             <div
               style={{
                 display: "flex",
@@ -986,59 +987,7 @@ function Students() {
               </div>
             </div>
           </Card>
-          <Card width="45%" height="25vh">
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "flex-start", // Alinhar à esquerda
-                gap: "2vw", // Espaçamento igual entre os elementos
-                // backgroundColor: "Red",
-                height: "80%",
-              }}
-            >
-              <div
-                style={{
-                  width: "8vw", // Largura desejada
-                  height: "13vh", // Altura desejada
-                  backgroundColor: "gray", // Cor de fundo cinza
-                  borderRadius: "50%", // Borda arredondada para torná-la redonda
-                  display: "flex",
-                  justifyContent: "center", // Centraliza horizontalmente
-                  alignItems: "center", // Centraliza verticalmente
-                }}
-              >
-                <img src="" alt="" />
-              </div>
-              <span style={{ fontSize: '1.2vw' }}>Nome do aluno</span>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                // backgroundColor: "blue",
-                justifyContent: "flex-end",
-                height: "20%",
-                width: "100%",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  marginRight: "3%", // Corrected typo,
-                  //backgroundColor: "red",
-                }}
-              >
-                <ContainerInfoDeleteContainer
-                  onClickDelete={onClickDelete}
-                  onClickIfo={onClickIfo}
-                />
-              </div>
-            </div>
-          </Card>
-
-
-          <Card width="45%" height="25vh">
+          <Card width="45%" height="25vh" onClick={onClickCard}>
             <div
               style={{
                 display: "flex",
@@ -1090,7 +1039,7 @@ function Students() {
           </Card>
 
 
-          <Card width="45%" height="25vh">
+          <Card width="45%" height="25vh" onClick={onClickCard}>
             <div
               style={{
                 display: "flex",
@@ -1142,7 +1091,59 @@ function Students() {
           </Card>
 
 
-          <Card width="45%" height="25vh">
+          <Card width="45%" height="25vh" onClick={onClickCard}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-start", // Alinhar à esquerda
+                gap: "2vw", // Espaçamento igual entre os elementos
+                // backgroundColor: "Red",
+                height: "80%",
+              }}
+            >
+              <div
+                style={{
+                  width: "8vw", // Largura desejada
+                  height: "13vh", // Altura desejada
+                  backgroundColor: "gray", // Cor de fundo cinza
+                  borderRadius: "50%", // Borda arredondada para torná-la redonda
+                  display: "flex",
+                  justifyContent: "center", // Centraliza horizontalmente
+                  alignItems: "center", // Centraliza verticalmente
+                }}
+              >
+                <img src="" alt="" />
+              </div>
+              <span style={{ fontSize: '1.2vw' }}>Nome do aluno</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                // backgroundColor: "blue",
+                justifyContent: "flex-end",
+                height: "20%",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  marginRight: "3%", // Corrected typo,
+                  //backgroundColor: "red",
+                }}
+              >
+                <ContainerInfoDeleteContainer
+                  onClickDelete={onClickDelete}
+                  onClickIfo={onClickIfo}
+                />
+              </div>
+            </div>
+          </Card>
+
+
+          <Card width="45%" height="25vh" onClick={onClickCard}>
             <div
               style={{
                 display: "flex",

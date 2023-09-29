@@ -57,6 +57,7 @@ import TestCard from './components/pages/TestCard'
 import InputInfo from './components/pages/InputInfo'
 import TesteInputConfiguration from './components/pages/TesteInputConfiguration'
 import Students from './components/pages/Students'
+import Student from './components/pages/Student'
 function App() {
   const divStyle: React.CSSProperties = {
     margin: '0',
@@ -68,7 +69,7 @@ function App() {
     width: '100%',
     height:'100vh',
   //  justifyContent:'flex-end',
-   backgroundColor: "#ef764e",
+   backgroundColor: "#f2f2f2",
 
 
   
@@ -100,6 +101,8 @@ function App() {
             <Route path="/comunidade" element={<Comunidade />} />
             <Route path="/configuracoes" element={<Configuracoes />} />
             <Route path="/turmas/alunos" element={<Students/>}/>
+            <Route path="/turmas/alunos/aluno" element={<Student/>}/>
+
 
           </Route>
           {/* Rota sem Sidebar */}
