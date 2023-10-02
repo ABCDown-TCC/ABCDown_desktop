@@ -29,9 +29,10 @@ interface UserData {
   numeroTelefone: string;
 }
 
-interface Option {
-  id_genero: number;
-  nome_genero: string;
+interface Genero {
+  id: number;
+  nome: string;
+  sigla: string;
 }
 function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
   const heightInput: string = "4vh";
@@ -47,7 +48,7 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
   const [nome, setNome] = useState("");
   const [sexo, setSexo] = useState(""); // Certifique-se de definir a interface Genero
 
-  const [options, setOptions] = useState<Option[]>([]);
+  const [generos, setGeneros] = useState<Genero[]>([]);
 
   const [cpf, setCpf] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
@@ -232,7 +233,9 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
 
   useEffect(() => {
     // Fazer a solicitação GET para obter as opções de gênero
-    fetch("http://localhost:5000/tbl_genero", {
+    // fetch("http://localhost:5000/tbl_genero", {
+    fetch("http://localhost:8181/genero", {
+
       method: "GET",
       headers: { Accept: "application/json" },
     }) // Substitua pela URL correta
@@ -240,7 +243,8 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
       .then((data) => {
         console.log(data);
         //  setGeneros(data.tbl_genero);
-        setOptions(data);
+        setGeneros(data);
+        console.log('data ', data)
       })
       .catch((error) => {
         console.error("Erro ao buscar os gêneros:", error);
@@ -355,12 +359,14 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
                 }}
               >
                 <option value=""></option>
-                {options.map((option) => (
-                  <option key={option.id_genero} value={option.id_genero}>
-                    {option.nome_genero}
-                  </option>
-                ))}
+                {generos.length > 0 &&
+                  generos.map((genero) => (
+                    <option key={genero.id} value={genero.sigla}>
+                      {genero.nome}
+                    </option>
+                  ))}
               </select>
+
               {isSexoVazio && (
                 <span style={{ color: "red" }}>Sexo é obrigatório</span>
               )}
@@ -596,7 +602,7 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
           getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
             // Add type annotation here
             setSelectedPhoto(url); // Assuming setSelectedPhoto is a function to set the selected photo URL
-            
+
           });
         }
       );
@@ -676,7 +682,7 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
       "hiddenFileInput"
     ) as HTMLInputElement;
     if (fileInput) {
-     // checkEmptyInput()
+      // checkEmptyInput()
       fileInput.click();
     }
   };
@@ -719,58 +725,58 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
         >
           {/* ... Rest of your code ... */}
           <CustomDivInpuMessageError>
-          <div>
-      {/* ... Rest of your code ... */}
-      <div
-        style={{
-          height: "30vh",
-          width: "20vw",
-          borderRadius: "30px",
-          border: "3px solid #EAEAEA",
-          backgroundColor: "#F5F5F5",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        onClick={handleDivClick}
-      >
-        {selectedPhoto ? (
-          <img
-            src={selectedPhoto}
-            alt="Selected"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        ) : (
-          <img
-            src={GetImage}
-            alt="Descrição da imagem"
-            style={{ width: "30%", height: "30%" }}
-          />
-        )}
-      </div>
+            <div>
+              {/* ... Rest of your code ... */}
+              <div
+                style={{
+                  height: "30vh",
+                  width: "20vw",
+                  borderRadius: "30px",
+                  border: "3px solid #EAEAEA",
+                  backgroundColor: "#F5F5F5",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                onClick={handleDivClick}
+              >
+                {selectedPhoto ? (
+                  <img
+                    src={selectedPhoto}
+                    alt="Selected"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                ) : (
+                  <img
+                    src={GetImage}
+                    alt="Descrição da imagem"
+                    style={{ width: "30%", height: "30%" }}
+                  />
+                )}
+              </div>
 
-      <input
-        type="file"
-        id="hiddenFileInput"
-        accept="image/*"
-        style={{ display: "none" }}
-        onChange={handlePhotoChange}
-      />
-      {/* Rest of your code... */}
-    </div>
+              <input
+                type="file"
+                id="hiddenFileInput"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handlePhotoChange}
+              />
+              {/* Rest of your code... */}
+            </div>
 
-          <input
-            type="file"
-            id="hiddenFileInput"
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={handlePhotoChange}
-          />
+            <input
+              type="file"
+              id="hiddenFileInput"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handlePhotoChange}
+            />
             {/* {selectedPhotoVazio && (
     <span style={{ color: "red" }}>Campo Foto Obrigatório</span>
    )} */}
-     </CustomDivInpuMessageError>
+          </CustomDivInpuMessageError>
 
           {selectedPhoto && <progress value={progress} max="100" />}
           <div
@@ -840,10 +846,10 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
                   width={widthInputright}
                   height={heightInput}
                   type="password"
-                  onChange={(e) =>{
-                     setComfirmPassword(e.target.value);
-                     setIsConfirmPasswordVazio(false);
-                    }}
+                  onChange={(e) => {
+                    setComfirmPassword(e.target.value);
+                    setIsConfirmPasswordVazio(false);
+                  }}
                 />
                 {isConfirmpasswordVazio && (
                   <span style={{ color: "red" }}>
