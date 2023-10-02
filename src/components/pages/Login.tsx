@@ -59,7 +59,8 @@ function Login() {
         fetchUserData()
         navigate('/')
 
-      } else {
+      } 
+      else {
         console.log("Login não bem-sucedido");
         setLoginFalha(true)
       }

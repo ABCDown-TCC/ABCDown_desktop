@@ -67,6 +67,7 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
 
   const [isCepVazio, setIsCepVazio] = useState(false);
   const [isCepInvalid, setIsCepInvalid] = useState(false);
+  const [isMenorDeIdade, setIsMenorDeIdade] = useState<boolean>(false);
 
   const checkUserDataCompletion = () => {
     let hasError = false;
@@ -82,6 +83,7 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
     if (!sexo) {
       setIsSexoVazio(true);
       hasError = true;
+
     } else {
       setIsSexoVazio(false);
     }
@@ -98,6 +100,20 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
       hasError = true;
     } else {
       setIsDataNascimentoVazio(false);
+      // Verificar a idade
+      const dataNascimentoDate = new Date(dataNascimento);
+      const hoje = new Date();
+      const idade = hoje.getFullYear() - dataNascimentoDate.getFullYear();
+
+      // Se a pessoa ainda não completou 18 anos
+      if (idade < 18) {
+        setIsMenorDeIdade(true); // Definir um estado para indicar que é menor de idade
+        console.log('erro vc é menor de idade')
+        hasError = true; // Configurar hasError como true
+      } else {
+        setIsMenorDeIdade(false); // Remover o estado de menor de idade se a idade for maior que 18
+        console.log('maior de idade')
+      }
     }
     if (!numeroTelefone) {
       setIsNumeorTelefoneVazio(true);
@@ -231,20 +247,35 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
     setNumero("");
   };
 
-  useEffect(() => {
-    // Fazer a solicitação GET para obter as opções de gênero
-    // fetch("http://localhost:5000/tbl_genero", {
-    fetch("http://localhost:8181/genero", {
+  // useEffect(() => {
+  //   // Fazer a solicitação GET para obter as opções de gênero
+  //   // fetch("http://localhost:5000/tbl_genero", {
+  //   fetch("http://localhost:8181/genero", {
 
+  //     method: "GET",
+  //     headers: { Accept: "application/json" },
+  //   }) // Substitua pela URL correta
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       //  setGeneros(data.tbl_genero);
+  //       setGeneros(data);
+  //       console.log('data ', data)
+  //     })
+  //     .catch((error) => {
+  //       console.error("Erro ao buscar os gêneros:", error);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:8181/genero", {
       method: "GET",
       headers: { Accept: "application/json" },
-    }) // Substitua pela URL correta
+    })
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        //  setGeneros(data.tbl_genero);
-        setGeneros(data);
-        console.log('data ', data)
+      .then((data: { generos: Genero[] }) => {
+        console.log(data.generos);
+        setGeneros(data.generos);
       })
       .catch((error) => {
         console.error("Erro ao buscar os gêneros:", error);
@@ -359,12 +390,14 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
                 }}
               >
                 <option value=""></option>
-                {generos.length > 0 &&
-                  generos.map((genero) => (
-                    <option key={genero.id} value={genero.sigla}>
-                      {genero.nome}
-                    </option>
-                  ))}
+
+
+                {generos.map((genero) => (
+                  <option key={genero.id} value={genero.id}>
+                    {genero.nome}
+                  </option>
+                ))}
+
               </select>
 
               {isSexoVazio && (
@@ -405,6 +438,7 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
             {IsDataNascimentoVazio && (
               <span style={{ color: "red" }}>Data é obrigatório</span>
             )}
+            {isMenorDeIdade && (<span style={{ color: "red" }}>Precisa ser maior de 18 anos</span>)}
           </CustomDivInpuMessageError>
           <CustomDivInpuMessageError>
             <Input
@@ -515,7 +549,12 @@ function UserDataSection({ proceedToLoginData }: UserDataSectionProps) {
   );
 }
 
-function LoginDataSection({ userData }: { userData: UserData | null }) {
+// function LoginDataSection({ userData }: { userData: UserData | null, setCreateCoute: (value: string) => void  }) 
+function LoginDataSection({
+  userData,
+  setCreateCoute, // Certifique-se de que esta linha está presente
+}: { userData: UserData | null; setCreateCoute: (value: string) => void })
+{
   const heightInput: string = "4vh";
   const heightButton: string = "6.5vh";
   const widthInputleft: string = "27vw";
@@ -534,9 +573,10 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
   const [errorMessage, setErrorMessage] = useState(false);
   const [isEmailVazio, setIsEmailVazio] = useState(false);
   const [ispasswordVazio, setIsPasswordVazio] = useState(false);
-
   const [isConfirmEmailVazio, setIsConfirmEmailVazio] = useState(false);
   const [isConfirmpasswordVazio, setIsConfirmPasswordVazio] = useState(false);
+
+
   const [progress, setProgress] = useState(0);
 
   const requestData = {
@@ -582,7 +622,10 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
   //     reader.readAsDataURL(file);
   //   }
   // };
-
+  const handleBackToUserData = () => {
+    // Altere o estado para "userData" para retornar à seção UserDataSection
+    setCreateCoute("userData");
+  };
   const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -602,6 +645,8 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
           getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
             // Add type annotation here
             setSelectedPhoto(url); // Assuming setSelectedPhoto is a function to set the selected photo URL
+            setSelectedPhotoVazio(false);
+
 
           });
         }
@@ -668,12 +713,23 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
     } else {
       setIsConfirmPasswordVazio(false);
     }
+    if (!selectedPhoto) {
+      setSelectedPhotoVazio(true);
+      console.log("Campo de foto vazio.");
+
+    } else {
+      setSelectedPhotoVazio(false);
+    }
 
     // Verifique se ambos os campos de email e senha não estão vazios
     if (email && password) {
       // Chame a função desejada aqui
-      CreatePost();
-      console.log("checkEmptyInput");
+      if (email === confirmEmail && password === comfirmpassword) {
+        CreatePost();
+        console.log("checkEmptyInput");
+      }else {
+console.log('corfirmar email ou confirmar cenha não comrresponde aos campos email e senha')
+      }
     }
   };
 
@@ -776,6 +832,9 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
             {/* {selectedPhotoVazio && (
     <span style={{ color: "red" }}>Campo Foto Obrigatório</span>
    )} */}
+            {selectedPhotoVazio && (
+              <span style={{ color: "red" }}>Campo Foto Obrigatório</span>
+            )}
           </CustomDivInpuMessageError>
 
           {selectedPhoto && <progress value={progress} max="100" />}
@@ -864,7 +923,7 @@ function LoginDataSection({ userData }: { userData: UserData | null }) {
           </div>
 
           <CustomDiv>
-            <Btn text="Voltar" color="#F0754E" width={widthBtnRigth} />
+            <Btn text="Voltar" color="#F0754E" width={widthBtnRigth} onClick={handleBackToUserData}/>
             {/* <Btn
               text="Mandar"
               color="#43B1B1"
@@ -891,13 +950,16 @@ function CreateACount() {
     setUserData(userData); // Set the userData received from UserDataSection
     setCreateCoute("loginData");
   };
-
+  const handleBackToUserData = () => {
+    // Altere o estado para "userData" para voltar à seção UserDataSection
+    setCreateCoute("userData");
+  };
   return (
     <>
       {createCoute === "userData" ? (
         <UserDataSection proceedToLoginData={proceedToLoginData} />
       ) : (
-        <LoginDataSection userData={userData} />
+        <LoginDataSection userData={userData} setCreateCoute={setCreateCoute} />
       )}
     </>
   );

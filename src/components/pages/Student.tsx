@@ -1,15 +1,74 @@
 import Header from "../layout/Header/Header";
 import UserDetails from "../layout/ConfigurationComponents/UserDetails";
 import { useState } from "react";
+import React, { ReactNode } from 'react';
+
+interface CustomDivProps {
+    children: ReactNode;
+}
+
+const CustomDiv: React.FC<CustomDivProps> = ({ children }) => {
+    return (
+        <div style={{ display: 'flex', flexDirection: 'row',  alignItems: 'center', 
+        //backgroundColor:'blue', 
+        gap:'10%'}}>
+            {children}
+        </div>
+    );
+};
+
+const CustomDivColumn: React.FC<CustomDivProps> = ({ children }) => {
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {children}
+        </div>
+    );
+};
 
 
+function CustomSelect() {
+    return (
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "row",
+                backgroundColor: '#D9D9D9',
+                justifyContent: 'space-between',
+                width: '10vw',
+                height: '5vh',
+                border: '3px solid #DDDDDD',
+                alignItems: 'center',
+                borderRadius: '50px',
+                padding: '0 1%',
+
+                fontSize: '1.5rem'
+                // padding: '0.5rem',
+
+            }}
+        >
+            <label htmlFor="ordenar">Pendente</label>
+            <select id="ordenar" style={{
+                border: 'none',
+                outline: 'none',
+                width: '100%',
+                backgroundColor: '#D9D9D9'
 
 
+            }}>
+                <option value=""></option>
+                <option key="1" value="1">Opção 1</option>
+                <option key="2" value="2">Opção 2</option>
+                <option key="3" value="3">Opção 3</option>
+                {/* Adicione mais opções conforme necessário */}
+            </select>
+        </div>
+    );
+}
 
 const imageStudent = (
     <div
         style={{
-            width: "200px",
+            width: "60%",
             height: "100%",
             borderRadius: "50%",
             overflow: "hidden",
@@ -28,6 +87,8 @@ const imageStudent = (
         />
     </div>
 );
+
+
 
 interface TabProps {
     label: string;
@@ -60,10 +121,20 @@ function Tab({ label, active, onClick }: TabProps) {
 
 function TarefasDeCasa() {
     return (
-        <div>
-            <h1>Tarefas de Casa</h1>
-            {/* Conteúdo da tela de Tarefas de Casa */}
-        </div>
+        <>
+            <div
+                style={{ width: '100%', height: '100%', backgroundColor: 'red', alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+
+                <div style={{ width: '90%', height: '100%', backgroundColor: 'blue', display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ width: '100%', height: '20%', backgroundColor: 'pink' }}>
+                        <CustomSelect />
+
+                    </div>
+                    <div style={{ width: '100%', height: '80%', backgroundColor: 'green' }}></div>
+
+                </div>
+            </div>
+        </>
     );
 }
 
@@ -120,26 +191,61 @@ function Student() {
                             flexDirection: "row",
                             gap: "30px",
                             // marginLeft: "3%",
-                            width: "70%",
-                            background:'red',
-                            height:'100%',
+                            width: "50%",
+                           // background: 'red',
+                            height: '100%',
                         }}
                     >
-                       <div style={{
-                           width:'30%',
-                           height:'100%',
-                           backgroundColor:'pink',
-                           display:'flex',
-                           justifyContent:'flex-end'
-                       }}> {imageStudent}</div>
+                        <div style={{
+                            width: '40%',
+                            height: '100%',
+                            //backgroundColor: 'pink',
+                            display: 'flex',
+                            justifyContent: 'flex-end'
+                        }}> {imageStudent}</div>
 
                         <div
                             style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                width: '60%',
+                                height: '100%',
+                                //backgroundColor: 'pink',
+                                justifyContent: 'space-around'
                             }}
                         >
-                            {/* Conteúdo adicional aqui */}
+                            <span style={{color:'white', fontSize:'3rem',  fontWeight: 'bold'}}>Natan Gonçalves</span>
+                            <CustomDiv>
+                                <>
+                                    <CustomDivColumn>
+                                        <span style={{color:'white' ,fontWeight: 'bold', fontSize:'1.5rem'}}>Idade</span>
+                                        <span style={{color:'white'}}>4 anos</span>
+                                    </CustomDivColumn>
+
+                                    <CustomDivColumn>
+                                        <span style={{color:'white' ,fontWeight: 'bold',fontSize:'1.5rem'}}>Genêro</span>
+                                        <span style={{color:'white'}} >Masculino</span>
+                                    </CustomDivColumn>
+
+
+                                </>
+                            </CustomDiv>
+                            <CustomDiv>
+                                <>
+                                    <CustomDivColumn>
+                                        <span style={{color:'white' ,fontWeight: 'bold',fontSize:'1.5rem'}}>Escola</span>
+                                        <span style={{color:'white'}}>  E.E. Professora Iracema Rauen Maciel</span>
+                                    </CustomDivColumn>
+
+                                    <CustomDivColumn>
+                                        <span style={{color:'white' ,fontWeight: 'bold',fontSize:'1.5rem'}}>Turma</span>
+                                        <span style={{color:'white'}}>1º A - Manhã</span>
+                                    </CustomDivColumn>
+
+
+                                </>
+                            </CustomDiv>
+
                         </div>
                     </div>
                 </UserDetails>
