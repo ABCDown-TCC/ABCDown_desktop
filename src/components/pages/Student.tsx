@@ -10,7 +10,7 @@ const imageStudent = (
     <div
         style={{
             width: "200px",
-            height: "200px",
+            height: "100%",
             borderRadius: "50%",
             overflow: "hidden",
             backgroundColor: "white",
@@ -113,17 +113,25 @@ function Student() {
                 }}
             >
                 <Header title="" color="#43B1B1" />
-                <UserDetails height="20%" color="#43B1B1">
+                <UserDetails height="25%" color="#43B1B1">
                     <div
                         style={{
                             display: "flex",
                             flexDirection: "row",
                             gap: "30px",
-                            marginLeft: "3%",
-                            width: "max-content",
+                            // marginLeft: "3%",
+                            width: "70%",
+                            background:'red',
+                            height:'100%',
                         }}
                     >
-                        {imageStudent}
+                       <div style={{
+                           width:'30%',
+                           height:'100%',
+                           backgroundColor:'pink',
+                           display:'flex',
+                           justifyContent:'flex-end'
+                       }}> {imageStudent}</div>
 
                         <div
                             style={{

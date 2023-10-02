@@ -733,7 +733,8 @@ function Configuracoes() {
         borderRadius: "50%",
         overflow: "hidden",
         backgroundColor: "white",
-        border: '2px solid white'
+        border: '2px solid white',
+       
       }}
     >
       {responseData?.professor[0] && (<img
@@ -809,7 +810,7 @@ function Configuracoes() {
       }}
     >
       <Header title="" color="#F0754E" />
-      <UserDetails>
+      <UserDetails height="25%">
         <div
           style={{
             display: "flex",
@@ -869,8 +870,8 @@ function Configuracoes() {
         handleSavedClick={handleSavedClick}
       />
       <div style={{ width: '100%', height: '100%', backgroundColor: 'white' }}>
-        {currentScreen === "screen1" && screen1Content}
-        {currentScreen === "screen2" && screen2Content}
+        {/* {currentScreen === "screen1" && screen1Content}
+        {currentScreen === "screen2" && screen2Content} */}
       </div>
     </div>
 
