@@ -29,7 +29,9 @@
     cursor: pointer; /* Cursor de mão ao passar o mouse */
     font-weight: bold;  
     transition: background-color 0.3s, border-color 0.3s; /* Transição suave */
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
   
 }
 

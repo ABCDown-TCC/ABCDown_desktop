@@ -13,15 +13,19 @@ function CustomSelect(){
         alignItems:'center',
         borderRadius:'10px',
         padding:'0 1%',
+
         fontSize:'1.5rem'
         // padding: '0.5rem',
+      
       }}
     >
       <label htmlFor="ordenar">Ordenar</label>
       <select id="ordenar" style={{
         border: 'none',
         outline: 'none',
-        // width:'100%'
+         width:'100%',
+         
+      
       }}>
         <option value=""></option>
         <option key="1" value="1">Opção 1</option>

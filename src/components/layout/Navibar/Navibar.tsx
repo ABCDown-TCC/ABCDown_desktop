@@ -13,8 +13,8 @@ import Crud from '../../../Crud'
 function Navibar() {
   const [showLabels, setShowLabels] = useState(true);
   const [showConfirmation, setShowConfirmation] = useState(false); // State to control the confirmation dialog
-  const [responseData, setResponseData] = useState<{ professor: Array<{ id: number; nome: string ;foto:string}> } | null>(null);
-  
+  const [responseData, setResponseData] = useState<{ professor: Array<{ id: number; nome: string; foto: string }> } | null>(null);
+
 
   const navigate = useNavigate();
   function MeuComponente() {
@@ -28,14 +28,15 @@ function Navibar() {
         // Faça algo com os dados obtidos, por exemplo, imprima no console
         console.log(data);
       };
-  
+
       fetchData(); // Chame a função fetchData para buscar os dados
-    }, []);}
+    }, []);
+  }
 
-    MeuComponente()
+  MeuComponente()
 
- 
-     
+
+
 
   const toggleLabels = () => {
     setShowLabels(!showLabels);
@@ -54,20 +55,20 @@ function Navibar() {
 
   return (
     <>
-<NavItem
-  onClick={toggleLabels}
-  icon={responseData?.professor[0]?.foto || ''}
-  style={{
-    border: 'solid 2px #F0754E',
-    borderRadius: '50%',
-    objectFit: 'contain',
-    height: '110px',
-    width: '120px',
-    /* max-width e max-height não precisam ser definidos aqui */
-  }}
-  to=""
-  label={showLabels && responseData?.professor[0].nome || ""}
-/>
+      <NavItem
+        onClick={toggleLabels}
+        icon={responseData?.professor[0]?.foto || ''}
+        style={{
+          border: 'solid 2px #F0754E',
+          borderRadius: '50%',
+          objectFit: 'contain',
+          height: '110px',
+          width: '120px',
+          /* max-width e max-height não precisam ser definidos aqui */
+        }}
+        to=""
+        label={showLabels && responseData?.professor[0].nome || ""}
+      />
 
 
       <nav className={styles.container_nav}>

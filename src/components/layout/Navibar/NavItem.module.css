@@ -2,26 +2,28 @@
   text-decoration: none; /* Remova o sublinhado do link */
   color: inherit; /* Use a cor de texto padrão */
   display: flex;
-  align-items: center;
-  width: max-content;
+  
+  /* width: max-content; */
+  width: 100%;
+
   height: max-content;
-  gap: 1vw;
+  /* gap: 1vw; */
   /* margin: 30px 0 30px 0; */
   margin: 2vh 0 2vh 0;
+
 }
 
 .navItem{
-
-  font-weight: bold;
-  font-size: 1.3vw;
-  /* background-color: teal; */
+font-weight: 600;
+  /* font-weight: bold;  */
+  font-size: 1rem;
 }
 
 
 .navigation_img{
-  height: 40px;
-  width: 35px;
-  
+  height: 2.5vh;
+  width: 1.4vw;
+
   
 }
 
@@ -30,6 +32,14 @@
   width: 30;
 }
 .text_exit {
+  width: 100%;
   color: #F0754E;
-  font-size: 1.5em;
+  font-size: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+align-items: center;
+justify-content: center;
+background-color: aqua;
 }

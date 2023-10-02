@@ -14,10 +14,12 @@ interface NavItemProps {
 
 function NavItem({ icon, to, label, className, onClick, classNameImg, style }: NavItemProps) {
     const linkContent = (
-        <React.Fragment>
-            <img src={icon} alt={label} className={classNameImg ? styles[classNameImg] : ''} style={style} />
-            <span className={styles.label}>{label}</span> {/* Use <span> to apply styles to the label */}
-        </React.Fragment>
+        // <React.Fragment>
+<div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width:'100%', gap:'10%', }}>
+        <img src={icon} alt={label} className={classNameImg ? styles[classNameImg] : ''} style={style} />
+        <span className={styles.label}>{label}</span>
+      </div>
+        // </React.Fragment>
     );
 
     if (to) {
@@ -28,7 +30,7 @@ function NavItem({ icon, to, label, className, onClick, classNameImg, style }: N
         );
     } else {
         return (
-            <div onClick={onClick} className={`${styles.navItem} ${className ? styles[className] : ''}`}>
+            <div onClick={onClick} className={`${styles.navItens} ${className ? styles[className] : ''}`}>
                 {linkContent}
             </div>
         );

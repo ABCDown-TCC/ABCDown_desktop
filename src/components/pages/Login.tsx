@@ -19,7 +19,7 @@ function Login() {
   const heightButton: string = "6.5vh";
   const widthInput: string = "35vw";
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setSenha] = useState("");
   const [loginFalha, setLoginFalha] = useState(false)
   let accessToken = ""; // Variável no escopo superior
   const [data, setData] = useState(null);
@@ -35,7 +35,7 @@ function Login() {
     console.log("Login Clicado");
     const data = {
       email,
-      password,
+      senha: senha,
     };
     console.log(data);
 
@@ -179,9 +179,10 @@ function Login() {
             />
             <Input
               text="Senha:"
+              type="password"
               width={widthInput}
               height={heightInput}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setSenha(e.target.value)}
             />
           </div>
           <div
