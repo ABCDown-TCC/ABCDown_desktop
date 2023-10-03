@@ -14,6 +14,11 @@ import { storage } from "../../firebase";
 interface RepeatedDivProps {
   children: ReactNode;
 }
+interface Genero {
+  id: number;
+  nome: string;
+  sigla: string;
+}
 function RepeatedDiv({ children }: RepeatedDivProps) {
 
 
@@ -97,7 +102,7 @@ function Configuracoes() {
   const [cpf, setCpf] = useState("");
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [changeImage, setChangeImage] = useState('noChanceImage')
-  const [options, setOptions] = useState<Option[]>([]);
+  const [generos, setGeneros] = useState<Genero[]>([]);
   const [logradouro, setLogradouro] = useState("");
   const [bairro, setBairro] = useState("");
   const [cidade, setCidade] = useState("");
@@ -249,7 +254,20 @@ function Configuracoes() {
   const widthInputRigth = '35%'
   const widthInputLeft = '60%'
 
-
+  useEffect(() => {
+    fetch("http://localhost:8181/genero", {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    })
+      .then((response) => response.json())
+      .then((data: { generos: Genero[] }) => {
+        console.log(data.generos);
+        setGeneros(data.generos);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar os gêneros:", error);
+      });
+  }, []);
   const handleMyDataClick = () => {
     // Lógica para exibir e editar os dados do usuário
     console.log("Meus Dados clicado");
@@ -464,9 +482,11 @@ function Configuracoes() {
             }}
           >
             <option value="" style={{ color: 'red' }}>{responseData?.professor[0].nome_genero}</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            {generos.map((genero) => (
+                  <option key={genero.id} value={genero.id}>
+                    {genero.nome}
+                  </option>
+                ))}
             {/* {options.map((option) => (
       <option key={option.id_genero} value={option.id_genero}>
         {option.nome_genero}
@@ -870,8 +890,8 @@ function Configuracoes() {
         handleSavedClick={handleSavedClick}
       />
       <div style={{ width: '100%', height: '100%', backgroundColor: 'white' }}>
-        {/* {currentScreen === "screen1" && screen1Content}
-        {currentScreen === "screen2" && screen2Content} */}
+        {currentScreen === "screen1" && screen1Content}
+        {currentScreen === "screen2" && screen2Content}
       </div>
     </div>
 

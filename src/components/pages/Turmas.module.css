@@ -1,0 +1,120 @@
+.containerPrincipal{
+    display: flex;
+    width: 100%; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    height: 98%;
+}
+
+.estruturaConteudo{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    
+}
+
+.divTeste {
+    
+    background-color: aqua;
+    width: 50%;
+    height: 50%;
+}
+
+.textTree{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+
+    align-items: center;
+   
+    
+}
+
+.informacoes {
+    width: 50%;
+    height:20%;
+    display: flex;
+    color: #939393;
+    font-size: 30px;
+    align-items: flex-end;
+    
+}
+
+.serie{
+    height: 25%;
+    display: flex;
+    width: 50%;
+    display: flex;
+    align-items: flex-end;
+
+    
+}
+
+.containerCodigo {
+    display: flex;
+    flex-Direction: column;
+    width: 50%;
+    
+    gap: 0.5vw;
+    height: 15%;
+    justify-content: flex-end;
+    
+}
+
+.button {
+    width: 20%;
+    padding: 10px 0;
+    border-Radius: 10px;
+
+    color: #fff;
+    display: flex;
+    justify-Content: center;
+    align-Items: center; 
+    cursor: pointer; 
+    border: none ;
+    width: 25%;
+    background-color: #3393C3;
+}
+
+.teste {
+    width: 50%;
+    height: 100%;
+    display: flex;
+   flex-direction: column;
+
+
+}
+
+.text{
+    display: flex;
+    
+    flex-Direction: column;
+    width: 100%;
+    height: 30%;
+   justify-content: center;
+
+}
+
+.aluno {
+
+    height: max-content;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.teste2 {
+
+    width: 50%;
+    height: 100%;
+    display: flex;
+   
+}
+
+.img {
+    height: 100%;
+    width: 100%;
+}

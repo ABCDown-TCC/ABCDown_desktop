@@ -2,11 +2,39 @@ import Header from "../layout/Header/Header";
 import UserDetails from "../layout/ConfigurationComponents/UserDetails";
 import { useState } from "react";
 import React, { ReactNode } from 'react';
+import imageLupa from '../layout/ClassComponents/ImagesClass/lupa.svg'
 
 interface CustomDivProps {
     children: ReactNode;
 }
 
+
+function Matter() {
+    const containerStyle = {
+      border: '2px solid #F0754E',
+      padding: '10px',
+      width: '300px',
+    };
+  
+    const titleStyle = {
+      fontWeight: 'bold',
+    };
+  
+    const starsStyle = {
+      fontSize: '24px',
+      color: 'gold',
+    };
+  
+    return (
+      <div style={containerStyle}>
+        <span style={titleStyle}>Atividade de Português</span>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div style={starsStyle}>
+          <span>★★★★★</span>
+        </div>
+      </div>
+    );
+  }
 const CustomDiv: React.FC<CustomDivProps> = ({ children }) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row',  alignItems: 'center', 
@@ -25,6 +53,40 @@ const CustomDivColumn: React.FC<CustomDivProps> = ({ children }) => {
     );
 };
 
+interface SearchInputProps {
+    searchTerm?: string;
+    handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    text?: string;
+  }
+  
+  function SearchInput(props: SearchInputProps) {
+    return (
+        <div
+        style={{
+          backgroundColor: '#D9D9D9',
+          width: '40%',
+          height: '3vh',
+          display: 'flex',          // Adicione display flex
+          justifyContent: 'space-between', // Coloque os itens nos extremos
+          alignItems: 'center',     // Alinhe verticalmente no centro
+          borderRadius:'50px'
+        }}
+      >
+       
+        <input style={{ marginLeft:'5%', border: 'none',outline: 'none',backgroundColor:'#D9D9D9',height:'100%',width:'100%'}}
+        
+          type="text"
+          placeholder={props.text}
+          value={props.searchTerm}
+          onChange={props.handleChange}
+    
+        />
+<img src={imageLupa} alt="Lupa" style={{ marginRight: '5%' }} />
+        {/* <span className="user-input">{props.text}</span> */}
+      </div>
+    )
+  }
+  
 
 function CustomSelect() {
     return (
@@ -126,11 +188,15 @@ function TarefasDeCasa() {
                 style={{ width: '100%', height: '100%', backgroundColor: 'red', alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
 
                 <div style={{ width: '90%', height: '100%', backgroundColor: 'blue', display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ width: '100%', height: '20%', backgroundColor: 'pink' }}>
+                    <div style={{ width: '100%', height: '20%', backgroundColor: 'pink',display:'flex', flexDirection:'row',justifyContent: 'space-between' }}>
                         <CustomSelect />
+                        <SearchInput text="Pesquisar atividades" />
 
                     </div>
-                    <div style={{ width: '100%', height: '80%', backgroundColor: 'green' }}></div>
+                    <div style={{ width: '100%', height: '80%', backgroundColor: 'green' }}>
+
+                        < Matter/>
+                    </div>
 
                 </div>
             </div>
