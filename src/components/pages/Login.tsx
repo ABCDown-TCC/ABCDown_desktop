@@ -52,16 +52,22 @@ function Login() {
       if (response.ok) {
         console.log("Login bem-sucedido");
         const responseData = await response.json();
-        console.log("responseData:", responseData);
-        const accessToken = responseData.acess_token;
+        console.log("responseData: test ", responseData);
+      
+        // Converter o objeto responseData em uma string JSON
+        const accessToken = responseData.message;
+      
+        // Armazenar a string na sessionStorage
         sessionStorage.setItem("accessToken", accessToken);
         console.log("Token armazenado na sessionStorage:", accessToken);
-        fetchUserData()
-        navigate('/')
-
-      } 
+        fetchUserData();
+        navigate('/');
+      }
+      
       else {
-        console.log("Login não bem-sucedido");
+        // console.log("Login não bem-sucedido");
+        console.log("Token armazenado na sessionStorage else:", accessToken);
+
         setLoginFalha(true)
       }
     } catch (error) {

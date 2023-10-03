@@ -7,6 +7,7 @@ function Crud() {
       console.log(accessToken);
 
       if (!accessToken) {
+        
         console.error("Token de acesso não encontrado");
         return;
       }
@@ -18,13 +19,14 @@ function Crud() {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-
+      
+      
       if (response.ok) {
         const responseData = await response.json();
         console.log(responseData);
         return responseData; // Retorna os dados da função
       } else {
-        console.log("Solicitação não bem-sucedida");
+        console.log("Solicitação não bem-sucedida",response);
       }
     } catch (error) {
       console.error("Erro ao fazer a solicitação:", error);
