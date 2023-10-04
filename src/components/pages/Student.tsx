@@ -13,7 +13,9 @@ function Matter() {
     const containerStyle = {
       border: '2px solid #F0754E',
       padding: '10px',
-      width: '300px',
+      width: '40%',
+      borderRadius: '10px',
+      height: '30vh',
     };
   
     const titleStyle = {
@@ -23,14 +25,16 @@ function Matter() {
     const starsStyle = {
       fontSize: '24px',
       color: 'gold',
+      backgroundColor: 'red',
     };
   
     return (
       <div style={containerStyle}>
         <span style={titleStyle}>Atividade de Português</span>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <div style={starsStyle}>
-          <span>★★★★★</span>
+        <div>
+          <span>avaliacao</span>
+          <span style={starsStyle}>★★★★★</span>
         </div>
       </div>
     );

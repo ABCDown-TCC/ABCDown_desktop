@@ -264,14 +264,15 @@ function Turmas() {
                     <Card width="35%" height="80%">
                         <div style={{
                             display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', height: '100%',
-                            //  backgroundColor:'red'
+                         // backgroundColor:'red',
+                          justifyContent: 'space-between'
                             //  gap: '5%' 
                         }}>
                             <div style={{
                                 display: 'flex',
                                 flexDirection: 'column',
                                 height: '40%',
-                                // backgroundColor:'blue',
+                               //  backgroundColor:'blue',
                                 width: '90%',
                                 alignItems: 'center',
                                 justifyContent: 'space-evenly'
@@ -284,9 +285,10 @@ function Turmas() {
                             </div>
                             <div style={{
                                 display: 'flex', flexDirection: 'column', width: '90%', height: '40%',
-                                //  backgroundColor: 'green',
+                             // backgroundColor: 'green',
                                 //justifyContent: 'space-between'
-                                gap: '10%'
+                               // gap: '10%'
+                               justifyContent:'space-between'
                             }}>
 
 
@@ -303,8 +305,8 @@ function Turmas() {
 
                             <div style={{
 
-                                height: '20%',
-                                //  backgroundColor:'pink',
+                                height: '10%',
+                                  //backgroundColor:'pink',
                                 width: '90%',
 
 
@@ -466,7 +468,100 @@ function Turmas() {
 
 
 
+<Card width="40%" height="35vh" onClick={onClickCard}>
 
+<div
+    style={{
+        display: "flex",
+        flexDirection: "row",
+        width: "100%",
+        height: "80%",
+        //backgroundColor:'red'
+        //   backgroundColor: "orange",
+    }}
+>
+    <div
+        style={{
+            display: "flex",
+            flexDirection: "column",
+            //   alignItems: "center",
+               backgroundColor: "red",
+            justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
+            marginLeft: "1vw",
+            width: "50%",
+            //  backgroundColor:'green'
+        }}
+    >
+        <h2
+            style={{
+                fontSize: "1.7vw",
+            }}
+        >
+            nomeee
+        </h2>
+        <p
+            style={{
+                fontSize: "0.8vw",
+            }}
+        > ssssssssssssssscdcd
+        </p>
+    </div>
+    <div
+        style={{
+            //   backgroundColor: "green",
+            width: "50%",
+            height: "100%",
+            //  display:
+        }}
+    >
+        <img src={image2} alt="" style={{
+            width: '10vw',
+            height: '20vh'
+        }} />
+    </div>
+</div>
+<div
+    style={{
+        display: "flex",
+        flexDirection: "row",
+        width: "100%",
+         backgroundColor: "Pink",
+        height: "20%",
+    }}
+>
+    <div
+        style={{
+            display: "flex",
+            flexDirection: "column",
+              backgroundColor: "green",
+            alignItems: "center",
+            justifyContent: "center",
+            marginLeft: "3vw",
+        }}
+    >
+        <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
+        <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
+    </div>
+    <div style={{ flex: "1", backgroundColor: "white" }}></div>
+    <div
+        style={{
+            display: "flex",
+            flexDirection: "column",
+            //   backgroundColor: "blue",
+            alignItems: "center",
+            justifyContent: "center",
+            marginRight: "3vw", // Corrected typo
+        }}
+    >
+        <ContainerInfoDeleteContainer
+            onClickDelete={onClickDelete}
+            onClickIfo={onClickIfo}
+
+        />
+    </div>
+</div>
+
+</Card>
 
 
 
