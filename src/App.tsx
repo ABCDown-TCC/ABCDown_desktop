@@ -58,6 +58,10 @@ import InputInfo from './components/pages/InputInfo'
 import TesteInputConfiguration from './components/pages/TesteInputConfiguration'
 import Students from './components/pages/Students'
 import Student from './components/pages/Student'
+import ConfirmarSenhaForm from './components/redefinirSenha/ConfirmarSenhaForm';
+import EsqueciSenhaForm from './components/redefinirSenha/EsqueciSenhaForm';
+
+
 function App() {
   const divStyle: React.CSSProperties = {
     margin: '0',
@@ -115,7 +119,8 @@ function App() {
           <Route path="/testCard" element={<TestCard/>} />
           <Route path="/testeInputConfiguration" element={<TesteInputConfiguration/>}/>
           {/* <Route path="/turmas/alunos" element={<Students/>}/> */}
-
+          <Route path="/confirmar-senha/" element={<ConfirmarSenhaForm />} />
+          <Route path="/esqueci-minha-senha" element={<EsqueciSenhaForm />} />
 
       
 

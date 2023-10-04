@@ -90,7 +90,7 @@ function Turmas() {
                 if (response.ok) {
                     // Se a resposta do servidor for bem-sucedida (código de status 200-299)
                     console.log('Solicitação POST bem-sucedida!');
-                    // Você pode adicionar código aqui para lidar com a resposta do servidor, se necessário
+                    
                 } else {
                     // Se a resposta do servidor não for bem-sucedida
                     console.error('Erro na solicitação POST:', response.status);

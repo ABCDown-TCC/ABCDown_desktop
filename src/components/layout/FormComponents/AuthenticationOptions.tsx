@@ -18,7 +18,7 @@ function AuthenticationOptions(props: AuthenticationOptionsProps) {
     return (
         <div>
             {props.text === 'Esqueceu sua senha?' && (
-                <Link to="/redefinirsenha" className={styles.customButton} style={{ ...linkStyle, color: props.color }}>
+                <Link to="/esqueci-minha-senha" className={styles.customButton} style={{ ...linkStyle, color: props.color }}>
                    Esqueceu sua senha?
                 </Link>
             )}
