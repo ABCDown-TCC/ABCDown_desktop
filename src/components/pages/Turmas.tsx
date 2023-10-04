@@ -18,9 +18,20 @@ import { useNavigate, Link } from 'react-router-dom';
 import Crud from '../../Crud'
 import styles from './Turmas.module.css'
 
+interface Turma {
+    codigoTurma: string;
+    descricao: string;
+    id: number;
+    id_professor: number;
+    nome: string;
+    nomeProfessor: string;
+}
+
 function Turmas() {
     const [infoVisible, setInfoVisible] = useState(false);
     const [deleteVisible, setDeleteVisible] = useState(false);
+    const [sucessCreateAClass, setSucessCreateAClass] = useState(false);
+
     const [adicionarSalaVisible, setAdicionarSalaVisible] = useState(false);
     const [isCreateClass, setIsCreateClass] = useState(false);
     const [listaVisivel, setListaVisivel] = useState(false);
@@ -29,6 +40,35 @@ function Turmas() {
     const [turmaCodigo, setTurmaCodigo] = useState('')
     const navigate = useNavigate();
     const [idProfessor, setIdProfessor] = useState<number | null>(null);
+    const [turmas, setTurmas] = useState<Turma[]>([]);
+
+
+    async function getTurmas() {
+        try {
+            const response = await fetch(`http://localhost:8181/turma/`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log(responseData);
+                const turmasData = responseData.turmas;
+
+                setTurmas(turmasData);
+
+                return responseData; // Retorna os dados da função
+            } else {
+                console.log("Solicitação não bem-sucedida", response);
+            }
+        } catch (error) {
+            console.error("Erro ao fazer a solicitação:", error);
+        }
+    }
+    useEffect(() => {
+        getTurmas();
+    }, []);
 
     function MeuComponente() {
         useEffect(() => {
@@ -90,7 +130,8 @@ function Turmas() {
                 if (response.ok) {
                     // Se a resposta do servidor for bem-sucedida (código de status 200-299)
                     console.log('Solicitação POST bem-sucedida!');
-                    
+                    setIsCreateClass(true)
+                    // Você pode adicionar código aqui para lidar com a resposta do servidor, se necessário
                 } else {
                     // Se a resposta do servidor não for bem-sucedida
                     console.error('Erro na solicitação POST:', response.status);
@@ -283,6 +324,28 @@ function Turmas() {
                                         height="3.5vh"
                                         onClick={handleCreateClass}
                                     />
+
+                                    {sucessCreateAClass && (
+
+                                        <div
+                                            style={{
+                                                position: 'fixed',
+                                                top: '0',
+                                                left: '0',
+                                                width: '100%',
+                                                height: '100%',
+                                                background: 'rgba(0, 0, 0, 0.5)', // Fundo escuro semi-transparente
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                            }}
+                                        >
+                                            <span>Criado com sucesso
+                                            </span>
+
+                                        </div>
+                                    )}
+
                                 </div>
                             </div>
                         </div>
@@ -302,861 +365,107 @@ function Turmas() {
 
 
             }}>
-                <Card width="40%" height="35vh" onClick={onClickCard}>
+                {turmas.map((turma) => (
 
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            height: "80%",
-                            // backgroundColor:'red'
-                            //   backgroundColor: "orange",
-                        }}
-                    >
+                    <Card width="40%" height="35vh" onClick={onClickCard}>
+
                         <div
                             style={{
                                 display: "flex",
-                                flexDirection: "column",
-                                //   alignItems: "center",
-                                //   backgroundColor: "red",
-                                justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-                                marginLeft: "1vw",
-                                width: "50%",
-                                //  backgroundColor:'green'
+                                flexDirection: "row",
+                                width: "100%",
+                                height: "80%",
+                                //backgroundColor:'red'
+                                //   backgroundColor: "orange",
                             }}
                         >
-                            <h2
+                            <div
                                 style={{
-                                    fontSize: "1.7vw",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    //   alignItems: "center",
+                                       backgroundColor: "red",
+                                    justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
+                                    marginLeft: "1vw",
+                                    width: "50%",
+                                    //  backgroundColor:'green'
                                 }}
                             >
-                                Título do Card
-                            </h2>
-                            <p
+                                <h2
+                                    style={{
+                                        fontSize: "1.7vw",
+                                    }}
+                                >
+                                    {turma.nome}
+                                </h2>
+                                <p
+                                    style={{
+                                        fontSize: "0.8vw",
+                                    }}
+                                > {turma.descricao}
+                                </p>
+                            </div>
+                            <div
                                 style={{
-                                    fontSize: "0.8vw",
+                                    //   backgroundColor: "green",
+                                    width: "50%",
+                                    height: "100%",
+                                    //  display:
                                 }}
                             >
-                                Descrição dessa turma papsfcjdaovjodij
-                            </p>
+                                <img src={image2} alt="" style={{
+                                    width: '10vw',
+                                    height: '20vh'
+                                }} />
+                            </div>
                         </div>
-                        <div
-                            style={{
-                                //   backgroundColor: "green",
-                                width: "50%",
-                                height: "100%",
-                                //  display:
-                            }}
-                        >
-                            <img src={image2} alt="" style={{
-                                width: '10vw',
-                                height: '20vh'
-                            }} />
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            //   backgroundColor: "Pink",
-                            height: "20%",
-                        }}
-                    >
                         <div
                             style={{
                                 display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "green",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginLeft: "3vw",
+                                flexDirection: "row",
+                                width: "100%",
+                                 backgroundColor: "Pink",
+                                height: "20%",
                             }}
                         >
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-                        </div>
-                        <div style={{ flex: "1", backgroundColor: "white" }}></div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "blue",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginRight: "3vw", // Corrected typo
-                            }}
-                        >
-                            <ContainerInfoDeleteContainer
-                                onClickDelete={onClickDelete}
-                                onClickIfo={onClickIfo}
-
-                            />
-                        </div>
-                    </div>
-
-                </Card>
-                <Card width="40%" height="35vh" onClick={onClickCard}>
-
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            height: "80%",
-                            // backgroundColor:'red'
-                            //   backgroundColor: "orange",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   alignItems: "center",
-                                //   backgroundColor: "red",
-                                justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-                                marginLeft: "1vw",
-                                width: "50%",
-                                //  backgroundColor:'green'
-                            }}
-                        >
-                            <h2
+                            <div
                                 style={{
-                                    fontSize: "1.7vw",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                      backgroundColor: "green",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    marginLeft: "3vw",
                                 }}
                             >
-                                Título do Card
-                            </h2>
-                            <p
+                                <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
+                                <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
+                            </div>
+                            <div style={{ flex: "1", backgroundColor: "white" }}></div>
+                            <div
                                 style={{
-                                    fontSize: "0.8vw",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    //   backgroundColor: "blue",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    marginRight: "3vw", // Corrected typo
                                 }}
                             >
-                                Descrição dessa turma papsfcjdaovjodij
-                            </p>
-                        </div>
-                        <div
-                            style={{
-                                //   backgroundColor: "green",
-                                width: "50%",
-                                height: "100%",
-                                //  display:
-                            }}
-                        >
-                            <img src={image2} alt="" style={{
-                                width: '10vw',
-                                height: '20vh'
-                            }} />
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            //   backgroundColor: "Pink",
-                            height: "20%",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "green",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginLeft: "3vw",
-                            }}
-                        >
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-                        </div>
-                        <div style={{ flex: "1", backgroundColor: "white" }}></div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "blue",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginRight: "3vw", // Corrected typo
-                            }}
-                        >
-                            <ContainerInfoDeleteContainer
-                                onClickDelete={onClickDelete}
-                                onClickIfo={onClickIfo}
+                                <ContainerInfoDeleteContainer
+                                    onClickDelete={onClickDelete}
+                                    onClickIfo={onClickIfo}
 
-                            />
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                </Card>
-                <Card width="40%" height="35vh" onClick={onClickCard}>
+                    </Card>
 
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            height: "80%",
-                            // backgroundColor:'red'
-                            //   backgroundColor: "orange",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   alignItems: "center",
-                                //   backgroundColor: "red",
-                                justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-                                marginLeft: "1vw",
-                                width: "50%",
-                                //  backgroundColor:'green'
-                            }}
-                        >
-                            <h2
-                                style={{
-                                    fontSize: "1.7vw",
-                                }}
-                            >
-                                Título do Card
-                            </h2>
-                            <p
-                                style={{
-                                    fontSize: "0.8vw",
-                                }}
-                            >
-                                Descrição dessa turma papsfcjdaovjodij
-                            </p>
-                        </div>
-                        <div
-                            style={{
-                                //   backgroundColor: "green",
-                                width: "50%",
-                                height: "100%",
-                                //  display:
-                            }}
-                        >
-                            <img src={image2} alt="" style={{
-                                width: '10vw',
-                                height: '20vh'
-                            }} />
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            //   backgroundColor: "Pink",
-                            height: "20%",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "green",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginLeft: "3vw",
-                            }}
-                        >
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-                        </div>
-                        <div style={{ flex: "1", backgroundColor: "white" }}></div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "blue",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginRight: "3vw", // Corrected typo
-                            }}
-                        >
-                            <ContainerInfoDeleteContainer
-                                onClickDelete={onClickDelete}
-                                onClickIfo={onClickIfo}
+                ))}
 
-                            />
-                        </div>
-                    </div>
 
-                </Card>
-                <Card width="40%" height="35vh" onClick={onClickCard}>
 
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            height: "80%",
-                            // backgroundColor:'red'
-                            //   backgroundColor: "orange",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   alignItems: "center",
-                                //   backgroundColor: "red",
-                                justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-                                marginLeft: "1vw",
-                                width: "50%",
-                                //  backgroundColor:'green'
-                            }}
-                        >
-                            <h2
-                                style={{
-                                    fontSize: "1.7vw",
-                                }}
-                            >
-                                Título do Card
-                            </h2>
-                            <p
-                                style={{
-                                    fontSize: "0.8vw",
-                                }}
-                            >
-                                Descrição dessa turma papsfcjdaovjodij
-                            </p>
-                        </div>
-                        <div
-                            style={{
-                                //   backgroundColor: "green",
-                                width: "50%",
-                                height: "100%",
-                                //  display:
-                            }}
-                        >
-                            <img src={image2} alt="" style={{
-                                width: '10vw',
-                                height: '20vh'
-                            }} />
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            //   backgroundColor: "Pink",
-                            height: "20%",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "green",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginLeft: "3vw",
-                            }}
-                        >
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-                        </div>
-                        <div style={{ flex: "1", backgroundColor: "white" }}></div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "blue",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginRight: "3vw", // Corrected typo
-                            }}
-                        >
-                            <ContainerInfoDeleteContainer
-                                onClickDelete={onClickDelete}
-                                onClickIfo={onClickIfo}
-
-                            />
-                        </div>
-                    </div>
-
-                </Card>
-                <Card width="40%" height="35vh" onClick={onClickCard}>
-
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            height: "80%",
-                            // backgroundColor:'red'
-                            //   backgroundColor: "orange",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   alignItems: "center",
-                                //   backgroundColor: "red",
-                                justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-                                marginLeft: "1vw",
-                                width: "50%",
-                                //  backgroundColor:'green'
-                            }}
-                        >
-                            <h2
-                                style={{
-                                    fontSize: "1.7vw",
-                                }}
-                            >
-                                Título do Card
-                            </h2>
-                            <p
-                                style={{
-                                    fontSize: "0.8vw",
-                                }}
-                            >
-                                Descrição dessa turma papsfcjdaovjodij
-                            </p>
-                        </div>
-                        <div
-                            style={{
-                                //   backgroundColor: "green",
-                                width: "50%",
-                                height: "100%",
-                                //  display:
-                            }}
-                        >
-                            <img src={image2} alt="" style={{
-                                width: '10vw',
-                                height: '20vh'
-                            }} />
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            //   backgroundColor: "Pink",
-                            height: "20%",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "green",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginLeft: "3vw",
-                            }}
-                        >
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-                        </div>
-                        <div style={{ flex: "1", backgroundColor: "white" }}></div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "blue",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginRight: "3vw", // Corrected typo
-                            }}
-                        >
-                            <ContainerInfoDeleteContainer
-                                onClickDelete={onClickDelete}
-                                onClickIfo={onClickIfo}
-
-                            />
-                        </div>
-                    </div>
-
-                </Card>
-                <Card width="40%" height="35vh" onClick={onClickCard}>
-
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            height: "80%",
-                            // backgroundColor:'red'
-                            //   backgroundColor: "orange",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   alignItems: "center",
-                                //   backgroundColor: "red",
-                                justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-                                marginLeft: "1vw",
-                                width: "50%",
-                                //  backgroundColor:'green'
-                            }}
-                        >
-                            <h2
-                                style={{
-                                    fontSize: "1.7vw",
-                                }}
-                            >
-                                Título do Card
-                            </h2>
-                            <p
-                                style={{
-                                    fontSize: "0.8vw",
-                                }}
-                            >
-                                Descrição dessa turma papsfcjdaovjodij
-                            </p>
-                        </div>
-                        <div
-                            style={{
-                                //   backgroundColor: "green",
-                                width: "50%",
-                                height: "100%",
-                                //  display:
-                            }}
-                        >
-                            <img src={image2} alt="" style={{
-                                width: '10vw',
-                                height: '20vh'
-                            }} />
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            //   backgroundColor: "Pink",
-                            height: "20%",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "green",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginLeft: "3vw",
-                            }}
-                        >
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-                        </div>
-                        <div style={{ flex: "1", backgroundColor: "white" }}></div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "blue",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginRight: "3vw", // Corrected typo
-                            }}
-                        >
-                            <ContainerInfoDeleteContainer
-                                onClickDelete={onClickDelete}
-                                onClickIfo={onClickIfo}
-
-                            />
-                        </div>
-                    </div>
-
-                </Card>
-                <Card width="40%" height="35vh" onClick={onClickCard}>
-
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            height: "80%",
-                            // backgroundColor:'red'
-                            //   backgroundColor: "orange",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   alignItems: "center",
-                                //   backgroundColor: "red",
-                                justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-                                marginLeft: "1vw",
-                                width: "50%",
-                                //  backgroundColor:'green'
-                            }}
-                        >
-                            <h2
-                                style={{
-                                    fontSize: "1.7vw",
-                                }}
-                            >
-                                Título do Card
-                            </h2>
-                            <p
-                                style={{
-                                    fontSize: "0.8vw",
-                                }}
-                            >
-                                Descrição dessa turma papsfcjdaovjodij
-                            </p>
-                        </div>
-                        <div
-                            style={{
-                                //   backgroundColor: "green",
-                                width: "50%",
-                                height: "100%",
-                                //  display:
-                            }}
-                        >
-                            <img src={image2} alt="" style={{
-                                width: '10vw',
-                                height: '20vh'
-                            }} />
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            //   backgroundColor: "Pink",
-                            height: "20%",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "green",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginLeft: "3vw",
-                            }}
-                        >
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-                        </div>
-                        <div style={{ flex: "1", backgroundColor: "white" }}></div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "blue",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginRight: "3vw", // Corrected typo
-                            }}
-                        >
-                            <ContainerInfoDeleteContainer
-                                onClickDelete={onClickDelete}
-                                onClickIfo={onClickIfo}
-
-                            />
-                        </div>
-                    </div>
-
-                </Card>
-                <Card width="40%" height="35vh" onClick={onClickCard}>
-
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            height: "80%",
-                            // backgroundColor:'red'
-                            //   backgroundColor: "orange",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   alignItems: "center",
-                                //   backgroundColor: "red",
-                                justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-                                marginLeft: "1vw",
-                                width: "50%",
-                                //  backgroundColor:'green'
-                            }}
-                        >
-                            <h2
-                                style={{
-                                    fontSize: "1.7vw",
-                                }}
-                            >
-                                Título do Card
-                            </h2>
-                            <p
-                                style={{
-                                    fontSize: "0.8vw",
-                                }}
-                            >
-                                Descrição dessa turma papsfcjdaovjodij
-                            </p>
-                        </div>
-                        <div
-                            style={{
-                                //   backgroundColor: "green",
-                                width: "50%",
-                                height: "100%",
-                                //  display:
-                            }}
-                        >
-                            <img src={image2} alt="" style={{
-                                width: '10vw',
-                                height: '20vh'
-                            }} />
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            //   backgroundColor: "Pink",
-                            height: "20%",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "green",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginLeft: "3vw",
-                            }}
-                        >
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-                        </div>
-                        <div style={{ flex: "1", backgroundColor: "white" }}></div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "blue",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginRight: "3vw", // Corrected typo
-                            }}
-                        >
-                            <ContainerInfoDeleteContainer
-                                onClickDelete={onClickDelete}
-                                onClickIfo={onClickIfo}
-
-                            />
-                        </div>
-                    </div>
-
-                </Card>
-                <Card width="40%" height="35vh" onClick={onClickCard}>
-
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            height: "80%",
-                            // backgroundColor:'red'
-                            //   backgroundColor: "orange",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   alignItems: "center",
-                                //   backgroundColor: "red",
-                                justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-                                marginLeft: "1vw",
-                                width: "50%",
-                                //  backgroundColor:'green'
-                            }}
-                        >
-                            <h2
-                                style={{
-                                    fontSize: "1.7vw",
-                                }}
-                            >
-                                Título do Card
-                            </h2>
-                            <p
-                                style={{
-                                    fontSize: "0.8vw",
-                                }}
-                            >
-                                Descrição dessa turma papsfcjdaovjodij
-                            </p>
-                        </div>
-                        <div
-                            style={{
-                                //   backgroundColor: "green",
-                                width: "50%",
-                                height: "100%",
-                                //  display:
-                            }}
-                        >
-                            <img src={image2} alt="" style={{
-                                width: '10vw',
-                                height: '20vh'
-                            }} />
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            //   backgroundColor: "Pink",
-                            height: "20%",
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "green",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginLeft: "3vw",
-                            }}
-                        >
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-                            <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-                        </div>
-                        <div style={{ flex: "1", backgroundColor: "white" }}></div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   backgroundColor: "blue",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                marginRight: "3vw", // Corrected typo
-                            }}
-                        >
-                            <ContainerInfoDeleteContainer
-                                onClickDelete={onClickDelete}
-                                onClickIfo={onClickIfo}
-
-                            />
-                        </div>
-                    </div>
-
-                </Card>
 
 
 
@@ -1217,7 +526,7 @@ function Turmas() {
                                     <div className={styles.textTree}>
 
                                         <div className={styles.teste}>
-                            
+
 
                                             <p className={styles.informacoes}>Informações</p>
 
