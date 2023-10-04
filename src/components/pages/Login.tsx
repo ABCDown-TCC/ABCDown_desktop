@@ -28,7 +28,6 @@ function Login() {
     console.log('close janela info')
     setLoginFalha(false);
 
-
   }
 
   const handleLogin = async () => {
@@ -58,7 +57,7 @@ function Login() {
         const accessToken = responseData.message;
       
         // Armazenar a string na sessionStorage
-        sessionStorage.setItem("accessToken", accessToken);
+        sessionStorage.setItem("accessToken test", accessToken);
         console.log("Token armazenado na sessionStorage:", accessToken);
         fetchUserData();
         navigate('/');
@@ -97,7 +96,9 @@ function Login() {
         console.log(responseData);
         return responseData; // Retorna os dados da função
       } else {
-        console.log("Solicitação não bem-sucedida");
+        const responseData = await response.json();
+        console.log(responseData);
+        console.log("Solicitação não bem-sucedida ",responseData);
       }
     } catch (error) {
       console.error("Erro ao fazer a solicitação:", error);

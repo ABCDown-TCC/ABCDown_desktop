@@ -4,7 +4,7 @@ function Crud() {
   async function get() {
     try {
       const accessToken = sessionStorage.getItem("accessToken");
-      console.log(accessToken);
+      console.log(accessToken, 'token Crud');
 
       if (!accessToken) {
         

@@ -3,47 +3,20 @@ import UserDetails from "../layout/ConfigurationComponents/UserDetails";
 import { useState } from "react";
 import React, { ReactNode } from 'react';
 import imageLupa from '../layout/ClassComponents/ImagesClass/lupa.svg'
-
+import Matter from '../layout/componentStudent/Matter'
 interface CustomDivProps {
     children: ReactNode;
 }
 
 
-function Matter() {
-    const containerStyle = {
-      border: '2px solid #F0754E',
-      padding: '10px',
-      width: '40%',
-      borderRadius: '10px',
-      height: '30vh',
-    };
-  
-    const titleStyle = {
-      fontWeight: 'bold',
-    };
-  
-    const starsStyle = {
-      fontSize: '24px',
-      color: 'gold',
-      backgroundColor: 'red',
-    };
-  
-    return (
-      <div style={containerStyle}>
-        <span style={titleStyle}>Atividade de Português</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <div>
-          <span>avaliacao</span>
-          <span style={starsStyle}>★★★★★</span>
-        </div>
-      </div>
-    );
-  }
+
 const CustomDiv: React.FC<CustomDivProps> = ({ children }) => {
     return (
-        <div style={{ display: 'flex', flexDirection: 'row',  alignItems: 'center', 
-        //backgroundColor:'blue', 
-        gap:'10%'}}>
+        <div style={{
+            display: 'flex', flexDirection: 'row', alignItems: 'center',
+            //backgroundColor:'blue', 
+            gap: '10%'
+        }}>
             {children}
         </div>
     );
@@ -61,36 +34,36 @@ interface SearchInputProps {
     searchTerm?: string;
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     text?: string;
-  }
-  
-  function SearchInput(props: SearchInputProps) {
+}
+
+function SearchInput(props: SearchInputProps) {
     return (
         <div
-        style={{
-          backgroundColor: '#D9D9D9',
-          width: '40%',
-          height: '3vh',
-          display: 'flex',          // Adicione display flex
-          justifyContent: 'space-between', // Coloque os itens nos extremos
-          alignItems: 'center',     // Alinhe verticalmente no centro
-          borderRadius:'50px'
-        }}
-      >
-       
-        <input style={{ marginLeft:'5%', border: 'none',outline: 'none',backgroundColor:'#D9D9D9',height:'100%',width:'100%'}}
-        
-          type="text"
-          placeholder={props.text}
-          value={props.searchTerm}
-          onChange={props.handleChange}
-    
-        />
-<img src={imageLupa} alt="Lupa" style={{ marginRight: '5%' }} />
-        {/* <span className="user-input">{props.text}</span> */}
-      </div>
+            style={{
+                backgroundColor: '#EEEEEE',
+                width: '50%',
+                height: '4vh',
+                display: 'flex',          // Adicione display flex
+                justifyContent: 'space-between', // Coloque os itens nos extremos
+                alignItems: 'center',     // Alinhe verticalmente no centro
+                borderRadius: '50px'
+            }}
+        >
+
+            <input style={{ marginLeft: '5%', border: 'none', outline: 'none', backgroundColor: '#EEEEEE', height: '100%', width: '100%' }}
+
+                type="text"
+                placeholder={props.text}
+                value={props.searchTerm}
+                onChange={props.handleChange}
+
+            />
+            <img src={imageLupa} alt="Lupa" style={{ marginRight: '5%' }} />
+            {/* <span className="user-input">{props.text}</span> */}
+        </div>
     )
-  }
-  
+}
+
 
 function CustomSelect() {
     return (
@@ -98,11 +71,11 @@ function CustomSelect() {
             style={{
                 display: "flex",
                 flexDirection: "row",
-                backgroundColor: '#D9D9D9',
+                backgroundColor: '#EEEEEE',
                 justifyContent: 'space-between',
-                width: '10vw',
-                height: '5vh',
-                border: '3px solid #DDDDDD',
+                width: '17%',
+                height: '4vh',
+                border: '3px solid #EEEEEE',
                 alignItems: 'center',
                 borderRadius: '50px',
                 padding: '0 1%',
@@ -117,7 +90,7 @@ function CustomSelect() {
                 border: 'none',
                 outline: 'none',
                 width: '100%',
-                backgroundColor: '#D9D9D9'
+                backgroundColor: '#EEEEEE'
 
 
             }}>
@@ -186,20 +159,51 @@ function Tab({ label, active, onClick }: TabProps) {
 
 
 function TarefasDeCasa() {
+    const showMore = () => {
+        console.log('Ver mais clicado');
+    };
     return (
         <>
             <div
-                style={{ width: '100%', height: '100%', backgroundColor: 'red', alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+                style={{
+                    width: '100%', height: '100%',
+                    //  backgroundColor: 'red', 
+                    alignItems: 'center', display: 'flex', justifyContent: 'center'
+                }}>
 
-                <div style={{ width: '90%', height: '100%', backgroundColor: 'blue', display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ width: '100%', height: '20%', backgroundColor: 'pink',display:'flex', flexDirection:'row',justifyContent: 'space-between' }}>
+                <div style={{
+                    width: '80%', height: '100%',
+                    //backgroundColor: 'blue', 
+                    display: 'flex', flexDirection: 'column'
+                }}>
+                    <div style={{
+                        width: '100%', height: '25%',
+                        //  backgroundColor: 'pink',
+                        display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'
+                    }}>
                         <CustomSelect />
                         <SearchInput text="Pesquisar atividades" />
 
                     </div>
-                    <div style={{ width: '100%', height: '80%', backgroundColor: 'green' }}>
+                    <div style={{
+                        width: '100%', height: '75%', //backgroundColor: 'green',
 
-                        < Matter/>
+                        gap: '30px',
+                        alignItems: 'center',
+                        padding: '0 0 4% 0',
+                        display: 'flex',
+                        flexWrap: 'wrap', // Permite que as divs filhas sejam dispostas em linhas com 2 divs em cada linha
+                        justifyContent: 'space-evenly', // Espaço uniforme entre as divs filhas
+                        overflow: "auto",
+                    }}>
+                        <Matter
+                            activityName="Atividade de Português"
+                            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                            onClick={showMore}
+                        />
+
+
+
                     </div>
 
                 </div>
@@ -223,10 +227,63 @@ function Desempenho() {
 
 function Responsavel() {
     return (
-        <div>
-            <h1>Responsável</h1>
-            {/* Conteúdo da tela de Responsável */}
-        </div>
+        <>
+
+            <div
+                style={{
+                    width: '100%', height: '100%',
+                    //backgroundColor: 'red',
+                    alignItems: 'center', display: 'flex', justifyContent: 'center'
+                }}>
+
+
+                <div style={{
+                    border: '5px solid #EEEEEE',
+                    padding: '10px',
+                    width: '30%',
+                    borderRadius: '10px',
+                    height: '25vh',
+                    //backgroundColor: 'pink',
+                    display: 'flex',
+                    justifyContent: 'space-evenly',
+                    flexDirection: 'column'
+                }}>
+                    <div style={{ height: '50%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10%',
+                    // backgroundColor: 'red' 
+                }}>
+                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center',
+                        // backgroundColor: 'green', 
+                         width: '100%', justifyContent: 'center', gap: '3%' }}>
+                            <div style={{ width: '90px', height: '90px', borderRadius: '50%', overflow: 'hidden', backgroundColor: '#EAEAEA', }}>
+                                <img src="caminho_da_imagem.jpg" alt="Imagem" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            </div>
+                            <span style={{ fontWeight: 'bold' }}>Nome</span>
+                        </div>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50%',paddingLeft:'5%',justifyContent: 'space-evenly',
+                     //backgroundColor: 'green' 
+                     }}>
+                        <div style={{ display: 'flex', flexDirection: 'row', 
+                        //backgroundColor:'white',
+                        gap:'3%' }}>
+                            <span >Telefone:</span>
+                            <span>(11)99998-9999</span>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'row',
+                        // backgroundColor:'white',
+                         gap:'3%' }}>
+                            <span >E-mail:</span>
+                            <span >mariana@gmail.com</span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+        </>
     );
 }
 
@@ -262,7 +319,7 @@ function Student() {
                             gap: "30px",
                             // marginLeft: "3%",
                             width: "50%",
-                           // background: 'red',
+                            // background: 'red',
                             height: '100%',
                         }}
                     >
@@ -284,17 +341,17 @@ function Student() {
                                 justifyContent: 'space-around'
                             }}
                         >
-                            <span style={{color:'white', fontSize:'3rem',  fontWeight: 'bold'}}>Natan Gonçalves</span>
+                            <span style={{ color: 'white', fontSize: '3rem', fontWeight: 'bold' }}>Natan Gonçalves</span>
                             <CustomDiv>
                                 <>
                                     <CustomDivColumn>
-                                        <span style={{color:'white' ,fontWeight: 'bold', fontSize:'1.5rem'}}>Idade</span>
-                                        <span style={{color:'white'}}>4 anos</span>
+                                        <span style={{ color: 'white', fontWeight: 'bold', fontSize: '1.5rem' }}>Idade</span>
+                                        <span style={{ color: 'white' }}>4 anos</span>
                                     </CustomDivColumn>
 
                                     <CustomDivColumn>
-                                        <span style={{color:'white' ,fontWeight: 'bold',fontSize:'1.5rem'}}>Genêro</span>
-                                        <span style={{color:'white'}} >Masculino</span>
+                                        <span style={{ color: 'white', fontWeight: 'bold', fontSize: '1.5rem' }}>Genêro</span>
+                                        <span style={{ color: 'white' }} >Masculino</span>
                                     </CustomDivColumn>
 
 
@@ -303,13 +360,13 @@ function Student() {
                             <CustomDiv>
                                 <>
                                     <CustomDivColumn>
-                                        <span style={{color:'white' ,fontWeight: 'bold',fontSize:'1.5rem'}}>Escola</span>
-                                        <span style={{color:'white'}}>  E.E. Professora Iracema Rauen Maciel</span>
+                                        <span style={{ color: 'white', fontWeight: 'bold', fontSize: '1.5rem' }}>Escola</span>
+                                        <span style={{ color: 'white' }}>  E.E. Professora Iracema Rauen Maciel</span>
                                     </CustomDivColumn>
 
                                     <CustomDivColumn>
-                                        <span style={{color:'white' ,fontWeight: 'bold',fontSize:'1.5rem'}}>Turma</span>
-                                        <span style={{color:'white'}}>1º A - Manhã</span>
+                                        <span style={{ color: 'white', fontWeight: 'bold', fontSize: '1.5rem' }}>Turma</span>
+                                        <span style={{ color: 'white' }}>1º A - Manhã</span>
                                     </CustomDivColumn>
 
 
@@ -323,7 +380,7 @@ function Student() {
                 <div
                     style={{
                         width: "100%",
-                        height: "80%", display: 'flex', flexDirection: 'column'
+                        height: "75%", display: 'flex', flexDirection: 'column'
                         // backgroundColor: "#43B1B1",
 
                     }}
@@ -331,7 +388,7 @@ function Student() {
                     <div
                         style={{
                             width: "100%",
-                            height: "15%",
+                            height: "10%",
                             backgroundColor: "white",
                             display: 'flex',
                             flexDirection: 'row',
@@ -339,6 +396,7 @@ function Student() {
                             borderTopRightRadius: "50px",
                             alignItems: 'flex-end',
                             justifyContent: 'center',
+                            borderBottom: '3px solid #EEEEEE'
 
 
                         }}
@@ -365,7 +423,7 @@ function Student() {
 
                         </div>
                     </div>
-                    <div style={{ width: '100%', height: '85%', backgroundColor: 'white' }}>
+                    <div style={{ width: '100%', height: '90%', backgroundColor: 'white' }}>
                         {activeTab === 'Tarefas de Casa' && <TarefasDeCasa />}
                         {activeTab === 'Desempenho' && <Desempenho />}
                         {activeTab === 'Responsável' && <Responsavel />}

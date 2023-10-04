@@ -469,7 +469,8 @@ function Turmas() {
 
 
 <Card width="40%" height="35vh" onClick={onClickCard}>
-
+<div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+<div style={{ height: '100%', width: '95%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column'}}>
 <div
     style={{
         display: "flex",
@@ -477,7 +478,7 @@ function Turmas() {
         width: "100%",
         height: "80%",
         //backgroundColor:'red'
-        //   backgroundColor: "orange",
+        //backgroundColor: "orange",
     }}
 >
     <div
@@ -485,9 +486,9 @@ function Turmas() {
             display: "flex",
             flexDirection: "column",
             //   alignItems: "center",
-               backgroundColor: "red",
+            //backgroundColor: "red",
             justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-            marginLeft: "1vw",
+            
             width: "50%",
             //  backgroundColor:'green'
         }}
@@ -511,6 +512,9 @@ function Turmas() {
             //   backgroundColor: "green",
             width: "50%",
             height: "100%",
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center'
             //  display:
         }}
     >
@@ -525,7 +529,8 @@ function Turmas() {
         display: "flex",
         flexDirection: "row",
         width: "100%",
-         backgroundColor: "Pink",
+        //backgroundColor: "Pink",
+         justifyContent:'space-between',
         height: "20%",
     }}
 >
@@ -533,16 +538,16 @@ function Turmas() {
         style={{
             display: "flex",
             flexDirection: "column",
-              backgroundColor: "green",
+            //backgroundColor: "green",
             alignItems: "center",
             justifyContent: "center",
-            marginLeft: "3vw",
+           
         }}
     >
         <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
         <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
     </div>
-    <div style={{ flex: "1", backgroundColor: "white" }}></div>
+    {/* <div style={{ flex: "1", backgroundColor: "white" }}></div> */}
     <div
         style={{
             display: "flex",
@@ -550,7 +555,7 @@ function Turmas() {
             //   backgroundColor: "blue",
             alignItems: "center",
             justifyContent: "center",
-            marginRight: "3vw", // Corrected typo
+            
         }}
     >
         <ContainerInfoDeleteContainer
@@ -558,6 +563,9 @@ function Turmas() {
             onClickIfo={onClickIfo}
 
         />
+    </div>
+</div>
+
     </div>
 </div>
 
