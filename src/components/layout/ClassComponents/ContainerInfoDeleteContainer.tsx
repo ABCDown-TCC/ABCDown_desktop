@@ -24,7 +24,7 @@ import imageDelete from './ImagesClass/delete.svg'
 
 interface PropsContainerInfoDeleteContainer {
   onClickIfo?: () => void
-  onClickDelete?: () => void
+  onClickDelete?: (turmaId?: string) => void // 'turmaId' é agora opcional
 }
 
 function ContainerInfoDeleteContainer(props: PropsContainerInfoDeleteContainer) {

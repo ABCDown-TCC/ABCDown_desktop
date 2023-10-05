@@ -51,13 +51,13 @@ function Login() {
       if (response.ok) {
         console.log("Login bem-sucedido");
         const responseData = await response.json();
-        console.log("responseData: test ", responseData);
+        console.log("responseData: test  Login", responseData);
       
         // Converter o objeto responseData em uma string JSON
         const accessToken = responseData.message;
       
         // Armazenar a string na sessionStorage
-        sessionStorage.setItem("accessToken test", accessToken);
+        localStorage.setItem("accessToken", accessToken);
         console.log("Token armazenado na sessionStorage:", accessToken);
         fetchUserData();
         navigate('/');
@@ -74,10 +74,10 @@ function Login() {
     }
   };
   async function fetchUserData() {
-    const id = 29
-    const accessToken = sessionStorage.getItem("accessToken");
-    console.log(accessToken);
 
+    const accessToken = localStorage.getItem("accessToken");
+    console.log('Token de Acesso:', accessToken);
+  
     if (!accessToken) {
       console.error("Token de acesso não encontrado");
       return;
@@ -90,20 +90,25 @@ function Login() {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-
+      console.log(accessToken);
+      
+  
+      console.log('fetchUserData Login', accessToken);
+  
       if (response.ok) {
         const responseData = await response.json();
-        console.log(responseData);
+        console.log('Dados da resposta:', responseData);
         return responseData; // Retorna os dados da função
       } else {
         const responseData = await response.json();
-        console.log(responseData);
-        console.log("Solicitação não bem-sucedida ",responseData);
+        console.log('Erro na resposta:', responseData);
+        console.log("Solicitação não bem-sucedida de Get Login", response);
       }
     } catch (error) {
       console.error("Erro ao fazer a solicitação:", error);
     }
   }
+  
 
 
   // Função para fazer uma solicitação GET protegida pelo token

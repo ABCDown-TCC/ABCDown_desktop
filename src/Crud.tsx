@@ -3,7 +3,7 @@ function Crud() {
   // Função para realizar operação de leitura (GET)
   async function get() {
     try {
-      const accessToken = sessionStorage.getItem("accessToken");
+      const accessToken = localStorage.getItem("accessToken");
       console.log(accessToken, 'token Crud');
 
       if (!accessToken) {
@@ -16,17 +16,18 @@ function Crud() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
+          "Authorization": `Bearer ${accessToken}`,
         },
       });
+      console.log(accessToken);
       
       
       if (response.ok) {
         const responseData = await response.json();
-        console.log(responseData);
+        console.log('get',responseData);
         return responseData; // Retorna os dados da função
       } else {
-        console.log("Solicitação não bem-sucedida",response);
+        console.log("Solicitação não bem-sucedida do get Crud",response);
       }
     } catch (error) {
       console.error("Erro ao fazer a solicitação:", error);

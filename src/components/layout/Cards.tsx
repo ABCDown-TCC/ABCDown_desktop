@@ -4,6 +4,7 @@ import ContainerInfoDeleteContainer from '../layout/ClassComponents/ContainerInf
 
 interface CardsProps {
   height: string;
+  id?:string;
   width: string;
   children?: React.ReactNode;
   onClick?:() => void
@@ -12,6 +13,7 @@ interface CardsProps {
 function Cards(props: CardsProps) {
   return (
     <div 
+    id={props.id}
     className={styles.containerCard} style={{ height: props.height, width: props.width, display: 'flex', flexDirection: 'column' }}
     onClick={props.onClick}
     >

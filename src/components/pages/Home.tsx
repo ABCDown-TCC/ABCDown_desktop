@@ -29,7 +29,7 @@ function Home() {
             const data = await Crud().get();
       
             // Faça algo com os dados obtidos, por exemplo, imprima no console
-            console.log(data, 'test');
+            console.log(data, 'MeuComponet Home');
           };
       
           fetchData(); // Chame a função fetchData para buscar os dados

@@ -369,106 +369,8 @@ function Turmas() {
             }}>
                 {turmas.map((turma) => (
 
-                    <Card width="40%" height="35vh" onClick={onClickCard}>
-
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                width: "100%",
-                                height: "80%",
-                                //backgroundColor:'red'
-                                //   backgroundColor: "orange",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    //   alignItems: "center",
-                                       backgroundColor: "red",
-                                    justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-                                    marginLeft: "1vw",
-                                    width: "50%",
-                                    //  backgroundColor:'green'
-                                }}
-                            >
-                                <h2
-                                    style={{
-                                        fontSize: "1.7vw",
-                                    }}
-                                >
-                                    {turma.nome}
-                                </h2>
-                                <p
-                                    style={{
-                                        fontSize: "0.8vw",
-                                    }}
-                                > {turma.descricao}
-                                </p>
-                            </div>
-                            <div
-                                style={{
-                                    //   backgroundColor: "green",
-                                    width: "50%",
-                                    height: "100%",
-                                    //  display:
-                                }}
-                            >
-                                <img src={image2} alt="" style={{
-                                    width: '10vw',
-                                    height: '20vh'
-                                }} />
-                            </div>
-                        </div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                width: "100%",
-                                 backgroundColor: "Pink",
-                                height: "20%",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                      backgroundColor: "green",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    marginLeft: "3vw",
-                                }}
-                            >
-                                <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-                                <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-                            </div>
-                            <div style={{ flex: "1", backgroundColor: "white" }}></div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    //   backgroundColor: "blue",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    marginRight: "3vw", // Corrected typo
-                                }}
-                            >
-                                <ContainerInfoDeleteContainer
-                                    onClickDelete={onClickDelete}
-                                    onClickIfo={onClickIfo}
-
-                                />
-                            </div>
-                        </div>
-
-                    </Card>
-
-                ))}
-
-
-
-<Card width="40%" height="35vh" onClick={onClickCard}>
+<Card width="40%" height="35vh" onClick={onClickCard}  key={String(turma.id)}
+  id={String(turma.id)}>
 <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
 <div style={{ height: '100%', width: '95%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column'}}>
 <div
@@ -498,13 +400,13 @@ function Turmas() {
                 fontSize: "1.7vw",
             }}
         >
-            nomeee
+           {turma.nome}
         </h2>
         <p
             style={{
                 fontSize: "0.8vw",
             }}
-        > ssssssssssssssscdcd
+        > {turma.descricao}
         </p>
     </div>
     <div
@@ -571,7 +473,7 @@ function Turmas() {
 
 </Card>
 
-
+                ))}
 
                 {deleteVisible && (
                     <div
