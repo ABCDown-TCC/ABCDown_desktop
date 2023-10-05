@@ -17,7 +17,7 @@ import Btn from "../layout/FormComponents/Btn";
 import { useNavigate, Link } from 'react-router-dom';
 import Crud from '../../Crud'
 import styles from './Turmas.module.css'
-
+import EdithInfo from '../layout/img_containers_cards/imageEdithInfo.svg'
 interface Turma {
     codigoTurma: string;
     descricao: string;
@@ -264,15 +264,15 @@ function Turmas() {
                     <Card width="35%" height="80%">
                         <div style={{
                             display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', height: '100%',
-                         // backgroundColor:'red',
-                          justifyContent: 'space-between'
+                            // backgroundColor:'red',
+                            justifyContent: 'space-between'
                             //  gap: '5%' 
                         }}>
                             <div style={{
                                 display: 'flex',
                                 flexDirection: 'column',
                                 height: '40%',
-                               //  backgroundColor:'blue',
+                                //  backgroundColor:'blue',
                                 width: '90%',
                                 alignItems: 'center',
                                 justifyContent: 'space-evenly'
@@ -285,10 +285,10 @@ function Turmas() {
                             </div>
                             <div style={{
                                 display: 'flex', flexDirection: 'column', width: '90%', height: '40%',
-                             // backgroundColor: 'green',
+                                // backgroundColor: 'green',
                                 //justifyContent: 'space-between'
-                               // gap: '10%'
-                               justifyContent:'space-between'
+                                // gap: '10%'
+                                justifyContent: 'space-between'
                             }}>
 
 
@@ -306,7 +306,7 @@ function Turmas() {
                             <div style={{
 
                                 height: '10%',
-                                  //backgroundColor:'pink',
+                                //backgroundColor:'pink',
                                 width: '90%',
 
 
@@ -369,112 +369,213 @@ function Turmas() {
             }}>
                 {turmas.map((turma) => (
 
-<Card width="40%" height="35vh" onClick={onClickCard}  key={String(turma.id)}
-  id={String(turma.id)}>
-<div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-<div style={{ height: '100%', width: '95%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column'}}>
-<div
-    style={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100%",
-        height: "80%",
-        //backgroundColor:'red'
-        //backgroundColor: "orange",
-    }}
->
-    <div
-        style={{
-            display: "flex",
-            flexDirection: "column",
-            //   alignItems: "center",
-            //backgroundColor: "red",
-            justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
-            
-            width: "50%",
-            //  backgroundColor:'green'
-        }}
-    >
-        <h2
-            style={{
-                fontSize: "1.7vw",
-            }}
-        >
-           {turma.nome}
-        </h2>
-        <p
-            style={{
-                fontSize: "0.8vw",
-            }}
-        > {turma.descricao}
-        </p>
-    </div>
-    <div
-        style={{
-            //   backgroundColor: "green",
-            width: "50%",
-            height: "100%",
-            display:'flex',
-            justifyContent:'center',
-            alignItems:'center'
-            //  display:
-        }}
-    >
-        <img src={image2} alt="" style={{
-            width: '10vw',
-            height: '20vh'
-        }} />
-    </div>
-</div>
-<div
-    style={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100%",
-        //backgroundColor: "Pink",
-         justifyContent:'space-between',
-        height: "20%",
-    }}
->
-    <div
-        style={{
-            display: "flex",
-            flexDirection: "column",
-            //backgroundColor: "green",
-            alignItems: "center",
-            justifyContent: "center",
-           
-        }}
-    >
-        <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
-        <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
-    </div>
-    {/* <div style={{ flex: "1", backgroundColor: "white" }}></div> */}
-    <div
-        style={{
-            display: "flex",
-            flexDirection: "column",
-            //   backgroundColor: "blue",
-            alignItems: "center",
-            justifyContent: "center",
-            
-        }}
-    >
-        <ContainerInfoDeleteContainer
-            onClickDelete={onClickDelete}
-            onClickIfo={onClickIfo}
+                    <Card width="40%" height="35vh" onClick={onClickCard} key={String(turma.id)}
+                        id={String(turma.id)}>
+                        <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                            <div style={{ height: '100%', width: '95%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        width: "100%",
+                                        height: "80%",
+                                        //backgroundColor:'red'
+                                        //backgroundColor: "orange",
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            //   alignItems: "center",
+                                            //backgroundColor: "red",
+                                            justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
 
-        />
-    </div>
-</div>
+                                            width: "50%",
+                                            //  backgroundColor:'green'
+                                        }}
+                                    >
+                                        <h2
+                                            style={{
+                                                fontSize: "1.7vw",
+                                            }}
+                                        >
+                                            {turma.nome}
+                                        </h2>
+                                        <p
+                                            style={{
+                                                fontSize: "0.8vw",
+                                            }}
+                                        > {turma.descricao}
+                                        </p>
+                                    </div>
+                                    <div
+                                        style={{
+                                            //   backgroundColor: "green",
+                                            width: "50%",
+                                            height: "100%",
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center'
+                                            //  display:
+                                        }}
+                                    >
+                                        <img src={image2} alt="" style={{
+                                            width: '10vw',
+                                            height: '20vh'
+                                        }} />
+                                    </div>
+                                </div>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        width: "100%",
+                                        //backgroundColor: "Pink",
+                                        justifyContent: 'space-between',
+                                        height: "20%",
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            //backgroundColor: "green",
+                                            alignItems: "center",
+                                            justifyContent: "center",
 
-    </div>
-</div>
+                                        }}
+                                    >
+                                        <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
+                                        <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
+                                    </div>
+                                    {/* <div style={{ flex: "1", backgroundColor: "white" }}></div> */}
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            //   backgroundColor: "blue",
+                                            alignItems: "center",
+                                            justifyContent: "center",
 
-</Card>
+                                        }}
+                                    >
+                                        <ContainerInfoDeleteContainer
+                                            onClickDelete={onClickDelete}
+                                            onClickIfo={onClickIfo}
+
+                                        />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </Card>
 
                 ))}
+                <Card width="40%" height="35vh" onClick={onClickCard}>
+                    <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                        <div style={{ height: '100%', width: '95%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    width: "100%",
+                                    height: "80%",
+                                    //backgroundColor:'red'
+                                    //backgroundColor: "orange",
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        //   alignItems: "center",
+                                        //backgroundColor: "red",
+                                        justifyContent: "space-evenly", // Alinha horizontalmente com espaço uniforme
 
+                                        width: "50%",
+                                        //  backgroundColor:'green'
+                                    }}
+                                >
+                                    <h2
+                                        style={{
+                                            fontSize: "1.7vw",
+                                        }}
+                                    >
+                                        wsdfghjk
+                                    </h2>
+                                    <p
+                                        style={{
+                                            fontSize: "0.8vw",
+                                        }}
+                                    > edfghjkl;pkjh
+                                    </p>
+                                </div>
+                                <div
+                                    style={{
+                                        //   backgroundColor: "green",
+                                        width: "50%",
+                                        height: "100%",
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center'
+                                        //  display:
+                                    }}
+                                >
+                                    <img src={image2} alt="" style={{
+                                        width: '10vw',
+                                        height: '20vh'
+                                    }} />
+                                </div>
+                            </div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    width: "100%",
+                                    //backgroundColor: "Pink",
+                                    justifyContent: 'space-between',
+                                    height: "20%",
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        //backgroundColor: "green",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+
+                                    }}
+                                >
+                                    <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>Alunos</span>
+                                    <span style={{ fontWeight: "bold", fontSize: "0.9vw" }}>5</span>
+                                </div>
+                                {/* <div style={{ flex: "1", backgroundColor: "white" }}></div> */}
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        //   backgroundColor: "blue",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+
+                                    }}
+                                >
+                                    <ContainerInfoDeleteContainer
+                                        onClickDelete={onClickDelete}
+                                        onClickIfo={onClickIfo}
+
+                                    />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </Card>
                 {deleteVisible && (
                     <div
                         style={{
@@ -556,18 +657,9 @@ function Turmas() {
                                     </div>
 
 
-
-
-
-
-
                                     <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-start', padding: '10px' }}>
 
                                     </div>
-
-
-
-
 
                                     <div className={styles.text}>
                                         <p >
@@ -575,11 +667,6 @@ function Turmas() {
 
                                             Lorem ipsum dolor sit amet. Ut quidem necessitatibus At animi voluptas ut provident cumque ut necessitatibus laborum est quibusdam esse.
                                         </p>
-
-
-
-
-
                                     </div>
 
                                     <div className={styles.aluno}
@@ -597,9 +684,6 @@ function Turmas() {
                                         )}
                                     </div>
                                 </div>
-
-
-
 
                                 {/*div footer */}
                                 <div style={{
@@ -636,7 +720,7 @@ function Turmas() {
                                             marginRight: 10
                                         }}>
 
-                                            {/* Conteúdo do primeiro botão */}
+                                            <img src={EdithInfo} alt="" />
                                         </button>
                                         <button style={{
 

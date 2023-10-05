@@ -4,9 +4,102 @@ import { useState } from "react";
 import React, { ReactNode } from 'react';
 import imageLupa from '../layout/ClassComponents/ImagesClass/lupa.svg'
 import Matter from '../layout/componentStudent/Matter'
+import imageGame from '../layout/img_containers_cards/imageGame.svg'
+import imageHomeWork from '../layout/img_containers_cards/imageHomeWork.svg'
+
 interface CustomDivProps {
     children: ReactNode;
 }
+
+
+
+interface CustomRowProps {
+    onClick?: () => void;
+    imageSrc?: string; // Adicione a prop imageSrc
+    nome?: string;
+    descricao?: string
+}
+
+function CustomRow(props: CustomRowProps) {
+    return (
+        <div
+            style={{
+                display: 'flex',
+                border: '1px solid black', // Borda preta
+                borderRadius: '10px',
+                cursor: 'pointer', // Adicione um cursor de ponteiro para indicar que o card é clicável
+                width: '30%',
+                height: '30%',
+            }}
+            onClick={props.onClick} // Adicione o evento onClick para chamar a função handleClick
+        >
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '50%',
+                   // backgroundColor: 'red',
+
+                }}
+            >
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        height: '80%',
+                        width: '90%',
+                       // backgroundColor: 'green',
+
+                    }}
+                >
+                    <span style={{ fontWeight: 'bold', fontSize: '2rem' }}>{props.nome}</span>
+                    <span style={{ fontSize: '1rem',width:'90%' }}>{props.descricao}</span>
+                </div>
+
+            </div>
+
+            {/* Div de imagem */}
+            <div
+                style={{
+                    width: '50%', // Largura da div de imagem
+                    height: '100%', // Altura da div de imagem
+                  //  backgroundColor: 'lightblue', // Cor de fundo da div de imagem
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+            >
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        height: '100%',
+                        width: '70%',
+                       // backgroundColor: 'green',
+                        alignItems: 'flex-end'
+                    }}
+                >
+                    <img
+                        src={props.imageSrc} // Use a prop imageSrc como src da imagem
+                        alt="Imagem"
+                        style={{
+                            display: 'flex',
+                            width: '50%',
+                            height: '100%',
+
+                            //backgroundColor: 'blue',
+                        }}
+                    />
+                </div>
+
+            </div>
+        </div>
+    );
+}
+
+
 
 
 
@@ -216,10 +309,27 @@ function TarefasDeCasa() {
 
 function Desempenho() {
     return (
-        <div>
-            <h1>Desempenho</h1>
-            {/* Conteúdo da tela de Desempenho */}
+        <div style={{ display: 'flex', width: '100%', height: '100%', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
+  
+            {/* Div com 25% de altura */}
+            <div style={{ display:'flex', width:'100%', height: '25%', 
+            //backgroundColor: 'red',
+            justifyContent:'center', alignItems:'center' }}>
+            <span style={{fontSize:'1.3rem'}}>Por favor, selecione a opção que você deseja visualizar:</span>
+
+            </div>
+
+            {/* Div com 75% de altura */}
+            <div style={{ display:'flex', width:'100%', height: '75%',
+             //backgroundColor: 'blue',
+             flexDirection:'column',  alignItems:'center',gap:'5%'}}>
+            <CustomRow imageSrc={imageGame} nome="Jogo" descricao="Acompanhe o desempenho nos jogos" />
+            <CustomRow imageSrc={imageHomeWork} nome="Tarefas de casa" descricao="Acompanhe o desenvolvimento nas tarefas de casa" />
+
+            </div>
         </div>
+
+
     );
 }
 
@@ -248,30 +358,38 @@ function Responsavel() {
                     justifyContent: 'space-evenly',
                     flexDirection: 'column'
                 }}>
-                    <div style={{ height: '50%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10%',
-                    // backgroundColor: 'red' 
-                }}>
-                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center',
-                        // backgroundColor: 'green', 
-                         width: '100%', justifyContent: 'center', gap: '3%' }}>
+                    <div style={{
+                        height: '50%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10%',
+                        // backgroundColor: 'red' 
+                    }}>
+                        <div style={{
+                            display: 'flex', flexDirection: 'row', alignItems: 'center',
+                            // backgroundColor: 'green', 
+                            width: '100%', justifyContent: 'center', gap: '3%'
+                        }}>
                             <div style={{ width: '90px', height: '90px', borderRadius: '50%', overflow: 'hidden', backgroundColor: '#EAEAEA', }}>
                                 <img src="caminho_da_imagem.jpg" alt="Imagem" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                             <span style={{ fontWeight: 'bold' }}>Nome</span>
                         </div>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '50%',paddingLeft:'5%',justifyContent: 'space-evenly',
-                     //backgroundColor: 'green' 
-                     }}>
-                        <div style={{ display: 'flex', flexDirection: 'row', 
-                        //backgroundColor:'white',
-                        gap:'3%' }}>
+                    <div style={{
+                        display: 'flex', flexDirection: 'column', width: '100%', height: '50%', paddingLeft: '5%', justifyContent: 'space-evenly',
+                        //backgroundColor: 'green' 
+                    }}>
+                        <div style={{
+                            display: 'flex', flexDirection: 'row',
+                            //backgroundColor:'white',
+                            gap: '3%'
+                        }}>
                             <span >Telefone:</span>
                             <span>(11)99998-9999</span>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'row',
-                        // backgroundColor:'white',
-                         gap:'3%' }}>
+                        <div style={{
+                            display: 'flex', flexDirection: 'row',
+                            // backgroundColor:'white',
+                            gap: '3%'
+                        }}>
                             <span >E-mail:</span>
                             <span >mariana@gmail.com</span>
                         </div>
