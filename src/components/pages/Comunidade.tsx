@@ -68,7 +68,7 @@ function SearchInput(props: SearchInputProps) {
         value={props.searchTerm}
         onChange={props.handleChange}
       />
-      <img src={imageLupa} alt="Lupa" style={{ marginRight: "5%",}} />
+      <img src={imageLupa} alt="Lupa" style={{ marginRight: "5%", }} />
       {/* <span className="user-input">{props.text}</span> */}
     </div>
   );
@@ -151,7 +151,7 @@ function MyActivicts(props: MyActivictsProps) {
               flexDirection: 'column',
               width: '90%',
               height: '100%',
-             // backgroundColor: 'purple',
+              // backgroundColor: 'purple',
               justifyContent: 'center',
             }}
           >
@@ -200,8 +200,8 @@ function MyActivicts(props: MyActivictsProps) {
                 justifyContent: 'space-between',
                 //backgroundColor: 'pink',
                 height: '20%',
-                alignItems:'flex-end',
-                
+                alignItems: 'flex-end',
+
               }}
             >
               <span role="img" aria-label="Avaliação">
@@ -245,21 +245,78 @@ function MyActivicts(props: MyActivictsProps) {
             justifyContent: 'center',
           }}
         >
-          <Card width="40%" height="35vh">
-
+          <Card width="45%" height="80%">
             <div style={{
-              display: 'flex',
-              // height: '10%',
-              width: '100%',
-              /// backgroundColor: 'red',
-              justifyContent: 'flex-end'
+              width: '100%', height: '50%', backgroundColor: 'red', backgroundImage: `url(${ImageMyActivity})`, // Substitua pelo caminho da sua imagem
+              backgroundSize: "cover",
             }}>
-              {/* <button className={styles.containerClose} onClick={props.onClickClose}> */}
+              <div style={{
+                display: 'flex',
+                // height: '10%',
+                width: '100%',
+                //backgroundColor: 'blue',
+                justifyContent: 'flex-end'
+              }}>
+                {/* <button className={styles.containerClose} onClick={props.onClickClose}> */}
 
-              <button onClick={CloseWindownsInfo}>
-                <img src={ImageClose} alt="close" />
+                <button onClick={CloseWindownsInfo}>
+                  <img src={ImageClose} alt="close" />
+                </button>
+              </div>
+            </div>
+            <div style={{ width: '100%', flex: 1, backgroundColor: 'green', flexDirection: 'column' }}>
+              <span
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: '2rem',
+                  width: '100%',
+                  //backgroundColor: 'white',
+                  height: '20%',
+                }}
+              >
+                {props.title}
+              </span>
+
+              <p style={{fontSize:'1.3rem'}}>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's b akjdfbawkjfbklwabfjkwbfkbwafkwbfkjb wkfjbwkjfbwkjf bkjwbf kwjbfkjwbfkjwbfkjwabfkjwbfkjbwakjfbwkjbfkwajbfkjwabfkjw
+                is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's b akjdfbawkjfbklwabfjkwbfkbwafkwbfkjb wkfjbwkjfbwkjf bkjwbf kwjbfkjwbfkjwbfkjwabfkjwbfkjbwakjfbwkjbfkwajbfkjwabfkjw </p>
+                <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                width: '100%',
+                justifyContent: 'space-between',
+                backgroundColor: 'pink',
+                
+                alignItems: 'flex-end',
+
+              }}
+            >
+              <span role="img" aria-label="Avaliação">
+                ⭐️⭐️⭐️⭐️⭐️
+              </span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  props.onButtonClick();
+                }}
+                style={{
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  height: '5rem'
+                }}
+              >
+                <img
+                  src={imageDowload}
+                  alt="Download"
+                  style={{ width: '100%', height: '100%' }}
+                />
               </button>
             </div>
+
+            </div>
+
+
           </Card>
 
 
@@ -427,7 +484,7 @@ function MinhasAtividades() {
           }}
 
         />
-                <MyActivicts
+        <MyActivicts
           imageUrl={ImageMyActivity}
           title="Titulo atividade"
           description="Texto é uma produção, verbal ou não verbal, que se constitui com algum código, no intuito de comunicar algo a alguém, em determinado tempo e espaço. Sua definição ampla se deve ao fato de também abranger diversos formatos.
