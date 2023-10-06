@@ -135,6 +135,8 @@ function App() {
 //node server.js
 //node server.js
 //npm install react-hook-form
+//npm install json-server
+
 
 //npmi
 // npm prisma regenerate
